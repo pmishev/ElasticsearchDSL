@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "script" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-script-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-script-query.html
  */
 class ScriptQuery implements BuilderInterface
 {

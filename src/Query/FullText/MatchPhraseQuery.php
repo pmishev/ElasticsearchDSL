@@ -15,7 +15,8 @@ namespace ONGR\ElasticsearchDSL\Query\FullText;
  * Represents Elasticsearch "match_phrase" query.
  *
  * @author Ron Rademaker
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html
+ *
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html
  */
 class MatchPhraseQuery extends MatchQuery
 {

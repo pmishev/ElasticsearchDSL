@@ -39,7 +39,7 @@ class StatsAggregationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(
             [
                 'stats' => [
-                    'field' => 'fieldValue',
+                    'field'  => 'fieldValue',
                     'script' => 'scriptValue',
                 ],
             ],

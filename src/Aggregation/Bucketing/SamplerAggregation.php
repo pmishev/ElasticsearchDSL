@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing geo bounds aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/2.3/search-aggregations-bucket-sampler-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/2.3/search-aggregations-bucket-sampler-aggregation.html
  */
 class SamplerAggregation extends AbstractAggregation
 {
@@ -25,6 +25,7 @@ class SamplerAggregation extends AbstractAggregation
 
     /**
      * Defines how many results will be received from each shard
+     *
      * @param string $shardSize
      */
     private $shardSize;
@@ -79,7 +80,7 @@ class SamplerAggregation extends AbstractAggregation
     {
         $out = array_filter(
             [
-                'field' => $this->getField(),
+                'field'      => $this->getField(),
                 'shard_size' => $this->getShardSize(),
             ]
         );

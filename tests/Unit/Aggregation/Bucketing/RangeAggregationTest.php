@@ -26,11 +26,11 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'range' => [
-                'field' => 'test_field',
+                'field'  => 'test_field',
                 'ranges' => [
                     [
                         'from' => '10',
-                        'to' => 20,
+                        'to'   => 20,
                     ],
                 ],
                 'keyed' => false,
@@ -53,14 +53,14 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'range' => [
-                'field' => 'test_field',
+                'field'  => 'test_field',
                 'ranges' => [
                     [
                         'from' => '10',
-                        'key' => 'range_1',
+                        'key'  => 'range_1',
                     ],
                     [
-                        'to' => '20',
+                        'to'  => '20',
                         'key' => 'range_2',
                     ],
                 ],
@@ -87,11 +87,11 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'range' => [
-                'field' => 'test_field',
+                'field'  => 'test_field',
                 'ranges' => [
                     [
                         'from' => '10',
-                        'to' => '10',
+                        'to'   => '10',
                     ],
                 ],
                 'keyed' => false,
@@ -102,7 +102,7 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
                         'ranges' => [
                             [
                                 'from' => '20',
-                                'to' => '20',
+                                'to'   => '20',
                             ],
                         ],
                         'keyed' => false,
@@ -135,13 +135,13 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
         $aggregation->addRange(100, 300, 'name');
 
         $expected = [
-            'field' => 'price',
-            'keyed' => true,
+            'field'  => 'price',
+            'keyed'  => true,
             'ranges' => [
                 [
                     'from' => 100,
-                    'to' => 300,
-                    'key' => 'name',
+                    'to'   => 300,
+                    'key'  => 'name',
                 ],
             ],
         ];
@@ -176,13 +176,13 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
         $aggregation->addRange(500, 700, 'range_2');
 
         $expected = [
-            'field' => 'price',
-            'keyed' => true,
+            'field'  => 'price',
+            'keyed'  => true,
             'ranges' => [
                 [
                     'from' => 100,
-                    'to' => 300,
-                    'key' => 'key',
+                    'to'   => 300,
+                    'key'  => 'key',
                 ],
             ],
         ];
@@ -203,11 +203,11 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(
             [
                 'range' => [
-                    'keyed' => true,
+                    'keyed'  => true,
                     'ranges' => [
                         [
                             'from' => 'now',
-                            'key' => 'nowkey',
+                            'key'  => 'nowkey',
                         ],
                     ],
                     'field' => 'fieldValue',

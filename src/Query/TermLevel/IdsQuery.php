@@ -17,16 +17,12 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "ids" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-ids-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-ids-query.html
  */
 class IdsQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param array $values
-     * @param array $parameters
-     */
     public function __construct(private array $values, array $parameters = [])
     {
         $this->setParameters($parameters);

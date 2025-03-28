@@ -18,7 +18,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Class representing Extended stats aggregation.
  *
- * @link http://goo.gl/E0PpDv
+ * @see http://goo.gl/E0PpDv
  */
 class ExtendedStatsAggregation extends AbstractAggregation
 {
@@ -82,11 +82,11 @@ class ExtendedStatsAggregation extends AbstractAggregation
     {
         $out = array_filter(
             [
-                'field' => $this->getField(),
+                'field'  => $this->getField(),
                 'script' => $this->getScript(),
-                'sigma' => $this->getSigma(),
+                'sigma'  => $this->getSigma(),
             ],
-            fn($val) => $val || is_numeric($val)
+            fn ($val) => $val || is_numeric($val)
         );
 
         return $out;

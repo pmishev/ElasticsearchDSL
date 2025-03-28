@@ -29,7 +29,7 @@ class SerialDifferencingAggregationTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'serial_diff' => [
                 'buckets_path' => 'test',
-                'lag' => '7'
+                'lag'          => '7',
             ],
         ];
 

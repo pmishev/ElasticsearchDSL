@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing ip range aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-iprange-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-iprange-aggregation.html
  */
 class Ipv4RangeAggregation extends AbstractAggregation
 {
@@ -64,9 +64,9 @@ class Ipv4RangeAggregation extends AbstractAggregation
         $range = array_filter(
             [
                 'from' => $from,
-                'to' => $to,
+                'to'   => $to,
             ],
-            fn($v) => !is_null($v)
+            fn ($v) => !is_null($v)
         );
 
         $this->ranges[] = $range;
@@ -103,7 +103,7 @@ class Ipv4RangeAggregation extends AbstractAggregation
     {
         if ($this->getField() && !empty($this->ranges)) {
             return [
-                'field' => $this->getField(),
+                'field'  => $this->getField(),
                 'ranges' => array_values($this->ranges),
             ];
         }

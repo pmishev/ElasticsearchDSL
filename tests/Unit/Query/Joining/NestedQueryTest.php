@@ -39,10 +39,10 @@ class NestedQueryTest extends \PHPUnit\Framework\TestCase
                 'product.sub_item',
                 ['_cache' => true, '_name' => 'named_result'],
                 [
-                    'path' => 'product.sub_item',
-                    'query' => $query,
+                    'path'   => 'product.sub_item',
+                    'query'  => $query,
                     '_cache' => true,
-                    '_name' => 'named_result',
+                    '_name'  => 'named_result',
                 ],
             ],
         ];

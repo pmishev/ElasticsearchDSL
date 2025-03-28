@@ -18,7 +18,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Class representing filters aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filters-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filters-aggregation.html
  */
 class FiltersAggregation extends AbstractAggregation
 {
@@ -68,18 +68,17 @@ class FiltersAggregation extends AbstractAggregation
     }
 
     /**
-     * @param BuilderInterface $filter
-     * @param string           $name
-     *
-     * @throws \LogicException
+     * @param string $name
      *
      * @return FiltersAggregation
+     *
+     * @throws \LogicException
      */
     public function addFilter(BuilderInterface $filter, $name = '')
     {
-        if ($this->anonymous === false && empty($name)) {
+        if (false === $this->anonymous && empty($name)) {
             throw new \LogicException('In not anonymous filters filter name must be set.');
-        } elseif ($this->anonymous === false && !empty($name)) {
+        } elseif (false === $this->anonymous && !empty($name)) {
             $this->filters['filters'][$name] = $filter->toArray();
         } else {
             $this->filters['filters'][] = $filter->toArray();

@@ -29,7 +29,7 @@ class ReverseNestedAggregationTest extends \PHPUnit\Framework\TestCase
 
         $expectedResult = [
             'reverse_nested' => ['path' => 'test_path'],
-            'aggregations' => [
+            'aggregations'   => [
                 $termAggregation->getName() => $termAggregation->toArray(),
             ],
         ];
@@ -49,7 +49,7 @@ class ReverseNestedAggregationTest extends \PHPUnit\Framework\TestCase
 
         $expectedResult = [
             'reverse_nested' => new \stdClass(),
-            'aggregations' => [
+            'aggregations'   => [
                 $termAggregation->getName() => $termAggregation->toArray(),
             ],
         ];

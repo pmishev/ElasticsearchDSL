@@ -14,7 +14,7 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
 /**
  * Class representing Cumulative Sum Pipeline Aggregation.
  *
- * @link https://goo.gl/EUzda6
+ * @see https://goo.gl/EUzda6
  */
 class CumulativeSumAggregation extends AbstractPipelineAggregation
 {

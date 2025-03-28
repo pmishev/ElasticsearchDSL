@@ -16,17 +16,12 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Elasticsearch Span not query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-not-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-not-query.html
  */
 class SpanNotQuery implements SpanQueryInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param SpanQueryInterface $include
-     * @param SpanQueryInterface $exclude
-     * @param array              $parameters
-     */
     public function __construct(private SpanQueryInterface $include, private SpanQueryInterface $exclude, array $parameters = [])
     {
         $this->setParameters($parameters);

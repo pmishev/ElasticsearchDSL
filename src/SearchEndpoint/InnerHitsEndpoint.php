@@ -22,7 +22,7 @@ class InnerHitsEndpoint extends AbstractSearchEndpoint
     /**
      * Endpoint name
      */
-    const NAME = 'inner_hits';
+    public const NAME = 'inner_hits';
 
     /**
      * {@inheritdoc}

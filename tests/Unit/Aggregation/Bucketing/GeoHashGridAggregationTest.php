@@ -38,16 +38,16 @@ class GeoHashGridAggregationTest extends \PHPUnit\Framework\TestCase
         $out = [];
 
         $filterData = [
-            'field' => 'location',
-            'precision' => 3,
-            'size' => 10,
+            'field'      => 'location',
+            'precision'  => 3,
+            'size'       => 10,
             'shard_size' => 10,
         ];
 
         $expectedResults = [
-            'field' => 'location',
-            'precision' => 3,
-            'size' => 10,
+            'field'      => 'location',
+            'precision'  => 3,
+            'size'       => 10,
             'shard_size' => 10,
         ];
 

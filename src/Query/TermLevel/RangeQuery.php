@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "range" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html
  */
 class RangeQuery implements BuilderInterface
 {
@@ -26,14 +26,13 @@ class RangeQuery implements BuilderInterface
     /**
      * Range control names.
      */
-    const LT = 'lt';
-    const GT = 'gt';
-    const LTE = 'lte';
-    const GTE = 'gte';
+    public const LT = 'lt';
+    public const GT = 'gt';
+    public const LTE = 'lte';
+    public const GTE = 'gte';
 
     /**
      * @param string $field
-     * @param array  $parameters
      */
     public function __construct(private $field, array $parameters = [])
     {

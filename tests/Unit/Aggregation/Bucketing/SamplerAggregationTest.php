@@ -43,7 +43,7 @@ class SamplerAggregationTest extends \PHPUnit\Framework\TestCase
         $result = $aggregation->toArray();
         $expected = [
             'sampler' => [
-                'field' => 'name',
+                'field'      => 'name',
                 'shard_size' => 200,
             ],
             'aggregations' => [

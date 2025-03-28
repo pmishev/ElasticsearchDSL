@@ -11,7 +11,6 @@
 
 namespace ONGR\ElasticsearchDSL\Tests\Unit;
 
-use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\ParametersTrait;
 
 /**
@@ -29,7 +28,7 @@ class ParametersTraitTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp(): void
     {
-        $this->parametersTraitMock = $this->getMockForTrait(\ONGR\ElasticsearchDSL\ParametersTrait::class);
+        $this->parametersTraitMock = $this->getMockForTrait(ParametersTrait::class);
     }
 
     /**

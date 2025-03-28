@@ -40,16 +40,16 @@ class FieldMaskingSpanQueryTest extends \PHPUnit\Framework\TestCase
             'span_near' => [
                 'clauses' => [
                     [
-                        'span_term' => [ 'text' => 'quick brown']
+                        'span_term' => ['text' => 'quick brown'],
                     ],
                     [
                         'field_masking_span' => [
-                            'query' => [ 'span_term' => [ 'text.stems' => 'fox' ] ],
+                            'query' => ['span_term' => ['text.stems' => 'fox']],
                             'field' => 'text',
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
-                'slop' => 5,
+                'slop'     => 5,
                 'in_order' => false,
             ],
         ];

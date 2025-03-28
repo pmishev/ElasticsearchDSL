@@ -27,8 +27,8 @@ class NestedSortTest extends \PHPUnit\Framework\TestCase
             'filter' => [
                 'term' => [
                     'somePath.id' => 10,
-                ]
-            ]
+                ],
+            ],
         ];
         $result = $query->toArray();
         $this->assertEquals($expected, $result);
@@ -41,7 +41,7 @@ class NestedSortTest extends \PHPUnit\Framework\TestCase
     {
         $query = new NestedSort('somePath');
         $expected = [
-            'path'   => 'somePath',
+            'path' => 'somePath',
         ];
         $result = $query->toArray();
         $this->assertEquals($expected, $result);
@@ -62,24 +62,24 @@ class NestedSortTest extends \PHPUnit\Framework\TestCase
             'filter' => [
                 'term' => [
                     'somePath.id' => 10,
-                ]
+                ],
             ],
             'nested' => [
                 'path'   => 'secondPath',
                 'filter' => [
                     'term' => [
                         'secondPath.foo' => 'bar',
-                    ]
+                    ],
                 ],
                 'nested' => [
                     'path'   => 'thirdPath',
                     'filter' => [
                         'term' => [
                             'thirdPath.x' => 'y',
-                        ]
+                        ],
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
         $result = $query->toArray();
         $this->assertEquals($expected, $result);

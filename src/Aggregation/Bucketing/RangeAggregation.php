@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing RangeAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html
  */
 class RangeAggregation extends AbstractAggregation
 {
@@ -83,9 +83,9 @@ class RangeAggregation extends AbstractAggregation
         $range = array_filter(
             [
                 'from' => $from,
-                'to' => $to,
+                'to'   => $to,
             ],
-            fn($v) => !is_null($v)
+            fn ($v) => !is_null($v)
         );
 
         if (!empty($key)) {
@@ -108,7 +108,7 @@ class RangeAggregation extends AbstractAggregation
     public function removeRange($from, $to)
     {
         foreach ($this->ranges as $key => $range) {
-            if (array_diff_assoc(array_filter(['from' => $from, 'to' => $to]), $range) === []) {
+            if ([] === array_diff_assoc(array_filter(['from' => $from, 'to' => $to]), $range)) {
                 unset($this->ranges[$key]);
 
                 return true;
@@ -146,7 +146,7 @@ class RangeAggregation extends AbstractAggregation
     public function getArray()
     {
         $data = [
-            'keyed' => $this->keyed,
+            'keyed'  => $this->keyed,
             'ranges' => array_values($this->ranges),
         ];
 

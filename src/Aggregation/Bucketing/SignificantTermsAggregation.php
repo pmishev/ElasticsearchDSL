@@ -14,7 +14,7 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 /**
  * Class representing TermsAggregation.
  *
- * @link https://goo.gl/xI7zoa
+ * @see https://goo.gl/xI7zoa
  */
 class SignificantTermsAggregation extends TermsAggregation
 {

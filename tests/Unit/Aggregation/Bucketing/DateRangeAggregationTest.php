@@ -49,9 +49,9 @@ class DateRangeAggregationTest extends \PHPUnit\Framework\TestCase
         $result = $agg->getArray();
         $expected = [
             'format' => 'bar',
-            'field' => 'baz',
+            'field'  => 'baz',
             'ranges' => [['from' => 10, 'to' => 20]],
-            'keyed' => true,
+            'keyed'  => true,
         ];
         $this->assertEquals($expected, $result);
     }
@@ -84,19 +84,19 @@ class DateRangeAggregationTest extends \PHPUnit\Framework\TestCase
             ['field' => 'fieldName', 'format' => 'formatString', 'ranges' => []],
             // Case #4. Provide 1 range.
             [
-                'field' => 'fieldName',
+                'field'  => 'fieldName',
                 'format' => 'formatString',
                 'ranges' => [['from' => 'value']],
             ],
             // Case #4. Provide 2 ranges.
             [
-                'field' => 'fieldName',
+                'field'  => 'fieldName',
                 'format' => 'formatString',
                 'ranges' => [['from' => 'value'], ['to' => 'value']],
             ],
             // Case #5. Provide 3 ranges.
             [
-                'field' => 'fieldName',
+                'field'  => 'fieldName',
                 'format' => 'formatString',
                 'ranges' => [['from' => 'value'], ['to' => 'value'], ['from' => 'value', 'to' => 'value2']],
             ],
@@ -108,13 +108,12 @@ class DateRangeAggregationTest extends \PHPUnit\Framework\TestCase
      *
      * @param string $field
      * @param string $format
-     * @param array  $ranges
      *
      * @dataProvider getDateRangeAggregationConstructorProvider
      */
-    public function testDateRangeAggregationConstructor($field = null, $format = null, array $ranges = null)
+    public function testDateRangeAggregationConstructor($field = null, $format = null, ?array $ranges = null)
     {
-        $aggregation = $this->getMockBuilder(\ONGR\ElasticsearchDSL\Aggregation\Bucketing\DateRangeAggregation::class)
+        $aggregation = $this->getMockBuilder(DateRangeAggregation::class)
             ->onlyMethods(['setField', 'setFormat', 'addRange'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -122,9 +121,9 @@ class DateRangeAggregationTest extends \PHPUnit\Framework\TestCase
         $aggregation->expects($this->once())->method('setFormat')->with($format);
         $aggregation->expects($this->exactly(count($ranges ?? [])))->method('addRange');
 
-        if ($field !== null) {
-            if ($format !== null) {
-                if ($ranges !== null) {
+        if (null !== $field) {
+            if (null !== $format) {
+                if (null !== $ranges) {
                     $aggregation->__construct('mock', $field, $format, $ranges);
                 } else {
                     $aggregation->__construct('mock', $field, $format);

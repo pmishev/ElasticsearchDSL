@@ -22,7 +22,7 @@ class TypeQueryTest extends \PHPUnit\Framework\TestCase
     {
         $query = new TypeQuery('foo');
         $expectedResult = [
-            'type' => ['value' => 'foo']
+            'type' => ['value' => 'foo'],
         ];
 
         $this->assertEquals($expectedResult, $query->toArray());

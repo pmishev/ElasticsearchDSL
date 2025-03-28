@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "match_all" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-all-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-all-query.html
  */
 class MatchAllQuery implements BuilderInterface
 {
@@ -45,6 +45,7 @@ class MatchAllQuery implements BuilderInterface
     public function toArray()
     {
         $params = $this->getParameters();
+
         return [$this->getType() => !empty($params) ? $params : new \stdClass()];
     }
 }

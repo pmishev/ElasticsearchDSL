@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "template" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-template-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-template-query.html
  */
 class TemplateQuery implements BuilderInterface
 {
@@ -39,7 +39,7 @@ class TemplateQuery implements BuilderInterface
     private $params;
 
     /**
-     * @param string $file A template of the query
+     * @param string $file   A template of the query
      * @param string $inline A template of the query
      * @param array  $params Parameters to insert into template
      */
@@ -125,16 +125,14 @@ class TemplateQuery implements BuilderInterface
     {
         $output = array_filter(
             [
-                'file' => $this->getFile(),
+                'file'   => $this->getFile(),
                 'inline' => $this->getInline(),
                 'params' => $this->getParams(),
             ]
         );
 
         if (!isset($output['file']) && !isset($output['inline'])) {
-            throw new \InvalidArgumentException(
-                'Template query requires that either `inline` or `file` parameters are set'
-            );
+            throw new \InvalidArgumentException('Template query requires that either `inline` or `file` parameters are set');
         }
 
         $output = $this->processArray($output);

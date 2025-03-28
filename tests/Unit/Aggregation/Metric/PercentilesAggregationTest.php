@@ -44,7 +44,7 @@ class PercentilesAggregationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(
             [
                 'percents' => ['percentsValue'],
-                'field' => 'fieldValue',
+                'field'    => 'fieldValue',
             ],
             $aggregation->getArray()
         );

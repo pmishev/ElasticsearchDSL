@@ -12,7 +12,6 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\Pipeline\BucketSortAggregation;
-use ONGR\ElasticsearchDSL\Aggregation\Pipeline\MovingFunctionAggregation;
 use ONGR\ElasticsearchDSL\Sort\FieldSort;
 
 /**
@@ -52,8 +51,8 @@ class BucketSortAggregationTest extends \PHPUnit\Framework\TestCase
                 'sort' => [
                     [
                         'test_field' => ['order' => 'asc'],
-                    ]
-                ]
+                    ],
+                ],
             ],
         ];
 

@@ -50,8 +50,8 @@ class TopHitsAggregationTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'top_hits' => [
-                'size' => 0,
-                'from' => 1,
+                'size'    => 0,
+                'from'    => 1,
                 '_source' => [
                     'include' => ['title'],
                 ],

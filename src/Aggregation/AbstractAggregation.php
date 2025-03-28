@@ -79,8 +79,6 @@ abstract class AbstractAggregation implements NamedBuilderInterface
     /**
      * Adds a sub-aggregation.
      *
-     * @param AbstractAggregation $abstractAggregation
-     *
      * @return $this
      */
     public function addAggregation(AbstractAggregation $abstractAggregation)
@@ -90,7 +88,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
         }
 
         $this->aggregations->add($abstractAggregation);
-        
+
         return $this;
     }
 
@@ -110,6 +108,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
 
     /**
      * Returns sub aggregation.
+     *
      * @param string $name Aggregation name to return.
      *
      * @return AbstractAggregation|NamedBuilderInterface|null

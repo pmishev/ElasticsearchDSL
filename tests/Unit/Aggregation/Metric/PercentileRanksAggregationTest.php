@@ -12,7 +12,6 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\Metric\PercentileRanksAggregation;
-use phpDocumentor\Reflection\Types\Void_;
 
 /**
  * Percentile ranks aggregation unit tests.
@@ -79,7 +78,7 @@ class PercentileRanksAggregationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(
             [
                 'percentile_ranks' => [
-                    'field' => 'bar',
+                    'field'  => 'bar',
                     'values' => ['bar'],
                 ],
             ],

@@ -21,7 +21,7 @@ abstract class AbstractElasticsearchTestCase extends TestCase
     /**
      * Test index name in the elasticsearch.
      */
-    const INDEX_NAME = 'elasticsaerch-dsl-test';
+    public const INDEX_NAME = 'elasticsaerch-dsl-test';
 
     /**
      * @var Client
@@ -41,8 +41,8 @@ abstract class AbstractElasticsearchTestCase extends TestCase
         $this->client->indices()->create(
             array_filter(
                 [
-                    'index' => self::INDEX_NAME,
-                    'mapping' => $this->getMapping()
+                    'index'   => self::INDEX_NAME,
+                    'mapping' => $this->getMapping(),
                 ]
             )
         );
@@ -52,11 +52,11 @@ abstract class AbstractElasticsearchTestCase extends TestCase
         foreach ($this->getDataArray() as $type => $documents) {
             foreach ($documents as $id => $document) {
                 $bulkBody[] = [
-                   'index' => [
+                    'index' => [
                         '_index' => self::INDEX_NAME,
-                        '_type' => $type,
-                        '_id' => $id,
-                    ]
+                        '_type'  => $type,
+                        '_id'    => $id,
+                    ],
                 ];
                 $bulkBody[] = $document;
             }
@@ -64,7 +64,7 @@ abstract class AbstractElasticsearchTestCase extends TestCase
 
         $this->client->bulk(
             [
-                'body' => $bulkBody
+                'body' => $bulkBody,
             ]
         );
         $this->client->indices()->refresh();
@@ -118,9 +118,10 @@ abstract class AbstractElasticsearchTestCase extends TestCase
     /**
      * Execute search to the elasticsearch and handle results.
      *
-     * @param Search $search Search object.
-     * @param null $type Types to search. Can be several types split by comma.
-     * @param bool $returnRaw Return raw response from the client.
+     * @param Search $search    Search object.
+     * @param null   $type      Types to search. Can be several types split by comma.
+     * @param bool   $returnRaw Return raw response from the client.
+     *
      * @return array
      */
     protected function executeSearch(Search $search, $type = null, $returnRaw = false)
@@ -128,8 +129,8 @@ abstract class AbstractElasticsearchTestCase extends TestCase
         $response = $this->client->search(
             array_filter([
                 'index' => self::INDEX_NAME,
-                'type' => $type,
-                'body' => $search->toArray(),
+                'type'  => $type,
+                'body'  => $search->toArray(),
             ])
         );
 

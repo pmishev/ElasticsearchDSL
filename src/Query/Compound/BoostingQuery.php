@@ -16,14 +16,12 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Represents Elasticsearch "boosting" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-boosting-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-boosting-query.html
  */
 class BoostingQuery implements BuilderInterface
 {
     /**
-     * @param BuilderInterface $positive
-     * @param BuilderInterface $negative
-     * @param int|float        $negativeBoost
+     * @param int|float $negativeBoost
      */
     public function __construct(private readonly BuilderInterface $positive, private readonly BuilderInterface $negative, private $negativeBoost)
     {
@@ -43,8 +41,8 @@ class BoostingQuery implements BuilderInterface
     public function toArray()
     {
         $query = [
-            'positive' => $this->positive->toArray(),
-            'negative' => $this->negative->toArray(),
+            'positive'       => $this->positive->toArray(),
+            'negative'       => $this->negative->toArray(),
             'negative_boost' => $this->negativeBoost,
         ];
 

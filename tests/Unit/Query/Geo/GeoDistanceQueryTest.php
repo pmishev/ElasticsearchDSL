@@ -35,9 +35,9 @@ class GeoDistanceQueryTest extends \PHPUnit\Framework\TestCase
             [
                 'location',
                 '20km',
-                ['lat' => 0, 'lon' => 0],
+                ['lat'       => 0, 'lon' => 0],
                 ['parameter' => 'value'],
-                ['distance' => '20km', 'location' => ['lat' => 0, 'lon' => 0], 'parameter' => 'value'],
+                ['distance'  => '20km', 'location' => ['lat' => 0, 'lon' => 0], 'parameter' => 'value'],
             ],
         ];
     }

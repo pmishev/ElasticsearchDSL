@@ -29,8 +29,8 @@ class DerivativeAggregationTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'derivative' => [
                 'buckets_path' => 'foo>bar',
-                'gap_policy' => 'skip'
-            ]
+                'gap_policy'   => 'skip',
+            ],
         ];
 
         $this->assertEquals($expected, $aggregation->toArray());

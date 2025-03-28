@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing Histogram aggregation.
  *
- * @link https://goo.gl/hGCdDd
+ * @see https://goo.gl/hGCdDd
  */
 class DateHistogramAggregation extends AbstractAggregation
 {
@@ -99,7 +99,7 @@ class DateHistogramAggregation extends AbstractAggregation
         }
 
         $out = [
-            'field' => $this->getField(),
+            'field'    => $this->getField(),
             'interval' => $this->getInterval(),
         ];
 

@@ -27,11 +27,11 @@ class CompositeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $expectedResult = [
             'composite' => [
-                'sources' =>  [
+                'sources' => [
                     [
-                        'test_term_agg' => [ 'terms' => ['field' => 'test_field'] ],
-                    ]
-                ]
+                        'test_term_agg' => ['terms' => ['field' => 'test_field']],
+                    ],
+                ],
             ],
         ];
 
@@ -51,13 +51,13 @@ class CompositeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $expectedResult = [
             'composite' => [
-                'sources' =>  [
+                'sources' => [
                     [
-                        'test_term_agg' => [ 'terms' => ['field' => 'test_field'] ],
-                    ]
+                        'test_term_agg' => ['terms' => ['field' => 'test_field']],
+                    ],
                 ],
-                'size' => 5,
-                'after' => ['test_term_agg' => 'test']
+                'size'  => 5,
+                'after' => ['test_term_agg' => 'test'],
             ],
         ];
 
@@ -105,17 +105,16 @@ class CompositeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $expectedResult = [
             'composite' => [
-                'sources' =>  [
+                'sources' => [
                     [
-                        'test_term_agg' => [ 'terms' => ['field' => 'test_field', 'order' => 'asc'] ],
-                    ]
-                ]
+                        'test_term_agg' => ['terms' => ['field' => 'test_field', 'order' => 'asc']],
+                    ],
+                ],
             ],
         ];
 
         $this->assertEquals($expectedResult, $compositeAgg->toArray());
     }
-
 
     public function testTermsSourceWithDescOrderParameter()
     {
@@ -126,17 +125,16 @@ class CompositeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $expectedResult = [
             'composite' => [
-                'sources' =>  [
+                'sources' => [
                     [
-                        'test_term_agg' => [ 'terms' => ['field' => 'test_field', 'order' => 'desc'] ],
-                    ]
-                ]
+                        'test_term_agg' => ['terms' => ['field' => 'test_field', 'order' => 'desc']],
+                    ],
+                ],
             ],
         ];
 
         $this->assertEquals($expectedResult, $compositeAgg->toArray());
     }
-
 
     public function testMultipleSourcesWithDifferentOrders()
     {
@@ -152,14 +150,14 @@ class CompositeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $expectedResult = [
             'composite' => [
-                'sources' =>  [
+                'sources' => [
                     [
-                        'test_term_agg_1' => [ 'terms' => ['field' => 'test_field', 'order' => 'desc'] ],
+                        'test_term_agg_1' => ['terms' => ['field' => 'test_field', 'order' => 'desc']],
                     ],
                     [
-                        'test_term_agg_2' => [ 'terms' => ['field' => 'test_field', 'order' => 'asc'] ],
-                    ]
-                ]
+                        'test_term_agg_2' => ['terms' => ['field' => 'test_field', 'order' => 'asc']],
+                    ],
+                ],
             ],
         ];
 

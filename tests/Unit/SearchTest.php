@@ -11,11 +11,7 @@
 
 namespace ONGR\ElasticsearchDSL\Tests\Unit;
 
-use ONGR\ElasticsearchDSL\Query\TermLevel\ExistsQuery;
-use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
 use ONGR\ElasticsearchDSL\Search;
-use ONGR\ElasticsearchDSL\Sort\FieldSort;
-use ONGR\ElasticsearchDSL\Suggest\Suggest;
 
 /**
  * Test for Search.
@@ -27,7 +23,7 @@ class SearchTest extends \PHPUnit\Framework\TestCase
      */
     public function testItCanBeInstantiated()
     {
-        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\Search::class, new Search());
+        $this->assertInstanceOf(Search::class, new Search());
     }
 
     public function testScrollUriParameter()

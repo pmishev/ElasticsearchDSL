@@ -24,7 +24,7 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
     public function testItCanBeInstantiated()
     {
         $this->assertInstanceOf(
-            \ONGR\ElasticsearchDSL\SearchEndpoint\InnerHitsEndpoint::class,
+            InnerHitsEndpoint::class,
             new InnerHitsEndpoint()
         );
     }
@@ -64,8 +64,8 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
         $endpoint->add($innerHit, 'foo');
         $expected = [
             'foo' => [
-                'foo' => 'bar'
-            ]
+                'foo' => 'bar',
+            ],
         ];
 
         $this->assertEquals(

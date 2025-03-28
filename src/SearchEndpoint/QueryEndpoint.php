@@ -24,7 +24,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * Endpoint name
      */
-    const NAME = 'query';
+    public const NAME = 'query';
 
     /**
      * @var BoolQuery

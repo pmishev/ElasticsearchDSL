@@ -43,10 +43,10 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
                         'text' => 'bar',
                         'term' => [
                             'field' => 'acme',
-                            'size' => 5
-                        ]
-                    ]
-                ]
+                            'size'  => 5,
+                        ],
+                    ],
+                ],
             ],
             [
                 'suggest' => new Suggest(
@@ -58,13 +58,13 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
                 ),
                 'expected' => [
                     'foo' => [
-                        'text' => 'bar',
+                        'text'   => 'bar',
                         'phrase' => [
-                            'field' => 'acme',
+                            'field'      => 'acme',
                             'max_errors' => 0.5,
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ],
             [
                 'suggest' => new Suggest(
@@ -76,13 +76,13 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
                 ),
                 'expected' => [
                     'foo' => [
-                        'text' => 'bar',
+                        'text'       => 'bar',
                         'completion' => [
-                            'field' => 'acme',
-                            'fuzziness' => 2
-                        ]
-                    ]
-                ]
+                            'field'     => 'acme',
+                            'fuzziness' => 2,
+                        ],
+                    ],
+                ],
             ],
             [
                 'suggest' => new Suggest(
@@ -94,24 +94,21 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
                 ),
                 'expected' => [
                     'foo' => [
-                        'text' => 'bar',
+                        'text'       => 'bar',
                         'completion' => [
-                            'field' => 'acme',
-                            'size' => 3,
+                            'field'   => 'acme',
+                            'size'    => 3,
                             'context' => [
-                                'color' => 'red'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'color' => 'red',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 
     /**
-     * @param Suggest $suggest
-     * @param array $expected
-     *
      * @dataProvider getTestToArrayData()
      */
     public function testToArray(Suggest $suggest, array $expected)

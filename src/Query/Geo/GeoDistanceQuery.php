@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "geo_distance" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-distance-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-distance-query.html
  */
 class GeoDistanceQuery implements BuilderInterface
 {
@@ -27,7 +27,6 @@ class GeoDistanceQuery implements BuilderInterface
      * @param string $field
      * @param string $distance
      * @param mixed  $location
-     * @param array  $parameters
      */
     public function __construct(private $field, private $distance, private $location, array $parameters = [])
     {
@@ -48,7 +47,7 @@ class GeoDistanceQuery implements BuilderInterface
     public function toArray()
     {
         $query = [
-            'distance' => $this->distance,
+            'distance'   => $this->distance,
             $this->field => $this->location,
         ];
         $output = $this->processArray($query);

@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing ChildrenAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-children-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-children-aggregation.html
  */
 class ChildrenAggregation extends AbstractAggregation
 {
@@ -74,7 +74,7 @@ class ChildrenAggregation extends AbstractAggregation
      */
     public function getArray()
     {
-        if (count($this->getAggregations()) == 0) {
+        if (0 == count($this->getAggregations())) {
             throw new \LogicException("Children aggregation `{$this->getName()}` has no aggregations added");
         }
 

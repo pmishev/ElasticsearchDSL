@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "simple_query_string" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html
  */
 class SimpleQueryStringQuery implements BuilderInterface
 {
@@ -25,7 +25,6 @@ class SimpleQueryStringQuery implements BuilderInterface
 
     /**
      * @param string $query
-     * @param array  $parameters
      */
     public function __construct(private $query, array $parameters = [])
     {

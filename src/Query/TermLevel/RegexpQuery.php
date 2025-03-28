@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "regexp" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html
  */
 class RegexpQuery implements BuilderInterface
 {
@@ -26,7 +26,6 @@ class RegexpQuery implements BuilderInterface
     /**
      * @param string $field
      * @param string $regexpValue
-     * @param array  $parameters
      */
     public function __construct(private $field, private $regexpValue, array $parameters = [])
     {

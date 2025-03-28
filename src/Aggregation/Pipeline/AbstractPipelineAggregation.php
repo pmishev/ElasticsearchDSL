@@ -16,7 +16,6 @@ abstract class AbstractPipelineAggregation extends AbstractAggregation
 
     /**
      * @param string $name
-     * @param $bucketsPath
      */
     public function __construct($name, $bucketsPath = null)
     {

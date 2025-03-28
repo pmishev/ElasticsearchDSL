@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "prefix" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html
  */
 class PrefixQuery implements BuilderInterface
 {

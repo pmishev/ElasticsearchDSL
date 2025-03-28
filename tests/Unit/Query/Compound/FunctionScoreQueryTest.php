@@ -29,9 +29,9 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
         return [
             // Case #0. No seed.
             [
-                'seed' => null,
+                'seed'          => null,
                 'expectedArray' => [
-                    'query' => null,
+                    'query'     => null,
                     'functions' => [
                         [
                             'random_score' => new \stdClass(),
@@ -41,12 +41,12 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
             ],
             // Case #1. With seed.
             [
-                'seed' => 'someSeed',
+                'seed'          => 'someSeed',
                 'expectedArray' => [
-                    'query' => null,
+                    'query'     => null,
                     'functions' => [
                         [
-                            'random_score' => [ 'seed' => 'someSeed'],
+                            'random_score' => ['seed' => 'someSeed'],
                         ],
                     ],
                 ],
@@ -84,19 +84,19 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(
             [
-                'query' => null,
+                'query'     => null,
                 'functions' => [
                     [
                         'field_value_factor' => [
-                            'field' => 'field1',
-                            'factor' => 2,
+                            'field'    => 'field1',
+                            'factor'   => 2,
                             'modifier' => 'none',
                         ],
                     ],
                     [
                         'field_value_factor' => [
-                            'field' => 'field2',
-                            'factor' => 1.5,
+                            'field'    => 'field2',
+                            'factor'   => 1.5,
                             'modifier' => 'ln',
                         ],
                     ],

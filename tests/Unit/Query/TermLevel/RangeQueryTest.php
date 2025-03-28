@@ -27,7 +27,7 @@ class RangeQueryTest extends \PHPUnit\Framework\TestCase
                     'gte' => 10,
                     'lte' => 20,
                 ],
-            ]
+            ],
         ];
 
         $this->assertEquals($expected, $query->toArray());

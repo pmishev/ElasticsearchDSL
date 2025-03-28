@@ -18,7 +18,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Class representing PercentilesAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-aggregation.html
  */
 class PercentilesAggregation extends AbstractAggregation
 {
@@ -110,11 +110,11 @@ class PercentilesAggregation extends AbstractAggregation
         $out = array_filter(
             [
                 'compression' => $this->getCompression(),
-                'percents' => $this->getPercents(),
-                'field' => $this->getField(),
-                'script' => $this->getScript(),
+                'percents'    => $this->getPercents(),
+                'field'       => $this->getField(),
+                'script'      => $this->getScript(),
             ],
-            fn($val) => $val || is_numeric($val)
+            fn ($val) => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);

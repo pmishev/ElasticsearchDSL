@@ -18,7 +18,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Difference values counter.
  *
- * @link http://goo.gl/tG7ciG
+ * @see http://goo.gl/tG7ciG
  */
 class CardinalityAggregation extends AbstractAggregation
 {
@@ -42,12 +42,12 @@ class CardinalityAggregation extends AbstractAggregation
     {
         $out = array_filter(
             [
-                'field' => $this->getField(),
-                'script' => $this->getScript(),
+                'field'               => $this->getField(),
+                'script'              => $this->getScript(),
                 'precision_threshold' => $this->getPrecisionThreshold(),
-                'rehash' => $this->isRehash(),
+                'rehash'              => $this->isRehash(),
             ],
-            fn($val) => $val || is_bool($val)
+            fn ($val) => $val || is_bool($val)
         );
 
         $this->checkRequiredFields($out);

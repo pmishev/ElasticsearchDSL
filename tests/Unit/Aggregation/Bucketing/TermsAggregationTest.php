@@ -44,8 +44,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
         $result = [
             'terms' => [
                 'field' => 'test_field',
-                'size' => 1,
-
+                'size'  => 1,
             ],
         ];
 
@@ -59,7 +58,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
         $result = [
             'terms' => [
                 'field' => 'test_field',
-                'size' => 0,
+                'size'  => 0,
             ],
         ];
 
@@ -79,8 +78,8 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'terms' => [
-                'field' => 'test_field',
-                'size' => 1,
+                'field'         => 'test_field',
+                'size'          => 1,
                 'min_doc_count' => 10,
             ],
         ];
@@ -101,7 +100,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'terms' => [
-                'field' => 'test_field',
+                'field'   => 'test_field',
                 'include' => 'test_.*',
                 'exclude' => 'pizza_.*',
             ],
@@ -122,27 +121,27 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
             'include',
             [
                 'pattern' => 'test_.*',
-                'flags' => 'CANON_EQ|CASE_INSENSITIVE',
+                'flags'   => 'CANON_EQ|CASE_INSENSITIVE',
             ]
         );
         $aggregation->addParameter(
             'exclude',
             [
                 'pattern' => 'pizza_.*',
-                'flags' => 'CASE_INSENSITIVE',
+                'flags'   => 'CASE_INSENSITIVE',
             ]
         );
 
         $result = [
             'terms' => [
-                'field' => 'test_field',
+                'field'   => 'test_field',
                 'include' => [
                     'pattern' => 'test_.*',
-                    'flags' => 'CANON_EQ|CASE_INSENSITIVE',
+                    'flags'   => 'CANON_EQ|CASE_INSENSITIVE',
                 ],
                 'exclude' => [
                     'pattern' => 'pizza_.*',
-                    'flags' => 'CASE_INSENSITIVE',
+                    'flags'   => 'CASE_INSENSITIVE',
                 ],
             ],
         ];

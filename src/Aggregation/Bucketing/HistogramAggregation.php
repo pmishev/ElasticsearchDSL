@@ -17,14 +17,14 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing Histogram aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
  */
 class HistogramAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    const DIRECTION_ASC = 'asc';
-    const DIRECTION_DESC = 'desc';
+    public const DIRECTION_ASC = 'asc';
+    public const DIRECTION_DESC = 'desc';
 
     /**
      * @var int
@@ -78,7 +78,7 @@ class HistogramAggregation extends AbstractAggregation
         $orderDirection = self::DIRECTION_ASC,
         $extendedBoundsMin = null,
         $extendedBoundsMax = null,
-        $keyed = null
+        $keyed = null,
     ) {
         parent::__construct($name);
 
@@ -225,14 +225,14 @@ class HistogramAggregation extends AbstractAggregation
     {
         $out = array_filter(
             [
-                'field' => $this->getField(),
-                'interval' => $this->getInterval(),
-                'min_doc_count' => $this->getMinDocCount(),
+                'field'           => $this->getField(),
+                'interval'        => $this->getInterval(),
+                'min_doc_count'   => $this->getMinDocCount(),
                 'extended_bounds' => $this->getExtendedBounds(),
-                'keyed' => $this->isKeyed(),
-                'order' => $this->getOrder(),
+                'keyed'           => $this->isKeyed(),
+                'order'           => $this->getOrder(),
             ],
-            fn($val) => $val || is_numeric($val)
+            fn ($val) => $val || is_numeric($val)
         );
         $this->checkRequiredParameters($out, ['field', 'interval']);
 

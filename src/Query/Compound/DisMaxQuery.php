@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "dis_max" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-dis-max-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-dis-max-query.html
  */
 class DisMaxQuery implements BuilderInterface
 {
@@ -30,8 +30,6 @@ class DisMaxQuery implements BuilderInterface
 
     /**
      * Initializes Dis Max query.
-     *
-     * @param array $parameters
      */
     public function __construct(array $parameters = [])
     {
@@ -40,8 +38,6 @@ class DisMaxQuery implements BuilderInterface
 
     /**
      * Add query.
-     *
-     * @param BuilderInterface $query
      *
      * @return DisMaxQuery
      */

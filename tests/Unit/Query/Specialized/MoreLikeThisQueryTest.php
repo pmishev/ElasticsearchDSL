@@ -24,7 +24,7 @@ class MoreLikeThisQueryTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'more_like_this' => [
                 'fields' => ['title', 'description'],
-                'like' => 'this is a test',
+                'like'   => 'this is a test',
             ],
         ];
 

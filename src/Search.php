@@ -24,10 +24,10 @@ use ONGR\ElasticsearchDSL\SearchEndpoint\QueryEndpoint;
 use ONGR\ElasticsearchDSL\SearchEndpoint\SearchEndpointFactory;
 use ONGR\ElasticsearchDSL\SearchEndpoint\SearchEndpointInterface;
 use ONGR\ElasticsearchDSL\SearchEndpoint\SortEndpoint;
+use ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint;
 use ONGR\ElasticsearchDSL\Serializer\Normalizer\CustomReferencedNormalizer;
 use ONGR\ElasticsearchDSL\Serializer\OrderedSerializer;
 use Symfony\Component\Serializer\Normalizer\CustomNormalizer;
-use ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint;
 
 /**
  * Search object that can be executed by a manager.
@@ -143,7 +143,7 @@ class Search
     /**
      * URI parameters alongside Request body search.
      *
-     * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html
+     * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html
      *
      * @var array
      */
@@ -191,7 +191,7 @@ class Search
      */
     private function initializeSerializer()
     {
-        if (static::$serializer === null) {
+        if (null === static::$serializer) {
             static::$serializer = new OrderedSerializer(
                 [
                     new CustomReferencedNormalizer(),
@@ -214,9 +214,8 @@ class Search
     /**
      * Adds query to the search.
      *
-     * @param BuilderInterface $query
-     * @param string           $boolType
-     * @param string           $key
+     * @param string $boolType
+     * @param string $key
      *
      * @return $this
      */
@@ -259,8 +258,6 @@ class Search
     /**
      * Sets query endpoint parameters.
      *
-     * @param array $parameters
-     *
      * @return $this
      */
     public function setQueryParameters(array $parameters)
@@ -274,7 +271,6 @@ class Search
      * Sets parameters to the endpoint.
      *
      * @param string $endpointName
-     * @param array  $parameters
      *
      * @return $this
      */
@@ -323,8 +319,6 @@ class Search
     /**
      * Sets post filter endpoint parameters.
      *
-     * @param array $parameters
-     *
      * @return $this
      */
     public function setPostFilterParameters(array $parameters)
@@ -336,8 +330,6 @@ class Search
 
     /**
      * Adds aggregation into search.
-     *
-     * @param AbstractAggregation $aggregation
      *
      * @return $this
      */
@@ -361,8 +353,6 @@ class Search
     /**
      * Adds inner hit into search.
      *
-     * @param NestedInnerHit $innerHit
-     *
      * @return $this
      */
     public function addInnerHit(NestedInnerHit $innerHit)
@@ -384,8 +374,6 @@ class Search
 
     /**
      * Adds sort to search.
-     *
-     * @param BuilderInterface $sort
      *
      * @return $this
      */
@@ -434,12 +422,12 @@ class Search
     }
 
     /**
-    * Adds suggest into search.
-    *
-    * @param BuilderInterface $suggest
-    *
-    * @return $this
-    */
+     * Adds suggest into search.
+     *
+     * @param BuilderInterface $suggest
+     *
+     * @return $this
+     */
     public function addSuggest(NamedBuilderInterface $suggest)
     {
         $this->getEndpoint(SuggestEndpoint::NAME)->add($suggest, $suggest->getName());
@@ -448,17 +436,17 @@ class Search
     }
 
     /**
-    * Returns all suggests.
-    *
-    * @return BuilderInterface[]
-    */
+     * Returns all suggests.
+     *
+     * @return BuilderInterface[]
+     */
     public function getSuggests()
     {
         return $this->getEndpoint(SuggestEndpoint::NAME)->getAll();
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getFrom()
     {
@@ -466,7 +454,7 @@ class Search
     }
 
     /**
-     * @param null|int $from
+     * @param int|null $from
      *
      * @return $this
      */
@@ -486,8 +474,6 @@ class Search
     }
 
     /**
-     * @param bool $trackTotalHits
-     *
      * @return $this
      */
     public function setTrackTotalHits(bool $trackTotalHits)
@@ -498,7 +484,7 @@ class Search
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getSize()
     {
@@ -506,7 +492,7 @@ class Search
     }
 
     /**
-     * @param null|int $size
+     * @param int|null $size
      *
      * @return $this
      */
@@ -720,7 +706,7 @@ class Search
     }
 
     /**
-     * @param string $name
+     * @param string            $name
      * @param string|array|bool $value
      *
      * @return $this
@@ -771,25 +757,22 @@ class Search
         return $this->uriParams;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function toArray()
     {
         $output = array_filter(static::$serializer->normalize($this->endpoints));
 
         $params = [
-            'from' => 'from',
-            'size' => 'size',
-            'source' => '_source',
-            'storedFields' => 'stored_fields',
-            'scriptFields' => 'script_fields',
+            'from'           => 'from',
+            'size'           => 'size',
+            'source'         => '_source',
+            'storedFields'   => 'stored_fields',
+            'scriptFields'   => 'script_fields',
             'docValueFields' => 'docvalue_fields',
-            'explain' => 'explain',
-            'version' => 'version',
-            'indicesBoost' => 'indices_boost',
-            'minScore' => 'min_score',
-            'searchAfter' => 'search_after',
+            'explain'        => 'explain',
+            'version'        => 'version',
+            'indicesBoost'   => 'indices_boost',
+            'minScore'       => 'min_score',
+            'searchAfter'    => 'search_after',
             'trackTotalHits' => 'track_total_hits',
         ];
 

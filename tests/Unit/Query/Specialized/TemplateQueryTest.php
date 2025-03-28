@@ -29,7 +29,7 @@ class TemplateQueryTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'template' => [
                 'inline' => $inline,
-                'params' => $params
+                'params' => $params,
             ],
         ];
         $this->assertEquals($expected, $query->toArray());
@@ -47,7 +47,7 @@ class TemplateQueryTest extends \PHPUnit\Framework\TestCase
         $query->setParams($params);
         $expected = [
             'template' => [
-                'file' => $file,
+                'file'   => $file,
                 'params' => $params,
             ],
         ];

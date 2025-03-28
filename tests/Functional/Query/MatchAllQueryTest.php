@@ -30,7 +30,7 @@ class MatchAllQueryTest extends AbstractElasticsearchTestCase
                 [
                     'title' => 'foo',
                 ],
-            ]
+            ],
         ];
     }
 

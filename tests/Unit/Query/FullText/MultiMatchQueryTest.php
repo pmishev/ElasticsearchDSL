@@ -23,7 +23,7 @@ class MultiMatchQueryTest extends \PHPUnit\Framework\TestCase
         $query = new MultiMatchQuery(['message', 'title'], 'this is a test');
         $expected = [
             'multi_match' => [
-                'query' => 'this is a test',
+                'query'  => 'this is a test',
                 'fields' => ['message', 'title'],
             ],
         ];

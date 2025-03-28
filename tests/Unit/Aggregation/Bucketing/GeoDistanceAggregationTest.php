@@ -59,19 +59,19 @@ class GeoDistanceAggregationTest extends \PHPUnit\Framework\TestCase
     {
         $out = [];
         $filterData = [
-            'field' => 'location',
-            'origin' => '52.3760, 4.894',
-            'unit' => 'mi',
+            'field'         => 'location',
+            'origin'        => '52.3760, 4.894',
+            'unit'          => 'mi',
             'distance_type' => 'plane',
-            'ranges' => [100, 300],
+            'ranges'        => [100, 300],
         ];
 
         $expectedResults = [
-            'field' => 'location',
-            'origin' => '52.3760, 4.894',
-            'unit' => 'mi',
+            'field'         => 'location',
+            'origin'        => '52.3760, 4.894',
+            'unit'          => 'mi',
             'distance_type' => 'plane',
-            'ranges' => [['from' => 100, 'to' => 300]],
+            'ranges'        => [['from' => 100, 'to' => 300]],
         ];
 
         $out[] = [$filterData, $expectedResults];
@@ -121,7 +121,7 @@ class GeoDistanceAggregationTest extends \PHPUnit\Framework\TestCase
             'originValue',
             [
                 ['from' => 'value'],
-                ['to' => 'value'],
+                ['to'   => 'value'],
                 ['from' => 'value', 'to' => 'value2'],
             ],
             'unitValue',
@@ -131,13 +131,13 @@ class GeoDistanceAggregationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(
             [
                 'geo_distance' => [
-                    'field' => 'fieldName',
-                    'origin' => 'originValue',
-                    'unit' => 'unitValue',
+                    'field'         => 'fieldName',
+                    'origin'        => 'originValue',
+                    'unit'          => 'unitValue',
                     'distance_type' => 'distanceTypeValue',
-                    'ranges' => [
+                    'ranges'        => [
                         ['from' => 'value'],
-                        ['to' => 'value'],
+                        ['to'   => 'value'],
                         ['from' => 'value', 'to' => 'value2'],
                     ],
                 ],

@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "more_like_this" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html
  */
 class MoreLikeThisQuery implements BuilderInterface
 {
@@ -25,7 +25,6 @@ class MoreLikeThisQuery implements BuilderInterface
 
     /**
      * @param string $like The text to find documents like it, required if ids or docs are not specified.
-     * @param array  $parameters
      */
     public function __construct(private $like, array $parameters = [])
     {
@@ -47,7 +46,7 @@ class MoreLikeThisQuery implements BuilderInterface
     {
         $query = [];
 
-        if (($this->hasParameter('ids') === false) || ($this->hasParameter('docs') === false)) {
+        if ((false === $this->hasParameter('ids')) || (false === $this->hasParameter('docs'))) {
             $query['like'] = $this->like;
         }
 

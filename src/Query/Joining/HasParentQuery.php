@@ -17,16 +17,14 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "has_parent" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-has-parent-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-has-parent-query.html
  */
 class HasParentQuery implements BuilderInterface
 {
     use ParametersTrait;
 
     /**
-     * @param string           $parentType
-     * @param BuilderInterface $query
-     * @param array            $parameters
+     * @param string $parentType
      */
     public function __construct(private $parentType, private BuilderInterface $query, array $parameters = [])
     {
@@ -48,7 +46,7 @@ class HasParentQuery implements BuilderInterface
     {
         $query = [
             'parent_type' => $this->parentType,
-            'query' => $this->query->toArray(),
+            'query'       => $this->query->toArray(),
         ];
 
         $output = $this->processArray($query);

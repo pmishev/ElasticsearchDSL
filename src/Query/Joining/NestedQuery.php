@@ -17,16 +17,14 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "nested" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-nested-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-nested-query.html
  */
 class NestedQuery implements BuilderInterface
 {
     use ParametersTrait;
 
     /**
-     * @param string           $path
-     * @param BuilderInterface $query
-     * @param array            $parameters
+     * @param string $path
      */
     public function __construct(private $path, private BuilderInterface $query, array $parameters = [])
     {
@@ -49,10 +47,10 @@ class NestedQuery implements BuilderInterface
         return [
             $this->getType() => $this->processArray(
                 [
-                    'path' => $this->path,
+                    'path'  => $this->path,
                     'query' => $this->query->toArray(),
                 ]
-            )
+            ),
         ];
     }
 

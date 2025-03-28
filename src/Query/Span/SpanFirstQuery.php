@@ -16,16 +16,14 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Elasticsearch span first query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-first-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-first-query.html
  */
 class SpanFirstQuery implements SpanQueryInterface
 {
     use ParametersTrait;
 
     /**
-     * @param SpanQueryInterface $query
-     * @param int                $end
-     * @param array              $parameters
+     * @param int $end
      *
      * @throws \LogicException
      */

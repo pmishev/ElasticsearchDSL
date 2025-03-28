@@ -17,25 +17,22 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "geo_shape" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-shape-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-shape-query.html
  */
 class GeoShapeQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    const INTERSECTS = 'intersects';
-    const DISJOINT = 'disjoint';
-    const WITHIN = 'within';
-    const CONTAINS = 'contains';
+    public const INTERSECTS = 'intersects';
+    public const DISJOINT = 'disjoint';
+    public const WITHIN = 'within';
+    public const CONTAINS = 'contains';
 
     /**
      * @var array
      */
     private $fields = [];
 
-    /**
-     * @param array $parameters
-     */
     public function __construct(array $parameters = [])
     {
         $this->setParameters($parameters);
@@ -70,13 +67,13 @@ class GeoShapeQuery implements BuilderInterface
         $filter = array_merge(
             $parameters,
             [
-                'type' => $type,
+                'type'        => $type,
                 'coordinates' => $coordinates,
             ]
         );
 
         $this->fields[$field] = [
-            'shape' => $filter,
+            'shape'    => $filter,
             'relation' => $relation,
         ];
     }
@@ -99,7 +96,7 @@ class GeoShapeQuery implements BuilderInterface
         $index,
         $path,
         $relation = self::INTERSECTS,
-        array $parameters = []
+        array $parameters = [],
     ) {
         // TODO: remove this in the next major version
         if (is_array($relation)) {
@@ -111,16 +108,16 @@ class GeoShapeQuery implements BuilderInterface
         $filter = array_merge(
             $parameters,
             [
-                'id' => $id,
-                'type' => $type,
+                'id'    => $id,
+                'type'  => $type,
                 'index' => $index,
-                'path' => $path,
+                'path'  => $path,
             ]
         );
 
         $this->fields[$field] = [
             'indexed_shape' => $filter,
-            'relation' => $relation,
+            'relation'      => $relation,
         ];
     }
 

@@ -32,8 +32,7 @@ class Highlight implements BuilderInterface
     private $tags;
 
     /**
-     * @param string $name   Field name to highlight.
-     * @param array  $params
+     * @param string $name Field name to highlight.
      *
      * @return $this
      */
@@ -46,9 +45,6 @@ class Highlight implements BuilderInterface
 
     /**
      * Sets html tag and its class used in highlighting.
-     *
-     * @param array $preTags
-     * @param array $postTags
      *
      * @return $this
      */

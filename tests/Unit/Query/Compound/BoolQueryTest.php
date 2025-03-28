@@ -38,11 +38,11 @@ class BoolQueryTest extends \PHPUnit\Framework\TestCase
     {
         $bool = new BoolQuery([
             BoolQuery::SHOULD => [new TermQuery('key1', 'value1')],
-            BoolQuery::MUST => [
+            BoolQuery::MUST   => [
                 new TermQuery('key2', 'value2'),
                 new TermQuery('key3', 'value3'),
             ],
-            BoolQuery::MUST_NOT => new TermQuery('key4', 'value4')
+            BoolQuery::MUST_NOT => new TermQuery('key4', 'value4'),
         ]);
 
         $expected = [

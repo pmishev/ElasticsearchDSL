@@ -17,16 +17,12 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "constant_score" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-constant-score-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-constant-score-query.html
  */
 class ConstantScoreQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param BuilderInterface $query
-     * @param array            $parameters
-     */
     public function __construct(private BuilderInterface $query, array $parameters = [])
     {
         $this->setParameters($parameters);

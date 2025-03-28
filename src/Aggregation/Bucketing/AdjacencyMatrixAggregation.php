@@ -18,19 +18,18 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Class representing adjacency matrix aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-adjacency-matrix-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-adjacency-matrix-aggregation.html
  */
 class AdjacencyMatrixAggregation extends AbstractAggregation
 {
-    const FILTERS = 'filters';
-
     use BucketingTrait;
+    public const FILTERS = 'filters';
 
     /**
      * @var BuilderInterface[]
      */
     private $filters = [
-        self::FILTERS => []
+        self::FILTERS => [],
     ];
 
     /**
@@ -49,12 +48,11 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     }
 
     /**
-     * @param string           $name
-     * @param BuilderInterface $filter
-     *
-     * @throws \LogicException
+     * @param string $name
      *
      * @return self
+     *
+     * @throws \LogicException
      */
     public function addFilter($name, BuilderInterface $filter)
     {

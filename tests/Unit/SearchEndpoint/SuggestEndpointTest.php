@@ -21,7 +21,7 @@ class SuggestEndpointTest extends \PHPUnit\Framework\TestCase
      */
     public function testItCanBeInstantiated()
     {
-        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint::class, new SuggestEndpoint());
+        $this->assertInstanceOf(SuggestEndpoint::class, new SuggestEndpoint());
     }
 
     /**

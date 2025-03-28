@@ -14,7 +14,7 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
 /**
  * Class representing Max Bucket Pipeline Aggregation.
  *
- * @link https://goo.gl/8gIfok
+ * @see https://goo.gl/8gIfok
  */
 class MovingAverageAggregation extends AbstractPipelineAggregation
 {

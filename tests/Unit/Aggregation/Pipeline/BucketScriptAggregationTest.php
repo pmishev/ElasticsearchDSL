@@ -39,7 +39,7 @@ class BucketScriptAggregationTest extends \PHPUnit\Framework\TestCase
                     'my_var1' => 'foo',
                     'my_var2' => 'bar',
                 ],
-                'script' => 'test script',
+                'script'     => 'test script',
                 'gap_policy' => 'insert_zeros',
             ],
         ];

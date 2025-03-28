@@ -18,7 +18,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Class representing TermsAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html
  */
 class TermsAggregation extends AbstractAggregation
 {
@@ -55,7 +55,7 @@ class TermsAggregation extends AbstractAggregation
     {
         $data = array_filter(
             [
-                'field' => $this->getField(),
+                'field'  => $this->getField(),
                 'script' => $this->getScript(),
             ]
         );

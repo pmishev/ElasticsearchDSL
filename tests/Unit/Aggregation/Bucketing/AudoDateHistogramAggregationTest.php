@@ -12,7 +12,6 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\AutoDateHistogramAggregation;
-use ONGR\ElasticsearchDSL\Aggregation\Bucketing\TermsAggregation;
 
 class AudoDateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
 {
@@ -43,9 +42,8 @@ class AudoDateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'auto_date_histogram' => [
-                'field' => 'test_field',
+                'field'  => 'test_field',
                 'format' => $date,
-
             ],
         ];
 
@@ -56,7 +54,7 @@ class AudoDateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'auto_date_histogram' => [
-                'field' => 'test_field',
+                'field'  => 'test_field',
                 'format' => $date,
             ],
         ];
@@ -77,7 +75,7 @@ class AudoDateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'auto_date_histogram' => [
-                'field' => 'test_field',
+                'field'   => 'test_field',
                 'buckets' => 5,
             ],
         ];
@@ -90,7 +88,7 @@ class AudoDateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'auto_date_histogram' => [
-                'field' => 'test_field',
+                'field'   => 'test_field',
                 'buckets' => 5,
             ],
         ];

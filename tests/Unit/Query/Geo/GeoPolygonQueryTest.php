@@ -48,7 +48,7 @@ class GeoPolygonQueryTest extends \PHPUnit\Framework\TestCase
                 [],
                 ['parameter' => 'value'],
                 [
-                    'location' => ['points' => []],
+                    'location'  => ['points' => []],
                     'parameter' => 'value',
                 ],
             ],

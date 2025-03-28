@@ -24,7 +24,7 @@ class CommonTermsQueryTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'common' => [
                 'body' => [
-                    'query' => 'this is bonsai cool',
+                    'query'            => 'this is bonsai cool',
                     'cutoff_frequency' => 0.01,
                 ],
             ],

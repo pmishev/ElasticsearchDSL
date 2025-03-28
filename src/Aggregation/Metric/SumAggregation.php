@@ -14,7 +14,7 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 /**
  * Class representing Sum Aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-sum-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-sum-aggregation.html
  */
 class SumAggregation extends StatsAggregation
 {

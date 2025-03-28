@@ -22,7 +22,7 @@ class SuggestEndpoint extends AbstractSearchEndpoint
     /**
      * Endpoint name
      */
-    const NAME = 'suggest';
+    public const NAME = 'suggest';
 
     /**
      * {@inheritdoc}

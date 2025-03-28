@@ -14,7 +14,7 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
 /**
  * Class representing Bucket Script Pipeline Aggregation.
  *
- * @link https://goo.gl/miVxcx
+ * @see https://goo.gl/miVxcx
  */
 class BucketScriptAggregation extends AbstractPipelineAggregation
 {
@@ -68,17 +68,12 @@ class BucketScriptAggregation extends AbstractPipelineAggregation
     public function getArray()
     {
         if (!$this->getScript()) {
-            throw new \LogicException(
-                sprintf(
-                    '`%s` aggregation must have script set.',
-                    $this->getName()
-                )
-            );
+            throw new \LogicException(sprintf('`%s` aggregation must have script set.', $this->getName()));
         }
 
         $out = [
             'buckets_path' => $this->getBucketsPath(),
-            'script' => $this->getScript(),
+            'script'       => $this->getScript(),
         ];
 
         return $out;

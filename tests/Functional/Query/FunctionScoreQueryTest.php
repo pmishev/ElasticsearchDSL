@@ -37,7 +37,7 @@ class FunctionScoreQueryTest extends AbstractElasticsearchTestCase
                     'title' => 'bar',
                     'price' => 10,
                 ],
-            ]
+            ],
         ];
     }
 

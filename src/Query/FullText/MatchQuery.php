@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "match" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html
  */
 class MatchQuery implements BuilderInterface
 {
@@ -26,7 +26,6 @@ class MatchQuery implements BuilderInterface
     /**
      * @param string $field
      * @param string $query
-     * @param array  $parameters
      */
     public function __construct(private $field, private $query, array $parameters = [])
     {

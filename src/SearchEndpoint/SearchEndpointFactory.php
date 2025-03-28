@@ -20,13 +20,13 @@ class SearchEndpointFactory
      * @var array Holds namespaces for endpoints.
      */
     private static $endpoints = [
-        'query' => \ONGR\ElasticsearchDSL\SearchEndpoint\QueryEndpoint::class,
-        'post_filter' => \ONGR\ElasticsearchDSL\SearchEndpoint\PostFilterEndpoint::class,
-        'sort' => \ONGR\ElasticsearchDSL\SearchEndpoint\SortEndpoint::class,
-        'highlight' => \ONGR\ElasticsearchDSL\SearchEndpoint\HighlightEndpoint::class,
-        'aggregations' => \ONGR\ElasticsearchDSL\SearchEndpoint\AggregationsEndpoint::class,
-        'suggest' => \ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint::class,
-        'inner_hits' => \ONGR\ElasticsearchDSL\SearchEndpoint\InnerHitsEndpoint::class,
+        'query'        => QueryEndpoint::class,
+        'post_filter'  => PostFilterEndpoint::class,
+        'sort'         => SortEndpoint::class,
+        'highlight'    => HighlightEndpoint::class,
+        'aggregations' => AggregationsEndpoint::class,
+        'suggest'      => SuggestEndpoint::class,
+        'inner_hits'   => InnerHitsEndpoint::class,
     ];
 
     /**

@@ -13,7 +13,6 @@ namespace ONGR\ElasticsearchDSL\Suggest;
 
 use ONGR\ElasticsearchDSL\NamedBuilderInterface;
 use ONGR\ElasticsearchDSL\ParametersTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 
 class Suggest implements NamedBuilderInterface
 {
@@ -41,11 +40,12 @@ class Suggest implements NamedBuilderInterface
 
     /**
      * TermSuggest constructor.
+     *
      * @param string $name
      * @param string $type
      * @param string $text
      * @param string $field
-     * @param array $parameters
+     * @param array  $parameters
      */
     public function __construct($name, $type, $text, $field, $parameters = [])
     {
@@ -147,9 +147,9 @@ class Suggest implements NamedBuilderInterface
     {
         $output = [
             $this->getName() => [
-                'text' => $this->getText(),
+                'text'           => $this->getText(),
                 $this->getType() => $this->processArray(['field' => $this->getField()]),
-            ]
+            ],
         ];
 
         return $output;

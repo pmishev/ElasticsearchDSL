@@ -26,9 +26,9 @@ class TermsSetQueryTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'terms_set' => [
                 'programming_languages' => [
-                    'terms' => ['php', 'c++', 'java'],
+                    'terms'                      => ['php', 'c++', 'java'],
                     'minimum_should_match_field' => 'required_matches',
-                ]
+                ],
             ],
         ];
 
@@ -37,7 +37,7 @@ class TermsSetQueryTest extends \PHPUnit\Framework\TestCase
 
     public function testItThrowsAaExceptionWhenMinimumShouldMatchFieldOrMinimumShouldMatchScriptIsNotGiven()
     {
-        $message = "Either minimum_should_match_field or minimum_should_match_script must be set.";
+        $message = 'Either minimum_should_match_field or minimum_should_match_script must be set.';
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
 

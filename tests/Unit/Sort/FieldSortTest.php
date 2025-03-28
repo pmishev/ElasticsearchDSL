@@ -33,10 +33,10 @@ class FieldSortTest extends \PHPUnit\Framework\TestCase
                     'filter' => [
                         'term' => [
                             'somePath.id' => 10,
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
-                'order'  => 'asc'
+                'order' => 'asc',
             ],
         ];
         $result = $sort->toArray();

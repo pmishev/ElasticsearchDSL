@@ -21,8 +21,8 @@ class FieldSort implements BuilderInterface
 {
     use ParametersTrait;
 
-    const ASC = 'asc';
-    const DESC = 'desc';
+    public const ASC = 'asc';
+    public const DESC = 'desc';
 
     /**
      * @var BuilderInterface
@@ -88,8 +88,6 @@ class FieldSort implements BuilderInterface
     }
 
     /**
-     * @param BuilderInterface $nestedFilter
-     *
      * @return $this
      */
     public function setNestedFilter(BuilderInterface $nestedFilter)

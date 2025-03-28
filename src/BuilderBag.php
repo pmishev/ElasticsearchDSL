@@ -34,8 +34,6 @@ class BuilderBag
     /**
      * Adds a builder.
      *
-     * @param BuilderInterface $builder
-     *
      * @return string
      */
     public function add(BuilderInterface $builder)
@@ -105,13 +103,10 @@ class BuilderBag
         return array_filter(
             $this->bag,
             /** @var BuilderInterface $builder */
-            fn(BuilderInterface $builder) => $type === null || $builder->getType() == $type
+            fn (BuilderInterface $builder) => null === $type || $builder->getType() == $type
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function toArray()
     {
         $output = [];

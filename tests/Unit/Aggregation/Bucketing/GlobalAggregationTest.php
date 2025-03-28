@@ -42,7 +42,7 @@ class GlobalAggregationTest extends \PHPUnit\Framework\TestCase
         $aggregation->addAggregation($aggregation2);
 
         $result = [
-            'global' => new \stdClass(),
+            'global'       => new \stdClass(),
             'aggregations' => [
                 $aggregation2->getName() => $aggregation2->toArray(),
             ],

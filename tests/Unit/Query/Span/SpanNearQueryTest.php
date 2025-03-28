@@ -41,7 +41,7 @@ class SpanNearQueryTest extends \PHPUnit\Framework\TestCase
                         ],
                     ],
                 ],
-                'slop' => 5,
+                'slop'     => 5,
                 'in_order' => false,
             ],
         ];

@@ -13,12 +13,11 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Type\MetricTrait;
-use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 
 /**
  * Class representing StatsAggregation.
  *
- * @link http://goo.gl/JbQsI3
+ * @see http://goo.gl/JbQsI3
  */
 class ScriptedMetricAggregation extends AbstractAggregation
 {
@@ -43,22 +42,23 @@ class ScriptedMetricAggregation extends AbstractAggregation
      * @var mixed
      */
     private $reduceScript;
+
     /**
      * ScriptedMetricAggregation constructor.
+     *
      * @param string $name
-     * @param mixed $initScript
-     * @param mixed $mapScript
-     * @param mixed $combineScript
-     * @param mixed $reduceScript
+     * @param mixed  $initScript
+     * @param mixed  $mapScript
+     * @param mixed  $combineScript
+     * @param mixed  $reduceScript
      */
     public function __construct(
         $name,
         $initScript = null,
         $mapScript = null,
         $combineScript = null,
-        $reduceScript = null
+        $reduceScript = null,
     ) {
-    
         parent::__construct($name);
 
         $this->setInitScript($initScript);
@@ -162,10 +162,10 @@ class ScriptedMetricAggregation extends AbstractAggregation
     {
         $out = array_filter(
             [
-                'init_script' => $this->getInitScript(),
-                'map_script' => $this->getMapScript(),
+                'init_script'    => $this->getInitScript(),
+                'map_script'     => $this->getMapScript(),
                 'combine_script' => $this->getCombineScript(),
-                'reduce_script' => $this->getReduceScript(),
+                'reduce_script'  => $this->getReduceScript(),
             ]
         );
 

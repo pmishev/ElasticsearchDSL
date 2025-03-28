@@ -30,7 +30,7 @@ class ConstantScoreQueryTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'constant_score' => [
                 'filter' => [
-                    'term' => ['foo' => 'bar']
+                    'term' => ['foo' => 'bar'],
                 ],
                 'boost' => 1.2,
             ],

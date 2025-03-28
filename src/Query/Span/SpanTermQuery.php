@@ -16,7 +16,7 @@ use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
 /**
  * Elasticsearch span_term query class.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-term-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-term-query.html
  */
 class SpanTermQuery extends TermQuery implements SpanQueryInterface
 {

@@ -14,8 +14,8 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\FilterAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\HistogramAggregation;
 use ONGR\ElasticsearchDSL\Query\Compound\BoolQuery;
-use ONGR\ElasticsearchDSL\Query\TermLevel\ExistsQuery;
 use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
+use ONGR\ElasticsearchDSL\Query\TermLevel\ExistsQuery;
 use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
 
 class FilterAggregationTest extends \PHPUnit\Framework\TestCase
@@ -52,7 +52,7 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
         $aggregation->addAggregation($histogramAgg);
 
         $result = [
-            'filter' => $filter->toArray(),
+            'filter'       => $filter->toArray(),
             'aggregations' => [
                 $histogramAgg->getName() => $histogramAgg->toArray(),
             ],
@@ -76,7 +76,6 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
         $result = [
             'filter' => $boolFilter->toArray(),
         ];
-
 
         $out[] = [
             $aggregation,
@@ -124,9 +123,9 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
             [
                 'aggregation' => [
                     'test_agg' => [
-                        'filter' => []
-                    ]
-                ]
+                        'filter' => [],
+                    ],
+                ],
             ],
             $result
         );
@@ -145,9 +144,9 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
             [
                 'filter' => [
                     'exists' => [
-                        'field' => 'test'
-                    ]
-                ]
+                        'field' => 'test',
+                    ],
+                ],
             ],
             $result
         );

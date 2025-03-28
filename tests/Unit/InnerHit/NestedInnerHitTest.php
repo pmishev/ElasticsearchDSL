@@ -59,7 +59,7 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
             [
                 'path' => [
                     'foo' => [
-                        'query' => $nestedQuery->toArray(),
+                        'query'      => $nestedQuery->toArray(),
                         'inner_hits' => [
                             'aux' => [
                                 'path' => [
@@ -74,7 +74,7 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
                                         'query' => $matchQuery->toArray(),
                                     ],
                                 ],
-                            ]
+                            ],
                         ],
                     ],
                 ],
@@ -83,7 +83,6 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
 
         return $out;
     }
-
 
     /**
      * Tests toArray() method.
@@ -97,7 +96,6 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertEquals($expected, $innerHit->toArray());
     }
-
 
     /**
      * Tests getters and setters for $name, $path and $query

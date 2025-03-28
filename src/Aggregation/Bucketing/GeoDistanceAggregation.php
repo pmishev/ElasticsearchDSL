@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing geo distance aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html
  */
 class GeoDistanceAggregation extends AbstractAggregation
 {
@@ -134,18 +134,18 @@ class GeoDistanceAggregation extends AbstractAggregation
      * @param int|float|null $from
      * @param int|float|null $to
      *
-     * @throws \LogicException
-     *
      * @return GeoDistanceAggregation
+     *
+     * @throws \LogicException
      */
     public function addRange($from = null, $to = null)
     {
         $range = array_filter(
             [
                 'from' => $from,
-                'to' => $to,
+                'to'   => $to,
             ],
-            fn($v) => !is_null($v)
+            fn ($v) => !is_null($v)
         );
 
         if (empty($range)) {

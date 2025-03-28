@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "term" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html
  */
 class TermQuery implements BuilderInterface
 {
@@ -26,7 +26,6 @@ class TermQuery implements BuilderInterface
     /**
      * @param string                $field
      * @param string|int|float|bool $value
-     * @param array                 $parameters
      */
     public function __construct(private $field, private $value, array $parameters = [])
     {

@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\MetricTrait;
 /**
  * Class representing geo bounds aggregation.
  *
- * @link http://goo.gl/aGqw7Y
+ * @see http://goo.gl/aGqw7Y
  */
 class GeoBoundsAggregation extends AbstractAggregation
 {

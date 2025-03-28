@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\MetricTrait;
 /**
  * Class representing Max Aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-max-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-max-aggregation.html
  */
 class MaxAggregation extends AbstractAggregation
 {
@@ -31,10 +31,10 @@ class MaxAggregation extends AbstractAggregation
     /**
      * Inner aggregations container init.
      *
-     * @param string $name
-     * @param string|array $field Fields list to aggregate.
-     * @param array $missing Defines how documents that are missing a value should be treated.
-     * @param string $mode
+     * @param string       $name
+     * @param string|array $field   Fields list to aggregate.
+     * @param array        $missing Defines how documents that are missing a value should be treated.
+     * @param string       $mode
      */
     public function __construct($name, $field, private $missing = null, $mode = null)
     {
@@ -102,7 +102,6 @@ class MaxAggregation extends AbstractAggregation
         if ($this->getMode()) {
             $out['mode'] = $this->getMode();
         }
-
 
         if ($this->getMissing()) {
             $out['missing'] = $this->getMissing();

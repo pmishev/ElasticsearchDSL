@@ -14,7 +14,7 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 /**
  * Class representing Max Aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-max-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-max-aggregation.html
  */
 class MaxAggregation extends StatsAggregation
 {

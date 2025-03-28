@@ -25,7 +25,7 @@ class AdjacencyMatrixAggregationTest extends \PHPUnit\Framework\TestCase
     public function testIfExceptionIsThrown()
     {
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage("In not anonymous filters filter name must be set.");
+        $this->expectExceptionMessage('In not anonymous filters filter name must be set.');
         $mock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)->getMock();
         $aggregation = new FiltersAggregation('test_agg');
         $aggregation->addFilter($mock);

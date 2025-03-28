@@ -53,6 +53,7 @@ class SpanWithinQueryTest extends \PHPUnit\Framework\TestCase
             ->expects($this->once())
             ->method('toArray')
             ->willReturn(['span_term' => ['user' => $value]]);
+
         return $mock;
     }
 }

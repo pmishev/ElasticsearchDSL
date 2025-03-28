@@ -34,7 +34,7 @@ class Ipv4RangeAggregationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(
             [
                 'ip_range' => [
-                    'field' => 'fieldName',
+                    'field'  => 'fieldName',
                     'ranges' => [['from' => 'fromValue']],
                 ],
             ],
@@ -45,7 +45,7 @@ class Ipv4RangeAggregationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(
             [
                 'ip_range' => [
-                    'field' => 'fieldName',
+                    'field'  => 'fieldName',
                     'ranges' => [['mask' => 'maskValue']],
                 ],
             ],

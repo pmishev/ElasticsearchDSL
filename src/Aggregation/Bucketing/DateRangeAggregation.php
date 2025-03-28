@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing date range aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-daterange-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-daterange-aggregation.html
  */
 class DateRangeAggregation extends AbstractAggregation
 {
@@ -42,7 +42,6 @@ class DateRangeAggregation extends AbstractAggregation
      * @param string $name
      * @param string $field
      * @param string $format
-     * @param array  $ranges
      * @param bool   $keyed
      */
     public function __construct($name, $field = null, $format = null, array $ranges = [], $keyed = false)
@@ -106,10 +105,10 @@ class DateRangeAggregation extends AbstractAggregation
         $range = array_filter(
             [
                 'from' => $from,
-                'to' => $to,
-                'key' => $key,
+                'to'   => $to,
+                'key'  => $key,
             ],
-            fn($v) => !is_null($v)
+            fn ($v) => !is_null($v)
         );
 
         if (empty($range)) {
@@ -128,9 +127,9 @@ class DateRangeAggregation extends AbstractAggregation
     {
         if ($this->getField() && !empty($this->ranges)) {
             $data = [
-                'field' => $this->getField(),
+                'field'  => $this->getField(),
                 'ranges' => $this->ranges,
-                'keyed' => $this->keyed,
+                'keyed'  => $this->keyed,
             ];
             if ($this->getFormat()) {
                 $data['format'] = $this->getFormat();

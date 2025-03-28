@@ -29,7 +29,7 @@ class PercentilesBucketAggregationTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'percentiles_bucket' => [
                 'buckets_path' => 'test',
-                'percents' => [25.0, 50.0, 75.0],
+                'percents'     => [25.0, 50.0, 75.0],
             ],
         ];
 

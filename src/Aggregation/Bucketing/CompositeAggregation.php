@@ -18,7 +18,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Class representing composite aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-composite-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-composite-aggregation.html
  */
 class CompositeAggregation extends AbstractAggregation
 {
@@ -42,7 +42,7 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * Inner aggregations container init.
      *
-     * @param string             $name
+     * @param string                $name
      * @param AbstractAggregation[] $sources
      */
     public function __construct($name, $sources = [])
@@ -55,11 +55,9 @@ class CompositeAggregation extends AbstractAggregation
     }
 
     /**
-     * @param AbstractAggregation $agg
+     * @return self
      *
      * @throws \LogicException
-     *
-     * @return self
      */
     public function addSource(AbstractAggregation $agg)
     {
@@ -68,7 +66,7 @@ class CompositeAggregation extends AbstractAggregation
         $array = is_array($array) ? array_merge($array, $agg->getParameters()) : $array;
 
         $this->sources[] = [
-            $agg->getName() => [ $agg->getType() => $array ]
+            $agg->getName() => [$agg->getType() => $array],
         ];
 
         return $this;
@@ -83,7 +81,7 @@ class CompositeAggregation extends AbstractAggregation
             'sources' => $this->sources,
         ];
 
-        if ($this->size !== null) {
+        if (null !== $this->size) {
             $array['size'] = $this->size;
         }
 

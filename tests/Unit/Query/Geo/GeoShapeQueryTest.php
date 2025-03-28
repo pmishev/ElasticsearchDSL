@@ -27,10 +27,10 @@ class GeoShapeQueryTest extends \PHPUnit\Framework\TestCase
             'geo_shape' => [
                 'location' => [
                     'shape' => [
-                        'type' => 'envelope',
+                        'type'        => 'envelope',
                         'coordinates' => [[13, 53], [14, 52]],
                     ],
-                    'relation' => 'intersects'
+                    'relation' => 'intersects',
                 ],
                 'param1' => 'value1',
             ],
@@ -51,12 +51,12 @@ class GeoShapeQueryTest extends \PHPUnit\Framework\TestCase
             'geo_shape' => [
                 'location' => [
                     'indexed_shape' => [
-                        'id' => 'DEU',
-                        'type' => 'countries',
+                        'id'    => 'DEU',
+                        'type'  => 'countries',
                         'index' => 'shapes',
-                        'path' => 'location',
+                        'path'  => 'location',
                     ],
-                    'relation' => 'within'
+                    'relation' => 'within',
                 ],
                 'param1' => 'value1',
             ],

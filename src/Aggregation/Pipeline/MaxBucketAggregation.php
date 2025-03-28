@@ -14,7 +14,7 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
 /**
  * Class representing Max Bucket Pipeline Aggregation.
  *
- * @link https://goo.gl/FQQWIv
+ * @see https://goo.gl/FQQWIv
  */
 class MaxBucketAggregation extends AbstractPipelineAggregation
 {

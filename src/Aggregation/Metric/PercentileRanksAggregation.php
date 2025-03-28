@@ -18,7 +18,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Class representing Percentile Ranks Aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-rank-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-rank-aggregation.html
  */
 class PercentileRanksAggregation extends AbstractAggregation
 {
@@ -109,12 +109,12 @@ class PercentileRanksAggregation extends AbstractAggregation
     {
         $out = array_filter(
             [
-                'field' => $this->getField(),
-                'script' => $this->getScript(),
-                'values' => $this->getValues(),
+                'field'       => $this->getField(),
+                'script'      => $this->getScript(),
+                'values'      => $this->getValues(),
                 'compression' => $this->getCompression(),
             ],
-            fn($val) => $val || is_numeric($val)
+            fn ($val) => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);
@@ -126,6 +126,7 @@ class PercentileRanksAggregation extends AbstractAggregation
      * @param array $a
      *
      * @return bool
+     *
      * @throws \LogicException
      */
     private function isRequiredParametersSet($a)

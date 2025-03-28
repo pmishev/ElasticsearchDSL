@@ -18,7 +18,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Class representing FilterAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filter-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filter-aggregation.html
  */
 class FilterAggregation extends AbstractAggregation
 {
@@ -32,21 +32,18 @@ class FilterAggregation extends AbstractAggregation
     /**
      * Inner aggregations container init.
      *
-     * @param string           $name
-     * @param BuilderInterface $filter
+     * @param string $name
      */
-    public function __construct($name, BuilderInterface $filter = null)
+    public function __construct($name, ?BuilderInterface $filter = null)
     {
         parent::__construct($name);
 
-        if ($filter !== null) {
+        if (null !== $filter) {
             $this->setFilter($filter);
         }
     }
 
     /**
-     * @param BuilderInterface $filter
-     *
      * @return $this
      */
     public function setFilter(BuilderInterface $filter)

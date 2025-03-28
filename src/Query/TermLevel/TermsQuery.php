@@ -17,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "terms" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-query.html
  */
 class TermsQuery implements BuilderInterface
 {
