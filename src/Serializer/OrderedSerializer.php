@@ -19,10 +19,7 @@ use Symfony\Component\Serializer\Serializer;
  */
 class OrderedSerializer extends Serializer
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function normalize($data, $format = null, array $context = [])
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         return parent::normalize(
             is_array($data) ? $this->order($data) : $data,
@@ -34,7 +31,7 @@ class OrderedSerializer extends Serializer
     /**
      * {@inheritdoc}
      */
-    public function denormalize($data, $type, $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         return parent::denormalize(
             is_array($data) ? $this->order($data) : $data,
@@ -58,9 +55,7 @@ class OrderedSerializer extends Serializer
         if (!empty($filteredData)) {
             uasort(
                 $filteredData,
-                function (OrderedNormalizerInterface $a, OrderedNormalizerInterface $b) {
-                    return $a->getOrder() <=> $b->getOrder();
-                }
+                fn(OrderedNormalizerInterface $a, OrderedNormalizerInterface $b) => $a->getOrder() <=> $b->getOrder()
             );
 
             return array_merge($filteredData, array_diff_key($data, $filteredData));
@@ -80,9 +75,7 @@ class OrderedSerializer extends Serializer
     {
         return array_filter(
             $array,
-            function ($value) {
-                return $value instanceof OrderedNormalizerInterface;
-            }
+            fn($value) => $value instanceof OrderedNormalizerInterface
         );
     }
 }

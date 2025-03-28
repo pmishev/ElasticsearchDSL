@@ -53,9 +53,9 @@ class DateRangeAggregation extends AbstractAggregation
         $this->setFormat($format);
         $this->setKeyed($keyed);
         foreach ($ranges as $range) {
-            $from = isset($range['from']) ? $range['from'] : null;
-            $to = isset($range['to']) ? $range['to'] : null;
-            $key = isset($range['key']) ? $range['key'] : null;
+            $from = $range['from'] ?? null;
+            $to = $range['to'] ?? null;
+            $key = $range['key'] ?? null;
             $this->addRange($from, $to, $key);
         }
     }
@@ -109,9 +109,7 @@ class DateRangeAggregation extends AbstractAggregation
                 'to' => $to,
                 'key' => $key,
             ],
-            function ($v) {
-                return !is_null($v);
-            }
+            fn($v) => !is_null($v)
         );
 
         if (empty($range)) {

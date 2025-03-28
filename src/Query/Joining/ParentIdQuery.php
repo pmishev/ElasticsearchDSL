@@ -13,24 +13,12 @@ class ParentIdQuery implements BuilderInterface
     use ParametersTrait;
 
     /**
-     * @var string
-     */
-    private $childType;
-
-    /**
-     * @var string
-     */
-    private $parentId;
-
-    /**
      * @param string $parentId
      * @param string $childType
      * @param array  $parameters
      */
-    public function __construct($parentId, string $childType, array $parameters = [])
+    public function __construct(private $parentId, private string $childType, array $parameters = [])
     {
-        $this->childType = $childType;
-        $this->parentId = $parentId;
         $this->setParameters($parameters);
     }
 

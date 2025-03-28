@@ -24,7 +24,7 @@ class PostFilterEndpointTest extends \PHPUnit\Framework\TestCase
      */
     public function testItCanBeInstantiated()
     {
-        $this->assertInstanceOf('ONGR\ElasticsearchDSL\SearchEndpoint\PostFilterEndpoint', new PostFilterEndpoint());
+        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\SearchEndpoint\PostFilterEndpoint::class, new PostFilterEndpoint());
     }
 
     /**
@@ -43,7 +43,7 @@ class PostFilterEndpointTest extends \PHPUnit\Framework\TestCase
     {
         $instance = new PostFilterEndpoint();
         $normalizerInterface = $this->getMockForAbstractClass(
-            'Symfony\Component\Serializer\Normalizer\NormalizerInterface'
+            \Symfony\Component\Serializer\Normalizer\NormalizerInterface::class
         );
         $this->assertNull($instance->normalize($normalizerInterface));
 

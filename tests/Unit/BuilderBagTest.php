@@ -84,7 +84,7 @@ class BuilderBagTest extends \PHPUnit\Framework\TestCase
      */
     private function getBuilder($name)
     {
-        $friendlyBuilderMock = $this->getMockBuilder('ONGR\ElasticsearchDSL\BuilderInterface')
+        $friendlyBuilderMock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)
             ->onlyMethods(['toArray', 'getType'])
             ->addMethods(['getName'])
             ->disableOriginalConstructor()

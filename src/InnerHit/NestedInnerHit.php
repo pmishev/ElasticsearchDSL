@@ -123,16 +123,11 @@ class NestedInnerHit implements NamedBuilderInterface
      */
     private function getPathType()
     {
-        switch ($this->getType()) {
-            case 'nested':
-                $type = 'path';
-                break;
-            case 'parent':
-                $type = 'type';
-                break;
-            default:
-                $type = null;
-        }
+        $type = match ($this->getType()) {
+            'nested' => 'path',
+            'parent' => 'type',
+            default => null,
+        };
         return $type;
     }
 }

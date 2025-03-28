@@ -25,16 +25,6 @@ class FieldSort implements BuilderInterface
     const DESC = 'desc';
 
     /**
-     * @var string
-     */
-    private $field;
-
-    /**
-     * @var string
-     */
-    private $order;
-
-    /**
      * @var BuilderInterface
      */
     private $nestedFilter;
@@ -44,10 +34,8 @@ class FieldSort implements BuilderInterface
      * @param string $order  Order direction.
      * @param array  $params Params that can be set to field sort.
      */
-    public function __construct($field, $order = null, $params = [])
+    public function __construct(private $field, private $order = null, $params = [])
     {
-        $this->field = $field;
-        $this->order = $order;
         $this->setParameters($params);
     }
 

@@ -21,7 +21,7 @@ class SuggestEndpointTest extends \PHPUnit\Framework\TestCase
      */
     public function testItCanBeInstantiated()
     {
-        $this->assertInstanceOf('ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint', new SuggestEndpoint());
+        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint::class, new SuggestEndpoint());
     }
 
     /**
@@ -48,7 +48,7 @@ class SuggestEndpointTest extends \PHPUnit\Framework\TestCase
         $instance = new SuggestEndpoint();
 
         $normalizerInterface = $this->getMockForAbstractClass(
-            'Symfony\Component\Serializer\Normalizer\NormalizerInterface'
+            \Symfony\Component\Serializer\Normalizer\NormalizerInterface::class
         );
 
         $suggest = new Suggest('foo', 'bar', 'acme', 'foo');

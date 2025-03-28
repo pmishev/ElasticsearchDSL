@@ -29,25 +29,19 @@ class MaxAggregation extends AbstractAggregation
     private $mode;
 
     /**
-     * @var array Defines how documents that are missing a value should be treated.
-     */
-    private $missing;
-
-    /**
      * Inner aggregations container init.
      *
      * @param string $name
      * @param string|array $field Fields list to aggregate.
-     * @param array $missing
+     * @param array $missing Defines how documents that are missing a value should be treated.
      * @param string $mode
      */
-    public function __construct($name, $field, $missing = null, $mode = null)
+    public function __construct($name, $field, private $missing = null, $mode = null)
     {
         parent::__construct($name);
 
         $this->setField($field);
         $this->setMode($mode);
-        $this->missing = $missing;
     }
 
     /**

@@ -69,7 +69,7 @@ class FilterAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function setField($field)
+    public function setField($field): never
     {
         throw new \LogicException("Filter aggregation, doesn't support `field` parameter");
     }

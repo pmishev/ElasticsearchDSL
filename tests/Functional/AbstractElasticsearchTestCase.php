@@ -11,8 +11,8 @@
 
 namespace ONGR\ElasticsearchDSL\Tests\Functional;
 
-use Elasticsearch\Client;
-use Elasticsearch\ClientBuilder;
+use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientBuilder;
 use ONGR\ElasticsearchDSL\Search;
 use PHPUnit\Framework\TestCase;
 
@@ -143,7 +143,7 @@ abstract class AbstractElasticsearchTestCase extends TestCase
             foreach ($response['hits']['hits'] as $document) {
                 $documents[$document['_id']] = $document['_source'];
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return $documents;
         }
 
@@ -157,7 +157,7 @@ abstract class AbstractElasticsearchTestCase extends TestCase
     {
         try {
             $this->client->indices()->delete(['index' => self::INDEX_NAME]);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             // Do nothing.
         }
     }

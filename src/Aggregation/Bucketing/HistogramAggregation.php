@@ -232,9 +232,7 @@ class HistogramAggregation extends AbstractAggregation
                 'keyed' => $this->isKeyed(),
                 'order' => $this->getOrder(),
             ],
-            function ($val) {
-                return ($val || is_numeric($val));
-            }
+            fn($val) => $val || is_numeric($val)
         );
         $this->checkRequiredParameters($out, ['field', 'interval']);
 

@@ -37,7 +37,7 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, string $format = null, array $context = [])
+    public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         if ($this->highlight) {
             return $this->highlight->toArray();

@@ -43,7 +43,7 @@ class BoolQuery implements BuilderInterface
         foreach ($container as $type => $queries) {
             $queries = is_array($queries) ? $queries : [$queries];
 
-            array_walk($queries, function ($query) use ($type) {
+            array_walk($queries, function ($query) use ($type): void {
                 $this->add($query, $type);
             });
         }
@@ -68,11 +68,7 @@ class BoolQuery implements BuilderInterface
             return $queries;
         }
 
-        if (isset($this->container[$boolType])) {
-            return $this->container[$boolType];
-        }
-
-        return [];
+        return $this->container[$boolType] ?? [];
     }
 
     /**

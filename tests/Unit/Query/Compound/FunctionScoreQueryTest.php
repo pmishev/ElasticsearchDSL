@@ -77,7 +77,7 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
      */
     public function testAddFieldValueFactorFunction()
     {
-        $builderInterface = $this->getMockForAbstractClass('ONGR\ElasticsearchDSL\BuilderInterface');
+        $builderInterface = $this->getMockForAbstractClass(\ONGR\ElasticsearchDSL\BuilderInterface::class);
         $functionScoreQuery = new FunctionScoreQuery($builderInterface);
         $functionScoreQuery->addFieldValueFactorFunction('field1', 2);
         $functionScoreQuery->addFieldValueFactorFunction('field2', 1.5, 'ln');
