@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,7 +19,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Top hits aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-top-hits-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-top-hits-aggregation.html
  */
 class TopHitsAggregation extends AbstractAggregation
 {
@@ -43,9 +44,9 @@ class TopHitsAggregation extends AbstractAggregation
      * Constructor for top hits.
      *
      * @param string                $name Aggregation name.
-     * @param null|int              $size Number of top matching hits to return per bucket.
-     * @param null|int              $from The offset from the first result you want to fetch.
-     * @param null|BuilderInterface $sort How the top matching hits should be sorted.
+     * @param int|null              $size Number of top matching hits to return per bucket.
+     * @param int|null              $from The offset from the first result you want to fetch.
+     * @param BuilderInterface|null $sort How the top matching hits should be sorted.
      */
     public function __construct($name, $size = null, $from = null, $sort = null)
     {
@@ -70,7 +71,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setFrom($from)
+    public function setFrom($from): static
     {
         $this->from = $from;
 
@@ -90,7 +91,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSorts(array $sorts)
+    public function setSorts(array $sorts): static
     {
         $this->sorts = $sorts;
 
@@ -102,7 +103,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @param BuilderInterface $sort
      */
-    public function addSort($sort)
+    public function addSort($sort): void
     {
         $this->sorts[] = $sort;
     }
@@ -112,7 +113,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -132,7 +133,7 @@ class TopHitsAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'top_hits';
     }
@@ -144,7 +145,7 @@ class TopHitsAggregation extends AbstractAggregation
     {
         $sortsOutput = [];
         $addedSorts = array_filter($this->getSorts());
-        if ($addedSorts) {
+        if ($addedSorts !== []) {
             foreach ($addedSorts as $sort) {
                 $sortsOutput[] = $sort->toArray();
             }
@@ -158,10 +159,10 @@ class TopHitsAggregation extends AbstractAggregation
                 'size' => $this->getSize(),
                 'from' => $this->getFrom(),
             ],
-            fn($val) => $val || is_array($val) || ($val || is_numeric($val))
+            fn ($val): bool => $val || is_array($val) || ($val || is_numeric($val))
         );
 
-        return empty($output) ? new \stdClass() : $output;
+        return $output === [] ? new \stdClass() : $output;
     }
 
     /**
@@ -173,19 +174,5 @@ class TopHitsAggregation extends AbstractAggregation
     public function getSort()
     {
         return $this->sorts[0] ?? null;
-    }
-
-    /**
-     * @deprecated sorts now is a container, use `addSort()`instead.
-     *
-     * @param BuilderInterface $sort
-     *
-     * @return $this
-     */
-    public function setSort(BuilderInterface $sort)
-    {
-        $this->sort = $sort;
-
-        return $this;
     }
 }

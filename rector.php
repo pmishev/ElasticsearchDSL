@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\PHPUnit\PHPUnit100\Rector\Class_\StaticDataProviderClassMethodRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\ValueObject\PhpVersion;
 
@@ -13,11 +14,15 @@ return RectorConfig::configure()
     ])
     // uncomment to reach your current PHP version
     // ->withPhpSets()
-    ->withTypeCoverageLevel(0)
-    ->withDeadCodeLevel(0)
-    ->withCodeQualityLevel(0)
+    ->withPHPStanConfigs([__DIR__.'/phpstan.dist.neon'])
+    ->withPreparedSets(deadCode: true, codeQuality: true, typeDeclarations: true, instanceOf: true, rectorPreset: true)
     ->withPhpVersion(PhpVersion::PHP_81)
     ->withSets([
         LevelSetList::UP_TO_PHP_81,
     ])
+    ->withRules([
+        // Make data provider methods static
+        StaticDataProviderClassMethodRector::class,
+    ])
+    ->withImportNames(importShortClasses: false, removeUnusedImports: true)
 ;

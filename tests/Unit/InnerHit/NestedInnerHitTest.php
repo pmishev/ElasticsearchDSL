@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ONGR\ElasticsearchDSL\Tests\Unit\InnerHit;
 
 use ONGR\ElasticsearchDSL\InnerHit\NestedInnerHit;
 use ONGR\ElasticsearchDSL\Query\FullText\MatchQuery;
 use ONGR\ElasticsearchDSL\Query\Joining\NestedQuery;
 use ONGR\ElasticsearchDSL\Search;
+use PHPUnit\Framework\TestCase;
 
-class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
+final class NestedInnerHitTest extends TestCase
 {
     /**
      * Data provider for testToArray().
      *
-     * @return array
      */
-    public function getTestToArrayData()
+    public static function getTestToArrayData(): array
     {
         $out = [];
 
@@ -59,7 +61,7 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
             [
                 'path' => [
                     'foo' => [
-                        'query' => $nestedQuery->toArray(),
+                        'query'      => $nestedQuery->toArray(),
                         'inner_hits' => [
                             'aux' => [
                                 'path' => [
@@ -74,7 +76,7 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
                                         'query' => $matchQuery->toArray(),
                                     ],
                                 ],
-                            ]
+                            ],
                         ],
                     ],
                 ],
@@ -84,7 +86,6 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
         return $out;
     }
 
-
     /**
      * Tests toArray() method.
      *
@@ -93,16 +94,15 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider getTestToArrayData
      */
-    public function testToArray($innerHit, $expected)
+    public function testToArray($innerHit, $expected): void
     {
         $this->assertEquals($expected, $innerHit->toArray());
     }
 
-
     /**
      * Tests getters and setters for $name, $path and $query
      */
-    public function testGettersAndSetters()
+    public function testGettersAndSetters(): void
     {
         $query = new MatchQuery('acme', 'test');
         $search = new Search();

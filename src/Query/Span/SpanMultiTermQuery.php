@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Span;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Elasticsearch span multi term query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-multi-term-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-multi-term-query.html
  */
 class SpanMultiTermQuery implements SpanQueryInterface
 {
@@ -25,9 +26,6 @@ class SpanMultiTermQuery implements SpanQueryInterface
 
     /**
      * Accepts one of fuzzy, prefix, term range, wildcard, regexp query.
-     *
-     * @param BuilderInterface $query
-     * @param array            $parameters
      */
     public function __construct(private BuilderInterface $query, array $parameters = [])
     {
@@ -37,7 +35,7 @@ class SpanMultiTermQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'span_multi';
     }
@@ -47,7 +45,7 @@ class SpanMultiTermQuery implements SpanQueryInterface
      *
      * @throws \InvalidArgumentException
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [];
         $query['match'] = $this->query->toArray();

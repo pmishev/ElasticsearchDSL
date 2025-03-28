@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\TermLevel;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,14 +18,14 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "terms_set" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-set-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-set-query.html
  */
 class TermsSetQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    const MINIMUM_SHOULD_MATCH_TYPE_FIELD = 'minimum_should_match_field';
-    const MINIMUM_SHOULD_MATCH_TYPE_SCRIPT = 'minimum_should_match_script';
+    public const MINIMUM_SHOULD_MATCH_TYPE_FIELD = 'minimum_should_match_field';
+    public const MINIMUM_SHOULD_MATCH_TYPE_SCRIPT = 'minimum_should_match_script';
 
     /**
      * Constructor.
@@ -42,7 +43,7 @@ class TermsSetQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'terms_set';
     }
@@ -50,7 +51,7 @@ class TermsSetQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'terms' => $this->terms,
@@ -61,12 +62,12 @@ class TermsSetQuery implements BuilderInterface
         ]];
     }
 
-    private function validateParameters(array $parameters)
+    private function validateParameters(array $parameters): void
     {
-        if (!isset($parameters[self::MINIMUM_SHOULD_MATCH_TYPE_FIELD]) &&
-            !isset($parameters[self::MINIMUM_SHOULD_MATCH_TYPE_SCRIPT])
+        if (!isset($parameters[self::MINIMUM_SHOULD_MATCH_TYPE_FIELD])
+            && !isset($parameters[self::MINIMUM_SHOULD_MATCH_TYPE_SCRIPT])
         ) {
-            $message = "Either minimum_should_match_field or minimum_should_match_script must be set.";
+            $message = 'Either minimum_should_match_field or minimum_should_match_script must be set.';
             throw new \InvalidArgumentException($message);
         }
     }

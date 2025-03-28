@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -22,7 +23,7 @@ class AggregationsEndpoint extends AbstractSearchEndpoint
     /**
      * Endpoint name
      */
-    const NAME = 'aggregations';
+    public const NAME = 'aggregations';
 
     /**
      * {@inheritdoc}
@@ -30,11 +31,9 @@ class AggregationsEndpoint extends AbstractSearchEndpoint
     public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $output = [];
-        if (count($this->getAll()) > 0) {
-            /** @var AbstractAggregation $aggregation */
-            foreach ($this->getAll() as $aggregation) {
-                $output[$aggregation->getName()] = $aggregation->toArray();
-            }
+        /** @var AbstractAggregation $aggregation */
+        foreach ($this->getAll() as $aggregation) {
+            $output[$aggregation->getName()] = $aggregation->toArray();
         }
 
         return $output;

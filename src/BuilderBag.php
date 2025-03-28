@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL;
 
 /**
@@ -19,7 +20,7 @@ class BuilderBag
     /**
      * @var BuilderInterface[]
      */
-    private $bag = [];
+    private array $bag = [];
 
     /**
      * @param BuilderInterface[] $builders
@@ -34,17 +35,11 @@ class BuilderBag
     /**
      * Adds a builder.
      *
-     * @param BuilderInterface $builder
-     *
      * @return string
      */
     public function add(BuilderInterface $builder)
     {
-        if (method_exists($builder, 'getName')) {
-            $name = $builder->getName();
-        } else {
-            $name = bin2hex(random_bytes(30));
-        }
+        $name = method_exists($builder, 'getName') ? $builder->getName() : bin2hex(random_bytes(30));
 
         $this->bag[$name] = $builder;
 
@@ -56,9 +51,8 @@ class BuilderBag
      *
      * @param string $name Builder name.
      *
-     * @return bool
      */
-    public function has($name)
+    public function has($name): bool
     {
         return isset($this->bag[$name]);
     }
@@ -68,7 +62,7 @@ class BuilderBag
      *
      * @param string $name Builder name.
      */
-    public function remove($name)
+    public function remove($name): void
     {
         unset($this->bag[$name]);
     }
@@ -76,7 +70,7 @@ class BuilderBag
     /**
      * Clears contained builders.
      */
-    public function clear()
+    public function clear(): void
     {
         $this->bag = [];
     }
@@ -100,19 +94,18 @@ class BuilderBag
      *
      * @return BuilderInterface[]
      */
-    public function all($type = null)
+    public function all($type = null): array
     {
         return array_filter(
             $this->bag,
-            /** @var BuilderInterface $builder */
-            fn(BuilderInterface $builder) => $type === null || $builder->getType() == $type
+            fn (BuilderInterface $builder): bool => null === $type || $builder->getType() == $type
         );
     }
 
     /**
-     * {@inheritdoc}
+     * @return mixed[]
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = [];
         foreach ($this->all() as $builder) {

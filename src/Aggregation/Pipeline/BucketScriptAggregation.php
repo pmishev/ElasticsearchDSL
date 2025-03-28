@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,13 +10,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
 
 /**
  * Class representing Bucket Script Pipeline Aggregation.
  *
- * @link https://goo.gl/miVxcx
+ * @see https://goo.gl/miVxcx
  */
 class BucketScriptAggregation extends AbstractPipelineAggregation
 {
@@ -47,7 +48,7 @@ class BucketScriptAggregation extends AbstractPipelineAggregation
      *
      * @return $this
      */
-    public function setScript($script)
+    public function setScript($script): static
     {
         $this->script = $script;
 
@@ -57,7 +58,7 @@ class BucketScriptAggregation extends AbstractPipelineAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'bucket_script';
     }
@@ -65,22 +66,15 @@ class BucketScriptAggregation extends AbstractPipelineAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         if (!$this->getScript()) {
-            throw new \LogicException(
-                sprintf(
-                    '`%s` aggregation must have script set.',
-                    $this->getName()
-                )
-            );
+            throw new \LogicException(sprintf('`%s` aggregation must have script set.', $this->getName()));
         }
 
-        $out = [
+        return [
             'buckets_path' => $this->getBucketsPath(),
-            'script' => $this->getScript(),
+            'script'       => $this->getScript(),
         ];
-
-        return $out;
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\TermLevel;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -16,7 +17,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Represents Elasticsearch "exists" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html
  */
 class ExistsQuery implements BuilderInterface
 {
@@ -32,7 +33,7 @@ class ExistsQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'exists';
     }
@@ -40,7 +41,7 @@ class ExistsQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             $this->getType() => [

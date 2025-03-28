@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,16 +18,13 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing RangeAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html
  */
 class RangeAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
     /**
      * @var bool
@@ -62,7 +60,7 @@ class RangeAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setKeyed($keyed)
+    public function setKeyed($keyed): static
     {
         $this->keyed = $keyed;
 
@@ -75,17 +73,15 @@ class RangeAggregation extends AbstractAggregation
      * @param int|float|null $from
      * @param int|float|null $to
      * @param string         $key
-     *
-     * @return RangeAggregation
      */
-    public function addRange($from = null, $to = null, $key = '')
+    public function addRange($from = null, $to = null, $key = ''): static
     {
         $range = array_filter(
             [
                 'from' => $from,
-                'to' => $to,
+                'to'   => $to,
             ],
-            fn($v) => !is_null($v)
+            fn ($v): bool => !is_null($v)
         );
 
         if (!empty($key)) {
@@ -103,12 +99,11 @@ class RangeAggregation extends AbstractAggregation
      * @param int|float|null $from
      * @param int|float|null $to
      *
-     * @return bool
      */
-    public function removeRange($from, $to)
+    public function removeRange($from, $to): bool
     {
         foreach ($this->ranges as $key => $range) {
-            if (array_diff_assoc(array_filter(['from' => $from, 'to' => $to]), $range) === []) {
+            if ([] === array_diff_assoc(array_filter(['from' => $from, 'to' => $to]), $range)) {
                 unset($this->ranges[$key]);
 
                 return true;
@@ -123,9 +118,8 @@ class RangeAggregation extends AbstractAggregation
      *
      * @param string $key Range key.
      *
-     * @return bool
      */
-    public function removeRangeByKey($key)
+    public function removeRangeByKey($key): bool
     {
         if ($this->keyed) {
             foreach ($this->ranges as $rangeKey => $range) {
@@ -143,10 +137,10 @@ class RangeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = [
-            'keyed' => $this->keyed,
+            'keyed'  => $this->keyed,
             'ranges' => array_values($this->ranges),
         ];
 
@@ -160,7 +154,7 @@ class RangeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'range';
     }

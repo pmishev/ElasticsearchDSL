@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -22,10 +23,12 @@ abstract class AbstractSearchEndpoint extends AbstractNormalizable implements Se
 {
     use ParametersTrait;
 
+    public const NAME = 'undefined';
+
     /**
      * @var BuilderInterface[]
      */
-    private $container = [];
+    private array $container = [];
 
     /**
      * {@inheritdoc}

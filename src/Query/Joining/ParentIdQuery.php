@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ONGR\ElasticsearchDSL\Query\Joining;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
 use ONGR\ElasticsearchDSL\ParametersTrait;
 
 /**
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-parent-id-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-parent-id-query.html
  */
 class ParentIdQuery implements BuilderInterface
 {
@@ -14,8 +16,6 @@ class ParentIdQuery implements BuilderInterface
 
     /**
      * @param string $parentId
-     * @param string $childType
-     * @param array  $parameters
      */
     public function __construct(private $parentId, private string $childType, array $parameters = [])
     {
@@ -25,7 +25,7 @@ class ParentIdQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'parent_id';
     }
@@ -33,10 +33,10 @@ class ParentIdQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
-            'id' => $this->parentId,
+            'id'   => $this->parentId,
             'type' => $this->childType,
         ];
         $output = $this->processArray($query);

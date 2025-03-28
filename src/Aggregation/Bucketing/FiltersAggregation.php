@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,7 +19,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Class representing filters aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filters-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filters-aggregation.html
  */
 class FiltersAggregation extends AbstractAggregation
 {
@@ -27,7 +28,7 @@ class FiltersAggregation extends AbstractAggregation
     /**
      * @var BuilderInterface[]
      */
-    private $filters = [];
+    private array $filters = [];
 
     /**
      * @var bool
@@ -60,7 +61,7 @@ class FiltersAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setAnonymous($anonymous)
+    public function setAnonymous($anonymous): static
     {
         $this->anonymous = $anonymous;
 
@@ -68,18 +69,16 @@ class FiltersAggregation extends AbstractAggregation
     }
 
     /**
-     * @param BuilderInterface $filter
-     * @param string           $name
+     * @param string $name
+     *
      *
      * @throws \LogicException
-     *
-     * @return FiltersAggregation
      */
-    public function addFilter(BuilderInterface $filter, $name = '')
+    public function addFilter(BuilderInterface $filter, $name = ''): static
     {
-        if ($this->anonymous === false && empty($name)) {
+        if (false === $this->anonymous && empty($name)) {
             throw new \LogicException('In not anonymous filters filter name must be set.');
-        } elseif ($this->anonymous === false && !empty($name)) {
+        } elseif (false === $this->anonymous && !empty($name)) {
             $this->filters['filters'][$name] = $filter->toArray();
         } else {
             $this->filters['filters'][] = $filter->toArray();
@@ -91,7 +90,7 @@ class FiltersAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         return $this->filters;
     }
@@ -99,7 +98,7 @@ class FiltersAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'filters';
     }

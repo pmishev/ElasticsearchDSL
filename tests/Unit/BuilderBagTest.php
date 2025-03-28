@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,19 +10,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit;
 
 use ONGR\ElasticsearchDSL\BuilderBag;
 use ONGR\ElasticsearchDSL\BuilderInterface;
 use PHPUnit\Framework\MockObject\MockBuilder;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-class BuilderBagTest extends \PHPUnit\Framework\TestCase
+final class BuilderBagTest extends TestCase
 {
     /**
      * Tests if bag knows if he has a builder.
      */
-    public function testHas()
+    public function testHas(): void
     {
         $bag = new BuilderBag();
         $fooBuilder = $this->getBuilder('foo');
@@ -31,7 +34,7 @@ class BuilderBagTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if bag can remove a builder.
      */
-    public function testRemove()
+    public function testRemove(): void
     {
         $bag = new BuilderBag();
         $fooBuilder = $this->getBuilder('foo');
@@ -49,7 +52,7 @@ class BuilderBagTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if bag can clear it's builders.
      */
-    public function testClear()
+    public function testClear(): void
     {
         $bag = new BuilderBag(
             [
@@ -66,7 +69,7 @@ class BuilderBagTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if bag can get a builder.
      */
-    public function testGet()
+    public function testGet(): void
     {
         $bag = new BuilderBag();
         $bazBuilder = $this->getBuilder('baz');
@@ -78,13 +81,12 @@ class BuilderBagTest extends \PHPUnit\Framework\TestCase
     /**
      * Returns builder.
      *
-     * @param string $name
      *
      * @return MockBuilder|BuilderInterface
      */
-    private function getBuilder($name)
+    private function getBuilder(string $name): MockObject
     {
-        $friendlyBuilderMock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)
+        $friendlyBuilderMock = $this->getMockBuilder(BuilderInterface::class)
             ->onlyMethods(['toArray', 'getType'])
             ->addMethods(['getName'])
             ->disableOriginalConstructor()

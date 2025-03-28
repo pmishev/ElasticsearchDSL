@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Compound;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,26 +18,21 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "bool" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html
  */
 class BoolQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    const MUST = 'must';
-    const MUST_NOT = 'must_not';
-    const SHOULD = 'should';
-    const FILTER = 'filter';
+    public const MUST = 'must';
+    public const MUST_NOT = 'must_not';
+    public const SHOULD = 'should';
+    public const FILTER = 'filter';
 
-    /**
-     * @var array
-     */
-    private $container = [];
+    private array $container = [];
 
     /**
      * Constructor to prepare container.
-     *
-     * @param array $container
      */
     public function __construct(array $container = [])
     {
@@ -52,13 +48,13 @@ class BoolQuery implements BuilderInterface
     /**
      * Returns the query instances (by bool type).
      *
-     * @param  string|null $boolType
+     * @param string|null $boolType
      *
      * @return array
      */
     public function getQueries($boolType = null)
     {
-        if ($boolType === null) {
+        if (null === $boolType) {
             $queries = [];
 
             foreach ($this->container as $item) {
@@ -102,8 +98,8 @@ class BoolQuery implements BuilderInterface
      */
     public function toArray()
     {
-        if (count($this->container) === 1 && isset($this->container[self::MUST])
-                && count($this->container[self::MUST]) === 1) {
+        if (1 === count($this->container) && isset($this->container[self::MUST])
+                && 1 === count($this->container[self::MUST])) {
             $query = reset($this->container[self::MUST]);
 
             return $query->toArray();
@@ -120,7 +116,7 @@ class BoolQuery implements BuilderInterface
 
         $output = $this->processArray($output);
 
-        if (empty($output)) {
+        if ($output === []) {
             $output = new \stdClass();
         }
 
@@ -130,7 +126,7 @@ class BoolQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'bool';
     }

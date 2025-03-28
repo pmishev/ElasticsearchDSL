@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing date range aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-daterange-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-daterange-aggregation.html
  */
 class DateRangeAggregation extends AbstractAggregation
 {
@@ -28,10 +29,7 @@ class DateRangeAggregation extends AbstractAggregation
      */
     private $format;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
     /**
      * @var bool
@@ -42,7 +40,6 @@ class DateRangeAggregation extends AbstractAggregation
      * @param string $name
      * @param string $field
      * @param string $format
-     * @param array  $ranges
      * @param bool   $keyed
      */
     public function __construct($name, $field = null, $format = null, array $ranges = [], $keyed = false)
@@ -64,10 +61,8 @@ class DateRangeAggregation extends AbstractAggregation
      * Sets if result buckets should be keyed.
      *
      * @param bool $keyed
-     *
-     * @return DateRangeAggregation
      */
-    public function setKeyed($keyed)
+    public function setKeyed($keyed): static
     {
         $this->keyed = $keyed;
 
@@ -85,7 +80,7 @@ class DateRangeAggregation extends AbstractAggregation
     /**
      * @param string $format
      */
-    public function setFormat($format)
+    public function setFormat($format): void
     {
         $this->format = $format;
     }
@@ -101,18 +96,18 @@ class DateRangeAggregation extends AbstractAggregation
      *
      * @throws \LogicException
      */
-    public function addRange($from = null, $to = null, $key = null)
+    public function addRange($from = null, $to = null, $key = null): static
     {
         $range = array_filter(
             [
                 'from' => $from,
-                'to' => $to,
-                'key' => $key,
+                'to'   => $to,
+                'key'  => $key,
             ],
-            fn($v) => !is_null($v)
+            fn ($v): bool => !is_null($v)
         );
 
-        if (empty($range)) {
+        if ($range === []) {
             throw new \LogicException('Either from or to must be set. Both cannot be null.');
         }
 
@@ -126,11 +121,11 @@ class DateRangeAggregation extends AbstractAggregation
      */
     public function getArray()
     {
-        if ($this->getField() && !empty($this->ranges)) {
+        if ($this->getField() && $this->ranges !== []) {
             $data = [
-                'field' => $this->getField(),
+                'field'  => $this->getField(),
                 'ranges' => $this->ranges,
-                'keyed' => $this->keyed,
+                'keyed'  => $this->keyed,
             ];
             if ($this->getFormat()) {
                 $data['format'] = $this->getFormat();
@@ -144,7 +139,7 @@ class DateRangeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'date_range';
     }

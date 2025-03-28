@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Geo;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,25 +18,19 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "geo_shape" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-shape-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-shape-query.html
  */
 class GeoShapeQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    const INTERSECTS = 'intersects';
-    const DISJOINT = 'disjoint';
-    const WITHIN = 'within';
-    const CONTAINS = 'contains';
+    public const INTERSECTS = 'intersects';
+    public const DISJOINT = 'disjoint';
+    public const WITHIN = 'within';
+    public const CONTAINS = 'contains';
 
-    /**
-     * @var array
-     */
-    private $fields = [];
+    private array $fields = [];
 
-    /**
-     * @param array $parameters
-     */
     public function __construct(array $parameters = [])
     {
         $this->setParameters($parameters);
@@ -44,7 +39,7 @@ class GeoShapeQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'geo_shape';
     }
@@ -58,7 +53,7 @@ class GeoShapeQuery implements BuilderInterface
      * @param string $relation    Spatial relation.
      * @param array  $parameters  Additional parameters.
      */
-    public function addShape($field, $type, array $coordinates, $relation = self::INTERSECTS, array $parameters = [])
+    public function addShape($field, $type, array $coordinates, $relation = self::INTERSECTS, array $parameters = []): void
     {
         // TODO: remove this in the next major version
         if (is_array($relation)) {
@@ -70,13 +65,13 @@ class GeoShapeQuery implements BuilderInterface
         $filter = array_merge(
             $parameters,
             [
-                'type' => $type,
+                'type'        => $type,
                 'coordinates' => $coordinates,
             ]
         );
 
         $this->fields[$field] = [
-            'shape' => $filter,
+            'shape'    => $filter,
             'relation' => $relation,
         ];
     }
@@ -99,8 +94,8 @@ class GeoShapeQuery implements BuilderInterface
         $index,
         $path,
         $relation = self::INTERSECTS,
-        array $parameters = []
-    ) {
+        array $parameters = [],
+    ): void {
         // TODO: remove this in the next major version
         if (is_array($relation)) {
             $parameters = $relation;
@@ -111,23 +106,23 @@ class GeoShapeQuery implements BuilderInterface
         $filter = array_merge(
             $parameters,
             [
-                'id' => $id,
-                'type' => $type,
+                'id'    => $id,
+                'type'  => $type,
                 'index' => $index,
-                'path' => $path,
+                'path'  => $path,
             ]
         );
 
         $this->fields[$field] = [
             'indexed_shape' => $filter,
-            'relation' => $relation,
+            'relation'      => $relation,
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = $this->processArray($this->fields);
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,26 +10,27 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint;
 use ONGR\ElasticsearchDSL\Suggest\Suggest;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class SuggestEndpointTest extends \PHPUnit\Framework\TestCase
+final class SuggestEndpointTest extends TestCase
 {
     /**
      * Tests constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
-        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint::class, new SuggestEndpoint());
+        $this->assertInstanceOf(SuggestEndpoint::class, new SuggestEndpoint());
     }
 
     /**
      * Tests if endpoint returns builders.
      */
-    public function testEndpointGetter()
+    public function testEndpointGetter(): void
     {
         $suggestName = 'acme_suggest';
         $text = 'foo';
@@ -43,12 +46,12 @@ class SuggestEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests endpoint normalization.
      */
-    public function testNormalize()
+    public function testNormalize(): void
     {
         $instance = new SuggestEndpoint();
 
         $normalizerInterface = $this->getMockForAbstractClass(
-            \Symfony\Component\Serializer\Normalizer\NormalizerInterface::class
+            NormalizerInterface::class
         );
 
         $suggest = new Suggest('foo', 'bar', 'acme', 'foo');

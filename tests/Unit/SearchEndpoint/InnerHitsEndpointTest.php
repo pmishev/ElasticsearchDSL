@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,23 +10,25 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
+use ONGR\ElasticsearchDSL\BuilderInterface;
 use ONGR\ElasticsearchDSL\SearchEndpoint\InnerHitsEndpoint;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Class AggregationsEndpointTest.
  */
-class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
+final class InnerHitsEndpointTest extends TestCase
 {
     /**
      * Tests constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
         $this->assertInstanceOf(
-            \ONGR\ElasticsearchDSL\SearchEndpoint\InnerHitsEndpoint::class,
+            InnerHitsEndpoint::class,
             new InnerHitsEndpoint()
         );
     }
@@ -32,10 +36,10 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if endpoint returns builders.
      */
-    public function testEndpointGetter()
+    public function testEndpointGetter(): void
     {
         $hitName = 'foo';
-        $innerHit = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)->getMock();
+        $innerHit = $this->getMockBuilder(BuilderInterface::class)->getMock();
         $endpoint = new InnerHitsEndpoint();
         $endpoint->add($innerHit, $hitName);
         $builders = $endpoint->getAll();
@@ -47,13 +51,13 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests normalize method
      */
-    public function testNormalization()
+    public function testNormalization(): void
     {
         $normalizer = $this
-            ->getMockBuilder(\Symfony\Component\Serializer\Normalizer\NormalizerInterface::class)
+            ->getMockBuilder(NormalizerInterface::class)
             ->getMock();
         $innerHit = $this
-            ->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)
+            ->getMockBuilder(BuilderInterface::class)
             ->onlyMethods(['toArray', 'getType'])
             ->addMethods(['getName'])
             ->getMock();
@@ -64,8 +68,8 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
         $endpoint->add($innerHit, 'foo');
         $expected = [
             'foo' => [
-                'foo' => 'bar'
-            ]
+                'foo' => 'bar',
+            ],
         ];
 
         $this->assertEquals(

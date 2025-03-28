@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,14 +18,14 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing Histogram aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
  */
 class HistogramAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    const DIRECTION_ASC = 'asc';
-    const DIRECTION_DESC = 'desc';
+    public const DIRECTION_ASC = 'asc';
+    public const DIRECTION_DESC = 'desc';
 
     /**
      * @var int
@@ -78,7 +79,7 @@ class HistogramAggregation extends AbstractAggregation
         $orderDirection = self::DIRECTION_ASC,
         $extendedBoundsMin = null,
         $extendedBoundsMax = null,
-        $keyed = null
+        $keyed = null,
     ) {
         parent::__construct($name);
 
@@ -105,7 +106,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setKeyed($keyed)
+    public function setKeyed($keyed): static
     {
         $this->keyed = $keyed;
 
@@ -120,7 +121,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setOrder($mode, $direction = self::DIRECTION_ASC)
+    public function setOrder($mode, $direction = self::DIRECTION_ASC): static
     {
         $this->orderMode = $mode;
         $this->orderDirection = $direction;
@@ -153,7 +154,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setInterval($interval)
+    public function setInterval($interval): static
     {
         $this->interval = $interval;
 
@@ -175,7 +176,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setMinDocCount($minDocCount)
+    public function setMinDocCount($minDocCount): static
     {
         $this->minDocCount = $minDocCount;
 
@@ -196,7 +197,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setExtendedBounds($min = null, $max = null)
+    public function setExtendedBounds($min = null, $max = null): static
     {
         $bounds = array_filter(
             [
@@ -213,26 +214,27 @@ class HistogramAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'histogram';
     }
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
-                'field' => $this->getField(),
-                'interval' => $this->getInterval(),
-                'min_doc_count' => $this->getMinDocCount(),
+                'field'           => $this->getField(),
+                'interval'        => $this->getInterval(),
+                'min_doc_count'   => $this->getMinDocCount(),
                 'extended_bounds' => $this->getExtendedBounds(),
-                'keyed' => $this->isKeyed(),
-                'order' => $this->getOrder(),
+                'keyed'           => $this->isKeyed(),
+                'order'           => $this->getOrder(),
             ],
-            fn($val) => $val || is_numeric($val)
+            fn ($val): bool => $val || is_numeric($val)
         );
         $this->checkRequiredParameters($out, ['field', 'interval']);
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,7 +19,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Class representing composite aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-composite-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-composite-aggregation.html
  */
 class CompositeAggregation extends AbstractAggregation
 {
@@ -27,22 +28,19 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * @var BuilderInterface[]
      */
-    private $sources = [];
+    private array $sources = [];
 
     /**
      * @var int
      */
     private $size;
 
-    /**
-     * @var array
-     */
-    private $after;
+    private ?array $after = null;
 
     /**
      * Inner aggregations container init.
      *
-     * @param string             $name
+     * @param string                $name
      * @param AbstractAggregation[] $sources
      */
     public function __construct($name, $sources = [])
@@ -55,20 +53,16 @@ class CompositeAggregation extends AbstractAggregation
     }
 
     /**
-     * @param AbstractAggregation $agg
-     *
      * @throws \LogicException
-     *
-     * @return self
      */
-    public function addSource(AbstractAggregation $agg)
+    public function addSource(AbstractAggregation $agg): static
     {
         $array = $agg->getArray();
 
         $array = is_array($array) ? array_merge($array, $agg->getParameters()) : $array;
 
         $this->sources[] = [
-            $agg->getName() => [ $agg->getType() => $array ]
+            $agg->getName() => [$agg->getType() => $array],
         ];
 
         return $this;
@@ -77,17 +71,17 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $array = [
             'sources' => $this->sources,
         ];
 
-        if ($this->size !== null) {
+        if (null !== $this->size) {
             $array['size'] = $this->size;
         }
 
-        if (!empty($this->after)) {
+        if ($this->after !== null && $this->after !== []) {
             $array['after'] = $this->after;
         }
 
@@ -97,7 +91,7 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'composite';
     }
@@ -109,7 +103,7 @@ class CompositeAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -133,7 +127,7 @@ class CompositeAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setAfter(array $after)
+    public function setAfter(array $after): static
     {
         $this->after = $after;
 
@@ -143,9 +137,8 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * Returns after
      *
-     * @return array
      */
-    public function getAfter()
+    public function getAfter(): ?array
     {
         return $this->after;
     }

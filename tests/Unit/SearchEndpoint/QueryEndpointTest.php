@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,29 +10,30 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
 use ONGR\ElasticsearchDSL\SearchEndpoint\QueryEndpoint;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Unit test class for the QueryEndpoint.
  */
-class QueryEndpointTest extends \PHPUnit\Framework\TestCase
+final class QueryEndpointTest extends TestCase
 {
     /**
      * Tests constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
-        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\SearchEndpoint\QueryEndpoint::class, new QueryEndpoint());
+        $this->assertInstanceOf(QueryEndpoint::class, new QueryEndpoint());
     }
 
     /**
      * Tests if correct order is returned. Query must be executed after filter and post filter.
      */
-    public function testGetOrder()
+    public function testGetOrder(): void
     {
         $instance = new QueryEndpoint();
         $this->assertEquals(2, $instance->getOrder());
@@ -39,11 +42,11 @@ class QueryEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if endpoint return correct normalized data.
      */
-    public function testEndpoint()
+    public function testEndpoint(): void
     {
         $instance = new QueryEndpoint();
         $normalizerInterface = $this->getMockForAbstractClass(
-            \Symfony\Component\Serializer\Normalizer\NormalizerInterface::class
+            NormalizerInterface::class
         );
 
         $this->assertNull($instance->normalize($normalizerInterface));
@@ -60,7 +63,7 @@ class QueryEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if endpoint returns builders.
      */
-    public function testEndpointGetter()
+    public function testEndpointGetter(): void
     {
         $queryName = 'acme_query';
         $query = new MatchAllQuery();

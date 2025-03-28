@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,19 +19,18 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Class representing adjacency matrix aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-adjacency-matrix-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-adjacency-matrix-aggregation.html
  */
 class AdjacencyMatrixAggregation extends AbstractAggregation
 {
-    const FILTERS = 'filters';
-
     use BucketingTrait;
+    public const FILTERS = 'filters';
 
     /**
      * @var BuilderInterface[]
      */
-    private $filters = [
-        self::FILTERS => []
+    private array $filters = [
+        self::FILTERS => [],
     ];
 
     /**
@@ -49,14 +49,12 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     }
 
     /**
-     * @param string           $name
-     * @param BuilderInterface $filter
+     * @param string $name
+     *
      *
      * @throws \LogicException
-     *
-     * @return self
      */
-    public function addFilter($name, BuilderInterface $filter)
+    public function addFilter($name, BuilderInterface $filter): static
     {
         $this->filters[self::FILTERS][$name] = $filter->toArray();
 
@@ -66,7 +64,7 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         return $this->filters;
     }
@@ -74,7 +72,7 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'adjacency_matrix';
     }

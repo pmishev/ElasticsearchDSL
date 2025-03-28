@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing geo diversified sampler aggregation.
  *
- * @link https://goo.gl/yzXvqD
+ * @see https://goo.gl/yzXvqD
  */
 class DiversifiedSamplerAggregation extends AbstractAggregation
 {
@@ -25,16 +26,17 @@ class DiversifiedSamplerAggregation extends AbstractAggregation
 
     /**
      * Defines how many results will be received from each shard
-     * @param integer $shardSize
+     *
+     * @param int $shardSize
      */
     private $shardSize;
 
     /**
      * DiversifiedSamplerAggregation constructor.
      *
-     * @param string $name Aggregation name
-     * @param string $field Elasticsearch field name
-     * @param int $shardSize Shard size, by default it's 100
+     * @param string $name      Aggregation name
+     * @param string $field     Elasticsearch field name
+     * @param int    $shardSize Shard size, by default it's 100
      */
     public function __construct($name, $field = null, $shardSize = null)
     {
@@ -57,7 +59,7 @@ class DiversifiedSamplerAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setShardSize($shardSize)
+    public function setShardSize($shardSize): static
     {
         $this->shardSize = $shardSize;
 
@@ -65,25 +67,24 @@ class DiversifiedSamplerAggregation extends AbstractAggregation
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'diversified_sampler';
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     * @return mixed[]
      */
-    protected function getArray()
+    protected function getArray(): array
     {
-        $out = array_filter(
+        return array_filter(
             [
-                'field' => $this->getField(),
+                'field'      => $this->getField(),
                 'shard_size' => $this->getShardSize(),
             ]
         );
-
-        return $out;
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -35,7 +36,7 @@ interface SearchEndpointInterface extends NormalizableInterface
      *
      * @param BuilderInterface $builder  Builder to add.
      * @param array            $boolType Bool type for query or filter. If bool type is left null
-     *                                       it will be treated as MUST.
+     *                                   it will be treated as MUST.
      * @param array            $key      Additional parameters relevant to builder.
      *
      * @return string Key of added builder.

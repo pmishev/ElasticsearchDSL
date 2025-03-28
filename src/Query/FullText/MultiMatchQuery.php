@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\FullText;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "multi_match" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html
  *
  * Allows `$fields` to be an empty array to represent 'no fields'. From the Elasticsearch documentation:
  *
@@ -30,9 +31,7 @@ class MultiMatchQuery implements BuilderInterface
     use ParametersTrait;
 
     /**
-     * @param array  $fields
      * @param string $query
-     * @param array  $parameters
      */
     public function __construct(private array $fields, private $query, array $parameters = [])
     {
@@ -42,7 +41,7 @@ class MultiMatchQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'multi_match';
     }
@@ -50,7 +49,7 @@ class MultiMatchQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'query' => $this->query,

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,34 +10,35 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\SearchEndpoint\SortEndpoint;
 use ONGR\ElasticsearchDSL\Sort\FieldSort;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Class SortEndpointTest.
  */
-class SortEndpointTest extends \PHPUnit\Framework\TestCase
+final class SortEndpointTest extends TestCase
 {
     /**
      * Tests constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
-        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\SearchEndpoint\SortEndpoint::class, new SortEndpoint());
+        $this->assertInstanceOf(SortEndpoint::class, new SortEndpoint());
     }
 
     /**
      * Tests endpoint normalization.
      */
-    public function testNormalize()
+    public function testNormalize(): void
     {
         $instance = new SortEndpoint();
 
         $normalizerInterface = $this->getMockForAbstractClass(
-            \Symfony\Component\Serializer\Normalizer\NormalizerInterface::class
+            NormalizerInterface::class
         );
 
         $sort = new FieldSort('acme', ['order' => FieldSort::ASC]);
@@ -50,7 +53,7 @@ class SortEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if endpoint returns builders.
      */
-    public function testEndpointGetter()
+    public function testEndpointGetter(): void
     {
         $sortName = 'acme_sort';
         $sort = new FieldSort('acme');

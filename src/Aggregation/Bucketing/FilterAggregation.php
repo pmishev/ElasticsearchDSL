@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,7 +19,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 /**
  * Class representing FilterAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filter-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filter-aggregation.html
  */
 class FilterAggregation extends AbstractAggregation
 {
@@ -32,24 +33,21 @@ class FilterAggregation extends AbstractAggregation
     /**
      * Inner aggregations container init.
      *
-     * @param string           $name
-     * @param BuilderInterface $filter
+     * @param string $name
      */
-    public function __construct($name, BuilderInterface $filter = null)
+    public function __construct($name, ?BuilderInterface $filter = null)
     {
         parent::__construct($name);
 
-        if ($filter !== null) {
+        if ($filter instanceof BuilderInterface) {
             $this->setFilter($filter);
         }
     }
 
     /**
-     * @param BuilderInterface $filter
-     *
      * @return $this
      */
-    public function setFilter(BuilderInterface $filter)
+    public function setFilter(BuilderInterface $filter): static
     {
         $this->filter = $filter;
 
@@ -89,7 +87,7 @@ class FilterAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'filter';
     }

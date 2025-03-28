@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,17 +10,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Geo;
 
 use ONGR\ElasticsearchDSL\Query\Geo\GeoBoundingBoxQuery;
+use PHPUnit\Framework\TestCase;
 
-class GeoBoundingBoxQueryTest extends \PHPUnit\Framework\TestCase
+final class GeoBoundingBoxQueryTest extends TestCase
 {
     /**
      * Test if exception is thrown when geo points are not set.
      */
-    public function testGeoBoundBoxQueryException()
+    public function testGeoBoundBoxQueryException(): void
     {
         $this->expectException(\LogicException::class);
         $query = new GeoBoundingBoxQuery('location', []);
@@ -28,9 +30,8 @@ class GeoBoundingBoxQueryTest extends \PHPUnit\Framework\TestCase
     /**
      * Data provider for testToArray().
      *
-     * @return array
      */
-    public function getArrayDataProvider()
+    public static function getArrayDataProvider(): array
     {
         return [
             // Case #1 (2 values).
@@ -43,7 +44,7 @@ class GeoBoundingBoxQueryTest extends \PHPUnit\Framework\TestCase
                 ['parameter' => 'value'],
                 [
                     'location' => [
-                        'top_left' => ['lat' => 40.73, 'lon' => -74.1],
+                        'top_left'     => ['lat' => 40.73, 'lon' => -74.1],
                         'bottom_right' => ['lat' => 40.01, 'lon' => -71.12],
                     ],
                     'parameter' => 'value',
@@ -54,12 +55,12 @@ class GeoBoundingBoxQueryTest extends \PHPUnit\Framework\TestCase
                 'location',
                 [
                     'bottom_right' => ['lat' => 40.01, 'lon' => -71.12],
-                    'top_left' => ['lat' => 40.73, 'lon' => -74.1],
+                    'top_left'     => ['lat' => 40.73, 'lon' => -74.1],
                 ],
                 ['parameter' => 'value'],
                 [
                     'location' => [
-                        'top_left' => ['lat' => 40.73, 'lon' => -74.1],
+                        'top_left'     => ['lat' => 40.73, 'lon' => -74.1],
                         'bottom_right' => ['lat' => 40.01, 'lon' => -71.12],
                     ],
                     'parameter' => 'value',
@@ -72,10 +73,10 @@ class GeoBoundingBoxQueryTest extends \PHPUnit\Framework\TestCase
                 ['parameter' => 'value'],
                 [
                     'location' => [
-                        'top' => 40.73,
-                        'left' => -74.1,
+                        'top'    => 40.73,
+                        'left'   => -74.1,
                         'bottom' => 40.01,
-                        'right' => -71.12,
+                        'right'  => -71.12,
                     ],
                     'parameter' => 'value',
                 ],
@@ -85,18 +86,18 @@ class GeoBoundingBoxQueryTest extends \PHPUnit\Framework\TestCase
                 'location',
                 [
                     // out of order
-                    'right' => -71.12,
+                    'right'  => -71.12,
                     'bottom' => 40.01,
-                    'top' => 40.73,
-                    'left' => -74.1
+                    'top'    => 40.73,
+                    'left'   => -74.1,
                 ],
                 ['parameter' => 'value'],
                 [
                     'location' => [
-                        'top' => 40.73,
-                        'left' => -74.1,
+                        'top'    => 40.73,
+                        'left'   => -74.1,
                         'bottom' => 40.01,
-                        'right' => -71.12,
+                        'right'  => -71.12,
                     ],
                     'parameter' => 'value',
                 ],
@@ -114,7 +115,7 @@ class GeoBoundingBoxQueryTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testToArray($field, $values, $parameters, $expected)
+    public function testToArray(string $field, array $values, array $parameters, array $expected): void
     {
         $query = new GeoBoundingBoxQuery($field, $values, $parameters);
         $result = $query->toArray();

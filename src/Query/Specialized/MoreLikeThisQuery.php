@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Specialized;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "more_like_this" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html
  */
 class MoreLikeThisQuery implements BuilderInterface
 {
@@ -25,7 +26,6 @@ class MoreLikeThisQuery implements BuilderInterface
 
     /**
      * @param string $like The text to find documents like it, required if ids or docs are not specified.
-     * @param array  $parameters
      */
     public function __construct(private $like, array $parameters = [])
     {
@@ -35,7 +35,7 @@ class MoreLikeThisQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'more_like_this';
     }
@@ -43,11 +43,11 @@ class MoreLikeThisQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [];
 
-        if (($this->hasParameter('ids') === false) || ($this->hasParameter('docs') === false)) {
+        if ((false === $this->hasParameter('ids')) || (false === $this->hasParameter('docs'))) {
             $query['like'] = $this->like;
         }
 

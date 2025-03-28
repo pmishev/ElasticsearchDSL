@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\InnerHit;
 
 use ONGR\ElasticsearchDSL\NameAwareTrait;
@@ -19,7 +20,7 @@ use ONGR\ElasticsearchDSL\Search;
 /**
  * Represents Elasticsearch top level nested inner hits.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-inner-hits.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-inner-hits.html
  */
 class NestedInnerHit implements NamedBuilderInterface
 {
@@ -31,23 +32,19 @@ class NestedInnerHit implements NamedBuilderInterface
      */
     private $path;
 
-    /**
-     * @var Search
-     */
-    private $search;
+    private ?Search $search = null;
 
     /**
      * Inner hits container init.
      *
      * @param string $name
      * @param string $path
-     * @param Search $search
      */
-    public function __construct($name, $path, Search $search = null)
+    public function __construct($name, $path, ?Search $search = null)
     {
         $this->setName($name);
         $this->setPath($path);
-        if ($search) {
+        if ($search instanceof Search) {
             $this->setSearch($search);
         }
     }
@@ -65,7 +62,7 @@ class NestedInnerHit implements NamedBuilderInterface
      *
      * @return $this
      */
-    public function setPath($path)
+    public function setPath($path): static
     {
         $this->path = $path;
 
@@ -73,19 +70,16 @@ class NestedInnerHit implements NamedBuilderInterface
     }
 
     /**
-     * @return Search
      */
-    public function getSearch()
+    public function getSearch(): ?Search
     {
         return $this->search;
     }
 
     /**
-     * @param Search $search
-     *
      * @return $this
      */
-    public function setSearch(Search $search)
+    public function setSearch(Search $search): static
     {
         $this->search = $search;
 
@@ -95,7 +89,7 @@ class NestedInnerHit implements NamedBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'nested';
     }
@@ -103,31 +97,27 @@ class NestedInnerHit implements NamedBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
-        $out = $this->getSearch() ? $this->getSearch()->toArray() : new \stdClass();
+        $out = $this->getSearch() instanceof Search ? $this->getSearch()->toArray() : new \stdClass();
 
-        $out = [
+        return [
             $this->getPathType() => [
-                $this->getPath() => $out ,
+                $this->getPath() => $out,
             ],
         ];
-
-        return $out;
     }
 
     /**
      * Returns 'path' for nested and 'type' for parent inner hits
      *
-     * @return null|string
      */
-    private function getPathType()
+    private function getPathType(): ?string
     {
-        $type = match ($this->getType()) {
+        return match ($this->getType()) {
             'nested' => 'path',
             'parent' => 'type',
-            default => null,
+            default  => null,
         };
-        return $type;
     }
 }

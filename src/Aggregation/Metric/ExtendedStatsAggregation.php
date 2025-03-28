@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,7 +19,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Class representing Extended stats aggregation.
  *
- * @link http://goo.gl/E0PpDv
+ * @see http://goo.gl/E0PpDv
  */
 class ExtendedStatsAggregation extends AbstractAggregation
 {
@@ -60,7 +61,7 @@ class ExtendedStatsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSigma($sigma)
+    public function setSigma($sigma): static
     {
         $this->sigma = $sigma;
 
@@ -70,25 +71,24 @@ class ExtendedStatsAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'extended_stats';
     }
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
-        $out = array_filter(
+        return array_filter(
             [
-                'field' => $this->getField(),
+                'field'  => $this->getField(),
                 'script' => $this->getScript(),
-                'sigma' => $this->getSigma(),
+                'sigma'  => $this->getSigma(),
             ],
-            fn($val) => $val || is_numeric($val)
+            fn ($val): bool => $val || is_numeric($val)
         );
-
-        return $out;
     }
 }

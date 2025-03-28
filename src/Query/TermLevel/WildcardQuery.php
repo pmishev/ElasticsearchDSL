@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\TermLevel;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "wildcard" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-wildcard-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-wildcard-query.html
  */
 class WildcardQuery implements BuilderInterface
 {
@@ -26,7 +27,6 @@ class WildcardQuery implements BuilderInterface
     /**
      * @param string $field
      * @param string $value
-     * @param array  $parameters
      */
     public function __construct(private $field, private $value, array $parameters = [])
     {
@@ -36,7 +36,7 @@ class WildcardQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'wildcard';
     }
@@ -44,7 +44,7 @@ class WildcardQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'value' => $this->value,

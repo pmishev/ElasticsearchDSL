@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing Histogram aggregation.
  *
- * @link https://goo.gl/hGCdDd
+ * @see https://goo.gl/hGCdDd
  */
 class DateHistogramAggregation extends AbstractAggregation
 {
@@ -62,7 +63,7 @@ class DateHistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setInterval($interval)
+    public function setInterval($interval): static
     {
         $this->interval = $interval;
 
@@ -74,7 +75,7 @@ class DateHistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setFormat($format)
+    public function setFormat($format): static
     {
         $this->format = $format;
 
@@ -84,7 +85,7 @@ class DateHistogramAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'date_histogram';
     }
@@ -92,14 +93,14 @@ class DateHistogramAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         if (!$this->getField() || !$this->getInterval()) {
             throw new \LogicException('Date histogram aggregation must have field and interval set.');
         }
 
         $out = [
-            'field' => $this->getField(),
+            'field'    => $this->getField(),
             'interval' => $this->getInterval(),
         ];
 

@@ -4,3 +4,5 @@
 /composer.lock
 coverage.xml
 /.phpstan-cache/
+/.php-cs-fixer.cache
+/.phpunit.cache/

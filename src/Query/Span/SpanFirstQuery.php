@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Span;
 
 use ONGR\ElasticsearchDSL\ParametersTrait;
@@ -16,16 +17,14 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Elasticsearch span first query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-first-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-first-query.html
  */
 class SpanFirstQuery implements SpanQueryInterface
 {
     use ParametersTrait;
 
     /**
-     * @param SpanQueryInterface $query
-     * @param int                $end
-     * @param array              $parameters
+     * @param int $end
      *
      * @throws \LogicException
      */
@@ -37,7 +36,7 @@ class SpanFirstQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'span_first';
     }
@@ -45,7 +44,7 @@ class SpanFirstQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [];
         $query['match'] = $this->query->toArray();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -22,12 +23,9 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * Endpoint name
      */
-    const NAME = 'highlight';
+    public const NAME = 'highlight';
 
-    /**
-     * @var BuilderInterface
-     */
-    private $highlight;
+    private ?BuilderInterface $highlight = null;
 
     /**
      * @var string Key for highlight storing.
@@ -39,7 +37,7 @@ class HighlightEndpoint extends AbstractSearchEndpoint
      */
     public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        if ($this->highlight) {
+        if ($this->highlight instanceof BuilderInterface) {
             return $this->highlight->toArray();
         }
 
@@ -49,9 +47,9 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function add(BuilderInterface $builder, $key = null)
+    public function add(BuilderInterface $builder, $key = null): void
     {
-        if ($this->highlight) {
+        if ($this->highlight instanceof BuilderInterface) {
             throw new \OverflowException('Only one highlight can be set');
         }
 
@@ -62,15 +60,14 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function getAll($boolType = null)
+    public function getAll($boolType = null): array
     {
         return [$this->key => $this->highlight];
     }
 
     /**
-     * @return BuilderInterface
      */
-    public function getHighlight()
+    public function getHighlight(): ?BuilderInterface
     {
         return $this->highlight;
     }

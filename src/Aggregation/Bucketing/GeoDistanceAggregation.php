@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing geo distance aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html
  */
 class GeoDistanceAggregation extends AbstractAggregation
 {
@@ -38,10 +39,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      */
     private $unit;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
     /**
      * Inner aggregations container init.
@@ -81,7 +79,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setOrigin($origin)
+    public function setOrigin($origin): static
     {
         $this->origin = $origin;
 
@@ -101,7 +99,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setDistanceType($distanceType)
+    public function setDistanceType($distanceType): static
     {
         $this->distanceType = $distanceType;
 
@@ -121,7 +119,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setUnit($unit)
+    public function setUnit($unit): static
     {
         $this->unit = $unit;
 
@@ -134,21 +132,20 @@ class GeoDistanceAggregation extends AbstractAggregation
      * @param int|float|null $from
      * @param int|float|null $to
      *
-     * @throws \LogicException
      *
-     * @return GeoDistanceAggregation
+     * @throws \LogicException
      */
-    public function addRange($from = null, $to = null)
+    public function addRange($from = null, $to = null): static
     {
         $range = array_filter(
             [
                 'from' => $from,
-                'to' => $to,
+                'to'   => $to,
             ],
-            fn($v) => !is_null($v)
+            fn ($v): bool => !is_null($v)
         );
 
-        if (empty($range)) {
+        if ($range === []) {
             throw new \LogicException('Either from or to must be set. Both cannot be null.');
         }
 
@@ -160,7 +157,7 @@ class GeoDistanceAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = [];
 
@@ -192,7 +189,7 @@ class GeoDistanceAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'geo_distance';
     }
