@@ -11,6 +11,7 @@
 
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
+use ONGR\ElasticsearchDSL\Query\Compound\BoolQuery;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -28,7 +29,7 @@ class PostFilterEndpoint extends QueryEndpoint
      */
     public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        if ($this->getBool() === null) {
+        if (!$this->getBool() instanceof BoolQuery) {
             return null;
         }
 

@@ -186,7 +186,7 @@ class Search
      */
     private function initializeSerializer(): void
     {
-        if (null === static::$serializer) {
+        if (!static::$serializer instanceof OrderedSerializer) {
             static::$serializer = new OrderedSerializer(
                 [
                     new CustomReferencedNormalizer(),

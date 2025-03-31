@@ -43,7 +43,7 @@ class NestedInnerHit implements NamedBuilderInterface
     {
         $this->setName($name);
         $this->setPath($path);
-        if ($search !== null) {
+        if ($search instanceof Search) {
             $this->setSearch($search);
         }
     }
@@ -98,7 +98,7 @@ class NestedInnerHit implements NamedBuilderInterface
      */
     public function toArray(): array
     {
-        $out = $this->getSearch() !== null ? $this->getSearch()->toArray() : new \stdClass();
+        $out = $this->getSearch() instanceof Search ? $this->getSearch()->toArray() : new \stdClass();
 
         return [
             $this->getPathType() => [

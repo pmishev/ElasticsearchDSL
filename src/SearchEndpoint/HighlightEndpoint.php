@@ -36,7 +36,7 @@ class HighlightEndpoint extends AbstractSearchEndpoint
      */
     public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        if ($this->highlight !== null) {
+        if ($this->highlight instanceof BuilderInterface) {
             return $this->highlight->toArray();
         }
 
@@ -48,7 +48,7 @@ class HighlightEndpoint extends AbstractSearchEndpoint
      */
     public function add(BuilderInterface $builder, $key = null): void
     {
-        if ($this->highlight !== null) {
+        if ($this->highlight instanceof BuilderInterface) {
             throw new \OverflowException('Only one highlight can be set');
         }
 

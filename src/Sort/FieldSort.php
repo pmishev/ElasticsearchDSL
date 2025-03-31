@@ -112,7 +112,7 @@ class FieldSort implements BuilderInterface
             $this->addParameter('order', $this->order);
         }
 
-        if ($this->nestedFilter !== null) {
+        if ($this->nestedFilter instanceof BuilderInterface) {
             $this->addParameter('nested', $this->nestedFilter->toArray());
         }
 

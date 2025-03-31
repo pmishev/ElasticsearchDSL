@@ -53,11 +53,11 @@ class NestedSort implements BuilderInterface
             'path' => $this->path,
         ];
 
-        if ($this->filter !== null) {
+        if ($this->filter instanceof BuilderInterface) {
             $output['filter'] = $this->filter->toArray();
         }
 
-        if ($this->nestedFilter !== null) {
+        if ($this->nestedFilter instanceof BuilderInterface) {
             $output[$this->getType()] = $this->nestedFilter->toArray();
         }
 
