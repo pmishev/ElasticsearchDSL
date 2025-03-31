@@ -23,6 +23,8 @@ abstract class AbstractSearchEndpoint extends AbstractNormalizable implements Se
 {
     use ParametersTrait;
 
+    public const NAME = 'undefined';
+
     /**
      * @var BuilderInterface[]
      */

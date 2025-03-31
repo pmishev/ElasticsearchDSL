@@ -93,12 +93,14 @@ abstract class AbstractAggregation implements NamedBuilderInterface
     /**
      * Returns all sub aggregations.
      *
-     * @return BuilderBag[]|NamedBuilderInterface[]
+     * @return NamedBuilderInterface[]
      */
     public function getAggregations()
     {
         if ($this->aggregations instanceof BuilderBag) {
-            return $this->aggregations->all();
+            /** @var NamedBuilderInterface[] $result */
+            $result = $this->aggregations->all();
+            return $result;
         } else {
             return [];
         }
