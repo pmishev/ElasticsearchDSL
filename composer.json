@@ -15,7 +15,6 @@
         "symfony/serializer": "^6.0"
     },
     "require-dev": {
-        "elasticsearch/elasticsearch": "^7.0|^8.0",
         "phpunit/phpunit": "^9.0",
         "rector/rector": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.74"

@@ -37,7 +37,7 @@ jobs:
   phpunit:
     needs: [ static_code_analysis ]
     runs-on: 'ubuntu-20.04'
-    name: 'PHPUnit (PHP ${{ matrix.php }}, ES ${{ matrix.elasticsearch }})'
+    name: 'PHPUnit (PHP ${{ matrix.php }})'
     timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -49,9 +49,6 @@ jobs:
         php:
           - '8.1'
           - '8.4'
-        elasticsearch:
-          - '7.17.28'
-          - '8.17.4'
       fail-fast: false
     steps:
       - name: Checkout
@@ -75,10 +72,10 @@ jobs:
 #      - name: 'Dump composer autoloader'
 #        run: composer dump-autoload --classmap-authoritative --no-ansi --no-interaction --no-scripts
 
-      - name: 'Setup Elasticsearch'
-        env:
-          ELASTICSEARCH_VERSION: ${{ matrix.elasticsearch }}
-        run: docker compose up --detach --wait ; curl -XGET 'http://localhost:'"$ELASTICSEARCH_PORT"
+#      - name: 'Setup Elasticsearch'
+#        env:
+#          ELASTICSEARCH_VERSION: ${{ matrix.elasticsearch }}
+#        run: docker compose up --detach --wait ; curl -XGET 'http://localhost:'"$ELASTICSEARCH_PORT"
 
       - name: 'Run phpunit tests'
         run: |
