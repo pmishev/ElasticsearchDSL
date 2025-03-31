@@ -28,7 +28,7 @@ class PostFilterEndpoint extends QueryEndpoint
      */
     public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        if (!$this->getBool()) {
+        if ($this->getBool() === null) {
             return null;
         }
 

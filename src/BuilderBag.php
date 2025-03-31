@@ -38,11 +38,7 @@ class BuilderBag
      */
     public function add(BuilderInterface $builder)
     {
-        if (method_exists($builder, 'getName')) {
-            $name = $builder->getName();
-        } else {
-            $name = bin2hex(random_bytes(30));
-        }
+        $name = method_exists($builder, 'getName') ? $builder->getName() : bin2hex(random_bytes(30));
 
         $this->bag[$name] = $builder;
 

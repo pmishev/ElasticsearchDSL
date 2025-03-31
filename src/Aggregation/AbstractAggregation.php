@@ -80,7 +80,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
      */
     public function addAggregation(AbstractAggregation $abstractAggregation)
     {
-        if (!$this->aggregations) {
+        if ($this->aggregations === null) {
             $this->aggregations = $this->createBuilderBag();
         }
 
@@ -96,7 +96,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
      */
     public function getAggregations()
     {
-        if ($this->aggregations) {
+        if ($this->aggregations !== null) {
             return $this->aggregations->all();
         } else {
             return [];

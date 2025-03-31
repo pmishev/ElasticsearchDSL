@@ -144,7 +144,7 @@ class TopHitsAggregation extends AbstractAggregation
     {
         $sortsOutput = [];
         $addedSorts = array_filter($this->getSorts());
-        if ($addedSorts) {
+        if ($addedSorts !== []) {
             foreach ($addedSorts as $sort) {
                 $sortsOutput[] = $sort->toArray();
             }

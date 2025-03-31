@@ -16,9 +16,8 @@ return RectorConfig::configure()
     // uncomment to reach your current PHP version
     // ->withPhpSets()
     ->withPHPStanConfigs([__DIR__.'/phpstan.dist.neon'])
-    ->withPreparedSets(typeDeclarations: true)
-    ->withDeadCodeLevel(20)
-    ->withCodeQualityLevel(0)
+    ->withPreparedSets(typeDeclarations: true, deadCode: true)
+    ->withCodeQualityLevel(20)
     ->withPhpVersion(PhpVersion::PHP_81)
     ->withSets([
         LevelSetList::UP_TO_PHP_81,

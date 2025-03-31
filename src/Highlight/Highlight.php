@@ -76,7 +76,7 @@ class Highlight implements BuilderInterface
         $output = $this->processArray($output);
 
         foreach ($this->fields as $field => $params) {
-            $output['fields'][$field] = count($params) ? $params : new \stdClass();
+            $output['fields'][$field] = count($params) > 0 ? $params : new \stdClass();
         }
 
         return $output;

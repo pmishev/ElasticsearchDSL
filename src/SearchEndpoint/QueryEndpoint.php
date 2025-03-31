@@ -42,7 +42,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
             $this->filtersSet = true;
         }
 
-        if (!$this->bool) {
+        if ($this->bool === null) {
             return null;
         }
 
@@ -62,7 +62,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
      */
     public function addToBool(BuilderInterface $builder, $boolType = null, $key = null)
     {
-        if (!$this->bool) {
+        if ($this->bool === null) {
             $this->bool = new BoolQuery();
         }
 
