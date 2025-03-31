@@ -96,17 +96,15 @@ class NestedInnerHit implements NamedBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $out = $this->getSearch() ? $this->getSearch()->toArray() : new \stdClass();
 
-        $out = [
+        return [
             $this->getPathType() => [
                 $this->getPath() => $out,
             ],
         ];
-
-        return $out;
     }
 
     /**
@@ -115,12 +113,10 @@ class NestedInnerHit implements NamedBuilderInterface
      */
     private function getPathType(): ?string
     {
-        $type = match ($this->getType()) {
+        return match ($this->getType()) {
             'nested' => 'path',
             'parent' => 'type',
             default  => null,
         };
-
-        return $type;
     }
 }

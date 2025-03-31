@@ -116,10 +116,8 @@ class FieldSort implements BuilderInterface
             $this->addParameter('nested', $this->nestedFilter->toArray());
         }
 
-        $output = [
+        return [
             $this->field => !$this->getParameters() ? new \stdClass() : $this->getParameters(),
         ];
-
-        return $output;
     }
 }

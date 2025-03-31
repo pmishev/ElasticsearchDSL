@@ -71,11 +71,9 @@ class BucketScriptAggregation extends AbstractPipelineAggregation
             throw new \LogicException(sprintf('`%s` aggregation must have script set.', $this->getName()));
         }
 
-        $out = [
+        return [
             'buckets_path' => $this->getBucketsPath(),
             'script'       => $this->getScript(),
         ];
-
-        return $out;
     }
 }

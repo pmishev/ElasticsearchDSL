@@ -42,9 +42,6 @@ class BucketSortAggregation extends AbstractPipelineAggregation
         return $this->sort;
     }
 
-    /**
-     * @return self
-     */
     public function addSort(FieldSort $sort): void
     {
         $this->sort[] = $sort->toArray();
@@ -76,13 +73,11 @@ class BucketSortAggregation extends AbstractPipelineAggregation
      */
     public function getArray(): array
     {
-        $out = array_filter(
+        return array_filter(
             [
                 'buckets_path' => $this->getBucketsPath(),
                 'sort'         => $this->getSort(),
             ]
         );
-
-        return $out;
     }
 }

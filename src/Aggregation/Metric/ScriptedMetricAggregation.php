@@ -161,7 +161,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      */
     public function getArray(): array
     {
-        $out = array_filter(
+        return array_filter(
             [
                 'init_script'    => $this->getInitScript(),
                 'map_script'     => $this->getMapScript(),
@@ -169,7 +169,5 @@ class ScriptedMetricAggregation extends AbstractAggregation
                 'reduce_script'  => $this->getReduceScript(),
             ]
         );
-
-        return $out;
     }
 }

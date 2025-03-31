@@ -52,8 +52,6 @@ class CompositeAggregation extends AbstractAggregation
     }
 
     /**
-     * @return self
-     *
      * @throws \LogicException
      */
     public function addSource(AbstractAggregation $agg): static

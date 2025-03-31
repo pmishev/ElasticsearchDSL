@@ -79,13 +79,11 @@ class DiversifiedSamplerAggregation extends AbstractAggregation
      */
     protected function getArray(): array
     {
-        $out = array_filter(
+        return array_filter(
             [
                 'field'      => $this->getField(),
                 'shard_size' => $this->getShardSize(),
             ]
         );
-
-        return $out;
     }
 }

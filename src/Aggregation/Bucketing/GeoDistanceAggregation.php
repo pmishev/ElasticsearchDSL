@@ -131,7 +131,6 @@ class GeoDistanceAggregation extends AbstractAggregation
      * @param int|float|null $from
      * @param int|float|null $to
      *
-     * @return GeoDistanceAggregation
      *
      * @throws \LogicException
      */

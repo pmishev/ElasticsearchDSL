@@ -17,7 +17,7 @@ return RectorConfig::configure()
     // ->withPhpSets()
     ->withPHPStanConfigs([__DIR__.'/phpstan.dist.neon'])
     ->withPreparedSets(typeDeclarations: true)
-    ->withDeadCodeLevel(0)
+    ->withDeadCodeLevel(20)
     ->withCodeQualityLevel(0)
     ->withPhpVersion(PhpVersion::PHP_81)
     ->withSets([

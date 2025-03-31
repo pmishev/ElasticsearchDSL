@@ -81,7 +81,7 @@ class ExtendedStatsAggregation extends AbstractAggregation
      */
     public function getArray(): array
     {
-        $out = array_filter(
+        return array_filter(
             [
                 'field'  => $this->getField(),
                 'script' => $this->getScript(),
@@ -89,7 +89,5 @@ class ExtendedStatsAggregation extends AbstractAggregation
             ],
             fn ($val): bool => $val || is_numeric($val)
         );
-
-        return $out;
     }
 }

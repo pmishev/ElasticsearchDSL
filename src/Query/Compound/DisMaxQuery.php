@@ -38,8 +38,6 @@ class DisMaxQuery implements BuilderInterface
 
     /**
      * Add query.
-     *
-     * @return DisMaxQuery
      */
     public function addQuery(BuilderInterface $query): static
     {

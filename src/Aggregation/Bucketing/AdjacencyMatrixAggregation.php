@@ -50,7 +50,6 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     /**
      * @param string $name
      *
-     * @return self
      *
      * @throws \LogicException
      */

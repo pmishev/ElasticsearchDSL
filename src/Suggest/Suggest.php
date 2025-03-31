@@ -145,13 +145,11 @@ class Suggest implements NamedBuilderInterface
      */
     public function toArray(): array
     {
-        $output = [
+        return [
             $this->getName() => [
                 'text'           => $this->getText(),
                 $this->getType() => $this->processArray(['field' => $this->getField()]),
             ],
         ];
-
-        return $output;
     }
 }

@@ -60,8 +60,6 @@ class DateRangeAggregation extends AbstractAggregation
      * Sets if result buckets should be keyed.
      *
      * @param bool $keyed
-     *
-     * @return DateRangeAggregation
      */
     public function setKeyed($keyed): static
     {

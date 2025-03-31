@@ -72,8 +72,6 @@ class RangeAggregation extends AbstractAggregation
      * @param int|float|null $from
      * @param int|float|null $to
      * @param string         $key
-     *
-     * @return RangeAggregation
      */
     public function addRange($from = null, $to = null, $key = ''): static
     {

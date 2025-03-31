@@ -70,7 +70,6 @@ class FiltersAggregation extends AbstractAggregation
     /**
      * @param string $name
      *
-     * @return FiltersAggregation
      *
      * @throws \LogicException
      */

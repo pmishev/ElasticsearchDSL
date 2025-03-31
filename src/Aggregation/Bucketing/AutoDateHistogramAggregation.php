@@ -52,13 +52,11 @@ class AutoDateHistogramAggregation extends AbstractAggregation
      */
     public function getArray(): array
     {
-        $data = array_filter(
+        return array_filter(
             [
                 'field' => $this->getField(),
             ]
         );
-
-        return $data;
     }
 
     /**

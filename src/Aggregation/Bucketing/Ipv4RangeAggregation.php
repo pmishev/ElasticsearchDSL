@@ -53,8 +53,6 @@ class Ipv4RangeAggregation extends AbstractAggregation
      *
      * @param string|null $from
      * @param string|null $to
-     *
-     * @return Ipv4RangeAggregation
      */
     public function addRange($from = null, $to = null): static
     {
@@ -75,8 +73,6 @@ class Ipv4RangeAggregation extends AbstractAggregation
      * Add ip mask to aggregation.
      *
      * @param string $mask
-     *
-     * @return Ipv4RangeAggregation
      */
     public function addMask($mask): static
     {
