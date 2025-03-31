@@ -46,6 +46,6 @@ class MatchAllQuery implements BuilderInterface
     {
         $params = $this->getParameters();
 
-        return [$this->getType() => !empty($params) ? $params : new \stdClass()];
+        return [$this->getType() => empty($params) ? new \stdClass() : $params];
     }
 }

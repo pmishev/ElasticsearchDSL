@@ -117,7 +117,7 @@ class FieldSort implements BuilderInterface
         }
 
         return [
-            $this->field => !$this->getParameters() ? new \stdClass() : $this->getParameters(),
+            $this->field => $this->getParameters() ?: new \stdClass(),
         ];
     }
 }

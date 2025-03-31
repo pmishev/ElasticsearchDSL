@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\PHPUnit100\Rector\Class_\StaticDataProviderClassMethodRector;
 use Rector\Set\ValueObject\LevelSetList;
-use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromAssignsRector;
 use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
@@ -17,7 +16,7 @@ return RectorConfig::configure()
     // ->withPhpSets()
     ->withPHPStanConfigs([__DIR__.'/phpstan.dist.neon'])
     ->withPreparedSets(typeDeclarations: true, deadCode: true)
-    ->withCodeQualityLevel(30)
+    ->withCodeQualityLevel(50)
     ->withPhpVersion(PhpVersion::PHP_81)
     ->withSets([
         LevelSetList::UP_TO_PHP_81,
