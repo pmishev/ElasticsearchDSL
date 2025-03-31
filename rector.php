@@ -16,7 +16,7 @@ return RectorConfig::configure()
     // uncomment to reach your current PHP version
     // ->withPhpSets()
     ->withPHPStanConfigs([__DIR__.'/phpstan.dist.neon'])
-    ->withTypeCoverageLevel(45)
+    ->withPreparedSets(typeDeclarations: true)
     ->withDeadCodeLevel(0)
     ->withCodeQualityLevel(0)
     ->withPhpVersion(PhpVersion::PHP_81)

@@ -82,12 +82,11 @@ class GeoDistanceAggregationTest extends TestCase
     /**
      * Tests getArray method.
      *
-     * @param array $filterData
      * @param array $expected
      *
      * @dataProvider getGeoDistanceAggregationGetArrayDataProvider
      */
-    public function testGeoDistanceAggregationGetArray($filterData, $expected): void
+    public function testGeoDistanceAggregationGetArray(array $filterData, $expected): void
     {
         $aggregation = new GeoDistanceAggregation('foo');
         $aggregation->setOrigin($filterData['origin']);

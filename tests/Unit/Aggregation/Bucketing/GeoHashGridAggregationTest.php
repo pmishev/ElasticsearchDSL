@@ -59,12 +59,11 @@ class GeoHashGridAggregationTest extends TestCase
     /**
      * Tests getArray method.
      *
-     * @param array $filterData
      * @param array $expected
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testGeoHashGridAggregationGetArray($filterData, $expected): void
+    public function testGeoHashGridAggregationGetArray(array $filterData, $expected): void
     {
         $aggregation = new GeoHashGridAggregation('foo');
         $aggregation->setPrecision($filterData['precision']);
