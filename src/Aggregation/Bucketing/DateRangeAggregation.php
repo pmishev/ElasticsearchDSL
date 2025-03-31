@@ -106,7 +106,7 @@ class DateRangeAggregation extends AbstractAggregation
             fn ($v): bool => !is_null($v)
         );
 
-        if (empty($range)) {
+        if ($range === []) {
             throw new \LogicException('Either from or to must be set. Both cannot be null.');
         }
 
@@ -120,7 +120,7 @@ class DateRangeAggregation extends AbstractAggregation
      */
     public function getArray()
     {
-        if ($this->getField() && !empty($this->ranges)) {
+        if ($this->getField() && $this->ranges !== []) {
             $data = [
                 'field'  => $this->getField(),
                 'ranges' => $this->ranges,

@@ -161,7 +161,7 @@ class TopHitsAggregation extends AbstractAggregation
             fn ($val): bool => $val || is_array($val) || ($val || is_numeric($val))
         );
 
-        return empty($output) ? new \stdClass() : $output;
+        return $output === [] ? new \stdClass() : $output;
     }
 
     /**

@@ -47,7 +47,7 @@ class TermQuery implements BuilderInterface
     {
         $query = $this->processArray();
 
-        if (empty($query)) {
+        if ($query === []) {
             $query = $this->value;
         } else {
             $query['value'] = $this->value;

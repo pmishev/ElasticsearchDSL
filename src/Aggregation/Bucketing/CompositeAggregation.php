@@ -80,7 +80,7 @@ class CompositeAggregation extends AbstractAggregation
             $array['size'] = $this->size;
         }
 
-        if (!empty($this->after)) {
+        if ($this->after !== null && $this->after !== []) {
             $array['after'] = $this->after;
         }
 

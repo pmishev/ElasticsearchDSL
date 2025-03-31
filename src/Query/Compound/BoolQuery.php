@@ -115,7 +115,7 @@ class BoolQuery implements BuilderInterface
 
         $output = $this->processArray($output);
 
-        if (empty($output)) {
+        if ($output === []) {
             $output = new \stdClass();
         }
 

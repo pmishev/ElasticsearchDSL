@@ -51,7 +51,7 @@ class OrderedSerializer extends Serializer
     {
         $filteredData = $this->filterOrderable($data);
 
-        if (!empty($filteredData)) {
+        if ($filteredData !== []) {
             uasort(
                 $filteredData,
                 fn (OrderedNormalizerInterface $a, OrderedNormalizerInterface $b): int => $a->getOrder() <=> $b->getOrder()

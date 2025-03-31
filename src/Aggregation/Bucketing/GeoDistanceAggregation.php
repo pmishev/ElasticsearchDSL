@@ -144,7 +144,7 @@ class GeoDistanceAggregation extends AbstractAggregation
             fn ($v): bool => !is_null($v)
         );
 
-        if (empty($range)) {
+        if ($range === []) {
             throw new \LogicException('Either from or to must be set. Both cannot be null.');
         }
 
