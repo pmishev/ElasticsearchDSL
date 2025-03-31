@@ -16,7 +16,7 @@ return RectorConfig::configure()
     // uncomment to reach your current PHP version
     // ->withPhpSets()
     ->withPHPStanConfigs([__DIR__.'/phpstan.dist.neon'])
-    ->withTypeCoverageLevel(39)
+    ->withTypeCoverageLevel(45)
     ->withDeadCodeLevel(0)
     ->withCodeQualityLevel(0)
     ->withPhpVersion(PhpVersion::PHP_81)
@@ -26,9 +26,6 @@ return RectorConfig::configure()
     ->withRules([
         // Make data provider methods static
         StaticDataProviderClassMethodRector::class,
-        // Typehint properties from assigns
-        TypedPropertyFromAssignsRector::class,
-
     ])
     ->withImportNames(importShortClasses: false, removeUnusedImports: true)
 ;

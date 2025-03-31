@@ -57,7 +57,7 @@ class MaxAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setMode($mode)
+    public function setMode($mode): static
     {
         $this->mode = $mode;
 
@@ -77,7 +77,7 @@ class MaxAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setMissing($missing)
+    public function setMissing($missing): static
     {
         $this->missing = $missing;
 

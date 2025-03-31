@@ -70,7 +70,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setFrom($from)
+    public function setFrom($from): static
     {
         $this->from = $from;
 
@@ -90,7 +90,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSorts(array $sorts)
+    public function setSorts(array $sorts): static
     {
         $this->sorts = $sorts;
 
@@ -112,7 +112,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -180,7 +180,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSort(BuilderInterface $sort)
+    public function setSort(BuilderInterface $sort): static
     {
         $this->sort = $sort;
 

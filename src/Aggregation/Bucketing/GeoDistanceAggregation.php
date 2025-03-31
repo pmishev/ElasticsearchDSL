@@ -78,7 +78,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setOrigin($origin)
+    public function setOrigin($origin): static
     {
         $this->origin = $origin;
 
@@ -98,7 +98,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setDistanceType($distanceType)
+    public function setDistanceType($distanceType): static
     {
         $this->distanceType = $distanceType;
 
@@ -118,7 +118,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setUnit($unit)
+    public function setUnit($unit): static
     {
         $this->unit = $unit;
 
@@ -135,7 +135,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      *
      * @throws \LogicException
      */
-    public function addRange($from = null, $to = null)
+    public function addRange($from = null, $to = null): static
     {
         $range = array_filter(
             [

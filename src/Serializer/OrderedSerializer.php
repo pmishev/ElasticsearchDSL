@@ -46,7 +46,6 @@ class OrderedSerializer extends Serializer
      *
      * @param array $data Data to order.
      *
-     * @return array
      */
     private function order(array $data): array
     {

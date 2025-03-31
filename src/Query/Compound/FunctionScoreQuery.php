@@ -59,7 +59,7 @@ class FunctionScoreQuery implements BuilderInterface
         $modifier = 'none',
         ?BuilderInterface $query = null,
         $missing = null,
-    ) {
+    ): static {
         $function = [
             'field_value_factor' => array_filter([
                 'field'    => $field,
@@ -102,7 +102,7 @@ class FunctionScoreQuery implements BuilderInterface
         array $options = [],
         ?BuilderInterface $query = null,
         $weight = null,
-    ) {
+    ): static {
         $function = array_filter(
             [
                 $type => array_merge(
@@ -127,7 +127,7 @@ class FunctionScoreQuery implements BuilderInterface
      *
      * @return $this
      */
-    public function addWeightFunction($weight, ?BuilderInterface $query = null)
+    public function addWeightFunction($weight, ?BuilderInterface $query = null): static
     {
         $function = [
             'weight' => $weight,
@@ -147,7 +147,7 @@ class FunctionScoreQuery implements BuilderInterface
      *
      * @return $this
      */
-    public function addRandomFunction($seed = null, ?BuilderInterface $query = null)
+    public function addRandomFunction($seed = null, ?BuilderInterface $query = null): static
     {
         $function = [
             'random_score' => $seed ? ['seed' => $seed] : new \stdClass(),
@@ -172,7 +172,7 @@ class FunctionScoreQuery implements BuilderInterface
         array $params = [],
         array $options = [],
         ?BuilderInterface $query = null,
-    ) {
+    ): static {
         $function = [
             'script_score' => [
                 'script' => array_filter(
@@ -199,7 +199,7 @@ class FunctionScoreQuery implements BuilderInterface
      *
      * @return $this
      */
-    public function addSimpleFunction(array $function)
+    public function addSimpleFunction(array $function): static
     {
         $this->functions[] = $function;
 

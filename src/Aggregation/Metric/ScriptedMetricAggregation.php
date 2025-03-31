@@ -88,7 +88,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setInitScript($initScript)
+    public function setInitScript($initScript): static
     {
         $this->initScript = $initScript;
 
@@ -108,7 +108,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setMapScript($mapScript)
+    public function setMapScript($mapScript): static
     {
         $this->mapScript = $mapScript;
 
@@ -128,7 +128,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setCombineScript($combineScript)
+    public function setCombineScript($combineScript): static
     {
         $this->combineScript = $combineScript;
 
@@ -148,7 +148,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setReduceScript($reduceScript)
+    public function setReduceScript($reduceScript): static
     {
         $this->reduceScript = $reduceScript;
 

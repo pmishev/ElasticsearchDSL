@@ -62,7 +62,7 @@ class DateHistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setInterval($interval)
+    public function setInterval($interval): static
     {
         $this->interval = $interval;
 
@@ -74,7 +74,7 @@ class DateHistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setFormat($format)
+    public function setFormat($format): static
     {
         $this->format = $format;
 

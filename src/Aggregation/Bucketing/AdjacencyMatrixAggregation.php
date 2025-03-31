@@ -54,7 +54,7 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
      *
      * @throws \LogicException
      */
-    public function addFilter($name, BuilderInterface $filter)
+    public function addFilter($name, BuilderInterface $filter): static
     {
         $this->filters[self::FILTERS][$name] = $filter->toArray();
 

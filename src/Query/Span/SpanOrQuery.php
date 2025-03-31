@@ -37,7 +37,7 @@ class SpanOrQuery implements SpanQueryInterface
      *
      * @return $this
      */
-    public function addQuery(SpanQueryInterface $query)
+    public function addQuery(SpanQueryInterface $query): static
     {
         $this->queries[] = $query;
 

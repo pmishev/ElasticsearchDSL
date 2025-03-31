@@ -70,7 +70,7 @@ class GeoHashGridAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setPrecision($precision)
+    public function setPrecision($precision): static
     {
         $this->precision = $precision;
 
@@ -90,7 +90,7 @@ class GeoHashGridAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -110,7 +110,7 @@ class GeoHashGridAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setShardSize($shardSize)
+    public function setShardSize($shardSize): static
     {
         $this->shardSize = $shardSize;
 

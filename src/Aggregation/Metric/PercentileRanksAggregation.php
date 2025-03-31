@@ -67,7 +67,7 @@ class PercentileRanksAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setValues($values)
+    public function setValues($values): static
     {
         $this->values = $values;
 
@@ -87,7 +87,7 @@ class PercentileRanksAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setCompression($compression)
+    public function setCompression($compression): static
     {
         $this->compression = $compression;
 

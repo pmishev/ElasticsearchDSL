@@ -214,7 +214,7 @@ class Search
      *
      * @return $this
      */
-    public function addQuery(BuilderInterface $query, $boolType = BoolQuery::MUST, $key = null)
+    public function addQuery(BuilderInterface $query, $boolType = BoolQuery::MUST, $key = null): static
     {
         $endpoint = $this->getEndpoint(QueryEndpoint::NAME);
         $endpoint->addToBool($query, $boolType, $key);
@@ -255,7 +255,7 @@ class Search
      *
      * @return $this
      */
-    public function setQueryParameters(array $parameters)
+    public function setQueryParameters(array $parameters): static
     {
         $this->setEndpointParameters(QueryEndpoint::NAME, $parameters);
 
@@ -269,7 +269,7 @@ class Search
      *
      * @return $this
      */
-    public function setEndpointParameters($endpointName, array $parameters)
+    public function setEndpointParameters($endpointName, array $parameters): static
     {
         /** @var AbstractSearchEndpoint $endpoint */
         $endpoint = $this->getEndpoint($endpointName);
@@ -290,7 +290,7 @@ class Search
      *
      * @return $this.
      */
-    public function addPostFilter(BuilderInterface $filter, $boolType = BoolQuery::MUST, $key = null)
+    public function addPostFilter(BuilderInterface $filter, $boolType = BoolQuery::MUST, $key = null): static
     {
         $this
             ->getEndpoint(PostFilterEndpoint::NAME)
@@ -316,7 +316,7 @@ class Search
      *
      * @return $this
      */
-    public function setPostFilterParameters(array $parameters)
+    public function setPostFilterParameters(array $parameters): static
     {
         $this->setEndpointParameters(PostFilterEndpoint::NAME, $parameters);
 
@@ -328,7 +328,7 @@ class Search
      *
      * @return $this
      */
-    public function addAggregation(AbstractAggregation $aggregation)
+    public function addAggregation(AbstractAggregation $aggregation): static
     {
         $this->getEndpoint(AggregationsEndpoint::NAME)->add($aggregation, $aggregation->getName());
 
@@ -350,7 +350,7 @@ class Search
      *
      * @return $this
      */
-    public function addInnerHit(NestedInnerHit $innerHit)
+    public function addInnerHit(NestedInnerHit $innerHit): static
     {
         $this->getEndpoint(InnerHitsEndpoint::NAME)->add($innerHit, $innerHit->getName());
 
@@ -372,7 +372,7 @@ class Search
      *
      * @return $this
      */
-    public function addSort(BuilderInterface $sort)
+    public function addSort(BuilderInterface $sort): static
     {
         $this->getEndpoint(SortEndpoint::NAME)->add($sort);
 
@@ -396,7 +396,7 @@ class Search
      *
      * @return $this.
      */
-    public function addHighlight($highlight)
+    public function addHighlight(BuilderInterface $highlight): static
     {
         $this->getEndpoint(HighlightEndpoint::NAME)->add($highlight);
 
@@ -422,7 +422,7 @@ class Search
      *
      * @return $this
      */
-    public function addSuggest(NamedBuilderInterface $suggest)
+    public function addSuggest(NamedBuilderInterface $suggest): static
     {
         $this->getEndpoint(SuggestEndpoint::NAME)->add($suggest, $suggest->getName());
 
@@ -452,7 +452,7 @@ class Search
      *
      * @return $this
      */
-    public function setFrom($from)
+    public function setFrom($from): static
     {
         $this->from = $from;
 
@@ -469,7 +469,7 @@ class Search
     /**
      * @return $this
      */
-    public function setTrackTotalHits(bool $trackTotalHits)
+    public function setTrackTotalHits(bool $trackTotalHits): static
     {
         $this->trackTotalHits = $trackTotalHits;
 
@@ -489,7 +489,7 @@ class Search
      *
      * @return $this
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -509,7 +509,7 @@ class Search
      *
      * @return $this
      */
-    public function setSource($source)
+    public function setSource($source): static
     {
         $this->source = $source;
 
@@ -529,7 +529,7 @@ class Search
      *
      * @return $this
      */
-    public function setStoredFields($storedFields)
+    public function setStoredFields($storedFields): static
     {
         $this->storedFields = $storedFields;
 
@@ -549,7 +549,7 @@ class Search
      *
      * @return $this
      */
-    public function setScriptFields($scriptFields)
+    public function setScriptFields($scriptFields): static
     {
         $this->scriptFields = $scriptFields;
 
@@ -569,7 +569,7 @@ class Search
      *
      * @return $this
      */
-    public function setDocValueFields($docValueFields)
+    public function setDocValueFields($docValueFields): static
     {
         $this->docValueFields = $docValueFields;
 
@@ -589,7 +589,7 @@ class Search
      *
      * @return $this
      */
-    public function setExplain($explain)
+    public function setExplain($explain): static
     {
         $this->explain = $explain;
 
@@ -609,7 +609,7 @@ class Search
      *
      * @return $this
      */
-    public function setVersion($version)
+    public function setVersion($version): static
     {
         $this->version = $version;
 
@@ -629,7 +629,7 @@ class Search
      *
      * @return $this
      */
-    public function setIndicesBoost($indicesBoost)
+    public function setIndicesBoost($indicesBoost): static
     {
         $this->indicesBoost = $indicesBoost;
 
@@ -649,7 +649,7 @@ class Search
      *
      * @return $this
      */
-    public function setMinScore($minScore)
+    public function setMinScore($minScore): static
     {
         $this->minScore = $minScore;
 
@@ -669,7 +669,7 @@ class Search
      *
      * @return $this
      */
-    public function setSearchAfter($searchAfter)
+    public function setSearchAfter($searchAfter): static
     {
         $this->searchAfter = $searchAfter;
 
@@ -689,7 +689,7 @@ class Search
      *
      * @return $this
      */
-    public function setScroll($scroll = '5m')
+    public function setScroll($scroll = '5m'): static
     {
         $this->scroll = $scroll;
 
@@ -704,7 +704,7 @@ class Search
      *
      * @return $this
      */
-    public function addUriParam($name, $value)
+    public function addUriParam($name, $value): static
     {
         if (in_array($name, [
             'q',

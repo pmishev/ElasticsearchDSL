@@ -61,7 +61,7 @@ class CardinalityAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setPrecisionThreshold($precision)
+    public function setPrecisionThreshold($precision): static
     {
         $this->precisionThreshold = $precision;
 
@@ -89,7 +89,7 @@ class CardinalityAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setRehash($rehash)
+    public function setRehash($rehash): static
     {
         $this->rehash = $rehash;
 

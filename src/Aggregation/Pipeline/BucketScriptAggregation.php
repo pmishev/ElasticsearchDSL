@@ -47,7 +47,7 @@ class BucketScriptAggregation extends AbstractPipelineAggregation
      *
      * @return $this
      */
-    public function setScript($script)
+    public function setScript($script): static
     {
         $this->script = $script;
 

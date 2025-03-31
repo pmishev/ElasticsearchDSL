@@ -38,7 +38,7 @@ class PercentilesBucketAggregation extends AbstractPipelineAggregation
     /**
      * @return $this
      */
-    public function setPercents(array $percents)
+    public function setPercents(array $percents): static
     {
         $this->percents = $percents;
 

@@ -63,7 +63,7 @@ class DateRangeAggregation extends AbstractAggregation
      *
      * @return DateRangeAggregation
      */
-    public function setKeyed($keyed)
+    public function setKeyed($keyed): static
     {
         $this->keyed = $keyed;
 
@@ -97,7 +97,7 @@ class DateRangeAggregation extends AbstractAggregation
      *
      * @throws \LogicException
      */
-    public function addRange($from = null, $to = null, $key = null)
+    public function addRange($from = null, $to = null, $key = null): static
     {
         $range = array_filter(
             [

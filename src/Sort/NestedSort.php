@@ -93,7 +93,7 @@ class NestedSort implements BuilderInterface
     /**
      * @return $this
      */
-    public function setNestedFilter(BuilderInterface $nestedFilter)
+    public function setNestedFilter(BuilderInterface $nestedFilter): static
     {
         $this->nestedFilter = $nestedFilter;
 

@@ -46,7 +46,7 @@ class FilterAggregation extends AbstractAggregation
     /**
      * @return $this
      */
-    public function setFilter(BuilderInterface $filter)
+    public function setFilter(BuilderInterface $filter): static
     {
         $this->filter = $filter;
 

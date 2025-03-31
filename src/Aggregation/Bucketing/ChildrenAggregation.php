@@ -54,7 +54,7 @@ class ChildrenAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setChildren($children)
+    public function setChildren($children): static
     {
         $this->children = $children;
 

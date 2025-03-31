@@ -55,7 +55,7 @@ class BucketSortAggregation extends AbstractPipelineAggregation
      *
      * @return $this
      */
-    public function setSort($sort)
+    public function setSort($sort): static
     {
         $this->sort = $sort;
 

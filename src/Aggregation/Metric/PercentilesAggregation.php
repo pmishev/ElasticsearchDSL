@@ -67,7 +67,7 @@ class PercentilesAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setPercents($percents)
+    public function setPercents($percents): static
     {
         $this->percents = $percents;
 
@@ -87,7 +87,7 @@ class PercentilesAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setCompression($compression)
+    public function setCompression($compression): static
     {
         $this->compression = $compression;
 

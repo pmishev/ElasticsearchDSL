@@ -56,7 +56,7 @@ class CompositeAggregation extends AbstractAggregation
      *
      * @throws \LogicException
      */
-    public function addSource(AbstractAggregation $agg)
+    public function addSource(AbstractAggregation $agg): static
     {
         $array = $agg->getArray();
 
@@ -104,7 +104,7 @@ class CompositeAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -128,7 +128,7 @@ class CompositeAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setAfter(array $after)
+    public function setAfter(array $after): static
     {
         $this->after = $after;
 

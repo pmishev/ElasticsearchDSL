@@ -63,7 +63,7 @@ class TemplateQuery implements BuilderInterface
      *
      * @return $this;
      */
-    public function setFile($file)
+    public function setFile($file): static
     {
         $this->file = $file;
 
@@ -83,7 +83,7 @@ class TemplateQuery implements BuilderInterface
      *
      * @return $this
      */
-    public function setInline($inline)
+    public function setInline($inline): static
     {
         $this->inline = $inline;
 
@@ -103,7 +103,7 @@ class TemplateQuery implements BuilderInterface
      *
      * @return $this
      */
-    public function setParams($params)
+    public function setParams($params): static
     {
         $this->params = $params;
 

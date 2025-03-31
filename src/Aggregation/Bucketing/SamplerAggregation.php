@@ -58,7 +58,7 @@ class SamplerAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setShardSize($shardSize)
+    public function setShardSize($shardSize): static
     {
         $this->shardSize = $shardSize;
 

@@ -59,7 +59,7 @@ class RangeAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setKeyed($keyed)
+    public function setKeyed($keyed): static
     {
         $this->keyed = $keyed;
 
@@ -75,7 +75,7 @@ class RangeAggregation extends AbstractAggregation
      *
      * @return RangeAggregation
      */
-    public function addRange($from = null, $to = null, $key = '')
+    public function addRange($from = null, $to = null, $key = ''): static
     {
         $range = array_filter(
             [

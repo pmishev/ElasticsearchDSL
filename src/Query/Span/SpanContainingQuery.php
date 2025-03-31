@@ -42,7 +42,7 @@ class SpanContainingQuery implements SpanQueryInterface
     /**
      * @return $this
      */
-    public function setLittle(SpanQueryInterface $little)
+    public function setLittle(SpanQueryInterface $little): static
     {
         $this->little = $little;
 
@@ -59,7 +59,7 @@ class SpanContainingQuery implements SpanQueryInterface
     /**
      * @return $this
      */
-    public function setBig(SpanQueryInterface $big)
+    public function setBig(SpanQueryInterface $big): static
     {
         $this->big = $big;
 

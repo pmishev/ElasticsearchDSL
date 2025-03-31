@@ -33,7 +33,7 @@ class Highlight implements BuilderInterface
      *
      * @return $this
      */
-    public function addField($name, array $params = [])
+    public function addField($name, array $params = []): static
     {
         $this->fields[$name] = $params;
 
@@ -45,7 +45,7 @@ class Highlight implements BuilderInterface
      *
      * @return $this
      */
-    public function setTags(array $preTags, array $postTags)
+    public function setTags(array $preTags, array $postTags): static
     {
         $this->tags['pre_tags'] = $preTags;
         $this->tags['post_tags'] = $postTags;

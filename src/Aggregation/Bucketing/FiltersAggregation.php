@@ -60,7 +60,7 @@ class FiltersAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setAnonymous($anonymous)
+    public function setAnonymous($anonymous): static
     {
         $this->anonymous = $anonymous;
 
@@ -74,7 +74,7 @@ class FiltersAggregation extends AbstractAggregation
      *
      * @throws \LogicException
      */
-    public function addFilter(BuilderInterface $filter, $name = '')
+    public function addFilter(BuilderInterface $filter, $name = ''): static
     {
         if (false === $this->anonymous && empty($name)) {
             throw new \LogicException('In not anonymous filters filter name must be set.');

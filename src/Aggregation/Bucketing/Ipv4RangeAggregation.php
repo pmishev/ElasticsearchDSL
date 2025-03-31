@@ -56,7 +56,7 @@ class Ipv4RangeAggregation extends AbstractAggregation
      *
      * @return Ipv4RangeAggregation
      */
-    public function addRange($from = null, $to = null)
+    public function addRange($from = null, $to = null): static
     {
         $range = array_filter(
             [
@@ -78,7 +78,7 @@ class Ipv4RangeAggregation extends AbstractAggregation
      *
      * @return Ipv4RangeAggregation
      */
-    public function addMask($mask)
+    public function addMask($mask): static
     {
         $this->ranges[] = ['mask' => $mask];
 

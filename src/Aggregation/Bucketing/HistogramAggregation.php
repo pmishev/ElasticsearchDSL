@@ -105,7 +105,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setKeyed($keyed)
+    public function setKeyed($keyed): static
     {
         $this->keyed = $keyed;
 
@@ -120,7 +120,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setOrder($mode, $direction = self::DIRECTION_ASC)
+    public function setOrder($mode, $direction = self::DIRECTION_ASC): static
     {
         $this->orderMode = $mode;
         $this->orderDirection = $direction;
@@ -153,7 +153,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setInterval($interval)
+    public function setInterval($interval): static
     {
         $this->interval = $interval;
 
@@ -175,7 +175,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setMinDocCount($minDocCount)
+    public function setMinDocCount($minDocCount): static
     {
         $this->minDocCount = $minDocCount;
 
@@ -196,7 +196,7 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setExtendedBounds($min = null, $max = null)
+    public function setExtendedBounds($min = null, $max = null): static
     {
         $bounds = array_filter(
             [

@@ -36,7 +36,7 @@ class SpanNearQuery extends SpanOrQuery implements SpanQueryInterface
      *
      * @return $this
      */
-    public function setSlop($slop)
+    public function setSlop($slop): static
     {
         $this->slop = $slop;
 
