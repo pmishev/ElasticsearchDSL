@@ -12,18 +12,20 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Span;
 
 use ONGR\ElasticsearchDSL\Query\Span\SpanNearQuery;
+use ONGR\ElasticsearchDSL\Query\Span\SpanQueryInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for SpanNearQuery.
  */
-class SpanNearQueryTest extends \PHPUnit\Framework\TestCase
+class SpanNearQueryTest extends TestCase
 {
     /**
      * Tests for toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
-        $mock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\Query\Span\SpanQueryInterface::class)->getMock();
+        $mock = $this->getMockBuilder(SpanQueryInterface::class)->getMock();
         $mock
             ->expects($this->once())
             ->method('toArray')

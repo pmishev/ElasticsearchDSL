@@ -12,16 +12,17 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\Pipeline\SerialDifferencingAggregation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for serial differencing aggregation.
  */
-class SerialDifferencingAggregationTest extends \PHPUnit\Framework\TestCase
+class SerialDifferencingAggregationTest extends TestCase
 {
     /**
      * Tests toArray method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $aggregation = new SerialDifferencingAggregation('acme', 'test');
         $aggregation->addParameter('lag', '7');

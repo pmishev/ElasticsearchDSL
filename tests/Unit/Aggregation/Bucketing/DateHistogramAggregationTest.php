@@ -11,17 +11,19 @@
 
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
+use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\DateHistogramAggregation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for children aggregation.
  */
-class DateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
+class DateHistogramAggregationTest extends TestCase
 {
     /**
      * Tests if ChildrenAggregation#getArray throws exception when expected.
      */
-    public function testGetArrayException()
+    public function testGetArrayException(): void
     {
         $this->expectException(\LogicException::class);
         $aggregation = new DateHistogramAggregation('foo');
@@ -31,7 +33,7 @@ class DateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests getType method.
      */
-    public function testDateHistogramAggregationGetType()
+    public function testDateHistogramAggregationGetType(): void
     {
         $aggregation = new DateHistogramAggregation('foo');
         $result = $aggregation->getType();
@@ -41,9 +43,9 @@ class DateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests getArray method.
      */
-    public function testChildrenAggregationGetArray()
+    public function testChildrenAggregationGetArray(): void
     {
-        $mock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation::class)
+        $mock = $this->getMockBuilder(AbstractAggregation::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
         $aggregation = new DateHistogramAggregation('foo');

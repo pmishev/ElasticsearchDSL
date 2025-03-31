@@ -12,16 +12,17 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\Pipeline\MovingFunctionAggregation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for sum bucket aggregation.
  */
-class MovingFunctionAggregationTest extends \PHPUnit\Framework\TestCase
+class MovingFunctionAggregationTest extends TestCase
 {
     /**
      * Tests toArray method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $aggregation = new MovingFunctionAggregation('acme', 'test');
 

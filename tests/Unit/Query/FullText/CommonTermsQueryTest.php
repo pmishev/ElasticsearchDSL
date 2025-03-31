@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\FullText;
 
 use ONGR\ElasticsearchDSL\Query\FullText\CommonTermsQuery;
+use PHPUnit\Framework\TestCase;
 
-class CommonTermsQueryTest extends \PHPUnit\Framework\TestCase
+class CommonTermsQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new CommonTermsQuery('body', 'this is bonsai cool', ['cutoff_frequency' => 0.01]);
         $expected = [

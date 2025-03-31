@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\MissingAggregation;
+use PHPUnit\Framework\TestCase;
 
-class MissingAggregationTest extends \PHPUnit\Framework\TestCase
+class MissingAggregationTest extends TestCase
 {
     /**
      * Test if exception is thrown when field is not set.
      */
-    public function testIfExceptionIsThrown()
+    public function testIfExceptionIsThrown(): void
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Missing aggregation must have a field set.');
@@ -29,7 +30,7 @@ class MissingAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test getArray method.
      */
-    public function testMissingAggregationGetArray()
+    public function testMissingAggregationGetArray(): void
     {
         $aggregation = new MissingAggregation('foo');
         $aggregation->setField('bar');
@@ -40,7 +41,7 @@ class MissingAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test getType method.
      */
-    public function testMissingAggregationGetType()
+    public function testMissingAggregationGetType(): void
     {
         $aggregation = new MissingAggregation('bar');
         $result = $aggregation->getType();

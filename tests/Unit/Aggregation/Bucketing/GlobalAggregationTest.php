@@ -12,8 +12,9 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\GlobalAggregation;
+use PHPUnit\Framework\TestCase;
 
-class GlobalAggregationTest extends \PHPUnit\Framework\TestCase
+class GlobalAggregationTest extends TestCase
 {
     /**
      * Data provider for testToArray().
@@ -64,7 +65,7 @@ class GlobalAggregationTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider getToArrayData
      */
-    public function testToArray($aggregation, $expectedResult)
+    public function testToArray($aggregation, $expectedResult): void
     {
         $this->assertEquals(
             json_encode($expectedResult),

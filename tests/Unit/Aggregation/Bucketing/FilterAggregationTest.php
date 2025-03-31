@@ -17,8 +17,9 @@ use ONGR\ElasticsearchDSL\Query\Compound\BoolQuery;
 use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
 use ONGR\ElasticsearchDSL\Query\TermLevel\ExistsQuery;
 use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
+use PHPUnit\Framework\TestCase;
 
-class FilterAggregationTest extends \PHPUnit\Framework\TestCase
+class FilterAggregationTest extends TestCase
 {
     /**
      * Data provider for testToArray.
@@ -93,7 +94,7 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider getToArrayData
      */
-    public function testToArray($aggregation, $expectedResult)
+    public function testToArray($aggregation, $expectedResult): void
     {
         $this->assertEquals($expectedResult, $aggregation->toArray());
     }
@@ -112,7 +113,7 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test for toArray() without setting a filter.
      */
-    public function testToArrayNoFilter()
+    public function testToArrayNoFilter(): void
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('has no filter added');
@@ -134,7 +135,7 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test for toArray() with setting a filter.
      */
-    public function testToArrayWithFilter()
+    public function testToArrayWithFilter(): void
     {
         $aggregation = new FilterAggregation('test_agg');
         $aggregation->setFilter(new ExistsQuery('test'));
@@ -155,7 +156,7 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if filter can be passed to constructor.
      */
-    public function testConstructorFilter()
+    public function testConstructorFilter(): void
     {
         $matchAllFilter = new MatchAllQuery();
         $aggregation = new FilterAggregation('test', $matchAllFilter);

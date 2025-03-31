@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\TermsAggregation;
+use PHPUnit\Framework\TestCase;
 
-class TermsAggregationTest extends \PHPUnit\Framework\TestCase
+class TermsAggregationTest extends TestCase
 {
     /**
      * Tests setField method.
      */
-    public function testTermsAggregationSetField()
+    public function testTermsAggregationSetField(): void
     {
         // Case #0 terms aggregation.
         $aggregation = new TermsAggregation('test_agg');
@@ -34,7 +35,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests setSize method.
      */
-    public function testTermsAggregationSetSize()
+    public function testTermsAggregationSetSize(): void
     {
         // Case #1 terms aggregation with size.
         $aggregation = new TermsAggregation('test_agg');
@@ -68,7 +69,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests minDocumentCount method.
      */
-    public function testTermsAggregationMinDocumentCount()
+    public function testTermsAggregationMinDocumentCount(): void
     {
         // Case #3 terms aggregation with size and min document count.
         $aggregation = new TermsAggregation('test_agg');
@@ -90,7 +91,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests include, exclude method.
      */
-    public function testTermsAggregationSimpleIncludeExclude()
+    public function testTermsAggregationSimpleIncludeExclude(): void
     {
         // Case #4 terms aggregation with simple include, exclude.
         $aggregation = new TermsAggregation('test_agg');
@@ -112,7 +113,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests include, exclude with flags method.
      */
-    public function testTermsAggregationIncludeExcludeFlags()
+    public function testTermsAggregationIncludeExcludeFlags(): void
     {
         // Case #5 terms aggregation with include, exclude and flags.
         $aggregation = new TermsAggregation('test_agg');
@@ -152,7 +153,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests setOrder method.
      */
-    public function testTermsAggregationSetOrder()
+    public function testTermsAggregationSetOrder(): void
     {
         // Case #6 terms aggregation with order default direction.
         $aggregation = new TermsAggregation('test_agg');
@@ -172,7 +173,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests setOrder DESC method.
      */
-    public function testTermsAggregationSetOrderDESC()
+    public function testTermsAggregationSetOrderDESC(): void
     {
         // Case #7 terms aggregation with order term mode, desc direction.
         $aggregation = new TermsAggregation('test_agg');
@@ -192,7 +193,7 @@ class TermsAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests getType method.
      */
-    public function testTermsAggregationGetType()
+    public function testTermsAggregationGetType(): void
     {
         $aggregation = new TermsAggregation('foo');
         $result = $aggregation->getType();

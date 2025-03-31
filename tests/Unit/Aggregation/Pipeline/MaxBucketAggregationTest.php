@@ -12,16 +12,17 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\Pipeline\MaxBucketAggregation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for max bucket aggregation.
  */
-class MaxBucketAggregationTest extends \PHPUnit\Framework\TestCase
+class MaxBucketAggregationTest extends TestCase
 {
     /**
      * Tests toArray method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $aggregation = new MaxBucketAggregation('acme', 'test');
 

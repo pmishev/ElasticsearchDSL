@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Suggest;
 
 use ONGR\ElasticsearchDSL\Suggest\Suggest;
+use PHPUnit\Framework\TestCase;
 
-class SuggestTest extends \PHPUnit\Framework\TestCase
+class SuggestTest extends TestCase
 {
     /**
      * Tests getType method.
      */
-    public function testSuggestGetType()
+    public function testSuggestGetType(): void
     {
         $suggest = new Suggest('foo', 'term', 'acme', 'bar');
         $this->assertEquals('term', $suggest->getType());
@@ -111,7 +112,7 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider getTestToArrayData()
      */
-    public function testToArray(Suggest $suggest, array $expected)
+    public function testToArray(Suggest $suggest, array $expected): void
     {
         $this->assertEquals($expected, $suggest->toArray());
     }

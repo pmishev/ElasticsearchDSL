@@ -14,16 +14,17 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 use ONGR\ElasticsearchDSL\SearchEndpoint\AggregationsEndpoint;
 use ONGR\ElasticsearchDSL\SearchEndpoint\SearchEndpointFactory;
 use ONGR\ElasticsearchDSL\SearchEndpoint\SearchEndpointInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test class for search endpoint factory.
  */
-class SearchEndpointFactoryTest extends \PHPUnit\Framework\TestCase
+class SearchEndpointFactoryTest extends TestCase
 {
     /**
      * Tests get method exception.
      */
-    public function testGet()
+    public function testGet(): void
     {
         $this->expectException(\RuntimeException::class);
         SearchEndpointFactory::get('foo');
@@ -32,7 +33,7 @@ class SearchEndpointFactoryTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if factory can create endpoint.
      */
-    public function testFactory()
+    public function testFactory(): void
     {
         $endpoint = SearchEndpointFactory::get(AggregationsEndpoint::NAME);
         $this->assertInstanceOf(SearchEndpointInterface::class, $endpoint);

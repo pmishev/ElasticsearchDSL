@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\TermLevel;
 
 use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
+use PHPUnit\Framework\TestCase;
 
-class TermQueryTest extends \PHPUnit\Framework\TestCase
+class TermQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new TermQuery('user', 'bob');
         $expected = [

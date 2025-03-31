@@ -8,8 +8,6 @@ $finder = (new PhpCsFixer\Finder())
 return (new PhpCsFixer\Config())
     ->setFinder($finder)
     ->setRules([
-        '@Symfony' => true,
-
         // Exclude "phpdoc_summary" rule: "PHPDoc summary should end in either a full stop, exclamation mark, or question mark"
         'phpdoc_summary'                => false,
         'phpdoc_annotation_without_dot' => false,

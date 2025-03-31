@@ -11,18 +11,21 @@
 
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Span;
 
+use ONGR\ElasticsearchDSL\Query\Span\SpanQueryInterface;
 use ONGR\ElasticsearchDSL\Query\Span\SpanWithinQuery;
 use PHPUnit\Framework\MockObject\MockBuilder;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for SpanWithinQuery.
  */
-class SpanWithinQueryTest extends \PHPUnit\Framework\TestCase
+class SpanWithinQueryTest extends TestCase
 {
     /**
      * Tests for toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new SpanWithinQuery(
             $this->getSpanQueryMock('foo'),
@@ -46,9 +49,9 @@ class SpanWithinQueryTest extends \PHPUnit\Framework\TestCase
      *
      * @returns MockBuilder
      */
-    private function getSpanQueryMock($value)
+    private function getSpanQueryMock($value): MockObject
     {
-        $mock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\Query\Span\SpanQueryInterface::class)->getMock();
+        $mock = $this->getMockBuilder(SpanQueryInterface::class)->getMock();
         $mock
             ->expects($this->once())
             ->method('toArray')

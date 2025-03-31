@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\FullText;
 
 use ONGR\ElasticsearchDSL\Query\FullText\MatchQuery;
+use PHPUnit\Framework\TestCase;
 
-class MatchQueryTest extends \PHPUnit\Framework\TestCase
+class MatchQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new MatchQuery('message', 'this is a test');
         $expected = [

@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\TermLevel;
 
 use ONGR\ElasticsearchDSL\Query\TermLevel\FuzzyQuery;
+use PHPUnit\Framework\TestCase;
 
-class FuzzyQueryTest extends \PHPUnit\Framework\TestCase
+class FuzzyQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new FuzzyQuery('user', 'ki', ['boost' => 1.2]);
         $expected = [

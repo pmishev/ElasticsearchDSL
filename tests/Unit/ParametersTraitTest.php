@@ -12,16 +12,18 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit;
 
 use ONGR\ElasticsearchDSL\ParametersTrait;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test for ParametersTrait.
  */
-class ParametersTraitTest extends \PHPUnit\Framework\TestCase
+class ParametersTraitTest extends TestCase
 {
     /**
      * @var ParametersTrait
      */
-    private $parametersTraitMock;
+    private MockObject $parametersTraitMock;
 
     /**
      * {@inheritdoc}
@@ -34,7 +36,7 @@ class ParametersTraitTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests addParameter method.
      */
-    public function testGetAndAddParameter()
+    public function testGetAndAddParameter(): void
     {
         $this->assertTrue(is_object($this->parametersTraitMock->addParameter('acme', 123)));
         $this->assertEquals(123, $this->parametersTraitMock->getParameter('acme'));

@@ -6,8 +6,9 @@ use ONGR\ElasticsearchDSL\InnerHit\NestedInnerHit;
 use ONGR\ElasticsearchDSL\Query\FullText\MatchQuery;
 use ONGR\ElasticsearchDSL\Query\Joining\NestedQuery;
 use ONGR\ElasticsearchDSL\Search;
+use PHPUnit\Framework\TestCase;
 
-class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
+class NestedInnerHitTest extends TestCase
 {
     /**
      * Data provider for testToArray().
@@ -92,7 +93,7 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider getTestToArrayData
      */
-    public function testToArray($innerHit, $expected)
+    public function testToArray($innerHit, $expected): void
     {
         $this->assertEquals($expected, $innerHit->toArray());
     }
@@ -100,7 +101,7 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests getters and setters for $name, $path and $query
      */
-    public function testGettersAndSetters()
+    public function testGettersAndSetters(): void
     {
         $query = new MatchQuery('acme', 'test');
         $search = new Search();

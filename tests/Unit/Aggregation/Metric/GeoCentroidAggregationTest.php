@@ -12,16 +12,17 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\Metric\GeoCentroidAggregation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for children aggregation.
  */
-class GeoCentroidAggregationTest extends \PHPUnit\Framework\TestCase
+class GeoCentroidAggregationTest extends TestCase
 {
     /**
      * Test if exception is thrown when field is not provided
      */
-    public function testGetArrayException()
+    public function testGetArrayException(): void
     {
         $this->expectException(\LogicException::class);
         $aggregation = new GeoCentroidAggregation('foo');
@@ -31,7 +32,7 @@ class GeoCentroidAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests getType method.
      */
-    public function testGeoCentroidAggregationGetType()
+    public function testGeoCentroidAggregationGetType(): void
     {
         $aggregation = new GeoCentroidAggregation('foo');
         $this->assertEquals('geo_centroid', $aggregation->getType());
@@ -40,7 +41,7 @@ class GeoCentroidAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests getArray method.
      */
-    public function testGeoCentroidAggregationGetArray()
+    public function testGeoCentroidAggregationGetArray(): void
     {
         $aggregation = new GeoCentroidAggregation('foo', 'location');
         $this->assertEquals(['field' => 'location'], $aggregation->getArray());

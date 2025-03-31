@@ -14,16 +14,17 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Span;
 use ONGR\ElasticsearchDSL\Query\Span\FieldMaskingSpanQuery;
 use ONGR\ElasticsearchDSL\Query\Span\SpanNearQuery;
 use ONGR\ElasticsearchDSL\Query\Span\SpanTermQuery;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for FieldMaskingSpanQuery.
  */
-class FieldMaskingSpanQueryTest extends \PHPUnit\Framework\TestCase
+class FieldMaskingSpanQueryTest extends TestCase
 {
     /**
      * Tests for toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $spanTermQuery = new SpanTermQuery('text', 'quick brown');
 

@@ -12,21 +12,22 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit;
 
 use ONGR\ElasticsearchDSL\Search;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test for Search.
  */
-class SearchTest extends \PHPUnit\Framework\TestCase
+class SearchTest extends TestCase
 {
     /**
      * Tests Search constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
         $this->assertInstanceOf(Search::class, new Search());
     }
 
-    public function testScrollUriParameter()
+    public function testScrollUriParameter(): void
     {
         $search = new Search();
         $search->setScroll('5m');

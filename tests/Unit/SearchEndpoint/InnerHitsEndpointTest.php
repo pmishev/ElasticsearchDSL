@@ -11,17 +11,20 @@
 
 namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
+use ONGR\ElasticsearchDSL\BuilderInterface;
 use ONGR\ElasticsearchDSL\SearchEndpoint\InnerHitsEndpoint;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Class AggregationsEndpointTest.
  */
-class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
+class InnerHitsEndpointTest extends TestCase
 {
     /**
      * Tests constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
         $this->assertInstanceOf(
             InnerHitsEndpoint::class,
@@ -32,10 +35,10 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if endpoint returns builders.
      */
-    public function testEndpointGetter()
+    public function testEndpointGetter(): void
     {
         $hitName = 'foo';
-        $innerHit = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)->getMock();
+        $innerHit = $this->getMockBuilder(BuilderInterface::class)->getMock();
         $endpoint = new InnerHitsEndpoint();
         $endpoint->add($innerHit, $hitName);
         $builders = $endpoint->getAll();
@@ -47,13 +50,13 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests normalize method
      */
-    public function testNormalization()
+    public function testNormalization(): void
     {
         $normalizer = $this
-            ->getMockBuilder(\Symfony\Component\Serializer\Normalizer\NormalizerInterface::class)
+            ->getMockBuilder(NormalizerInterface::class)
             ->getMock();
         $innerHit = $this
-            ->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)
+            ->getMockBuilder(BuilderInterface::class)
             ->onlyMethods(['toArray', 'getType'])
             ->addMethods(['getName'])
             ->getMock();

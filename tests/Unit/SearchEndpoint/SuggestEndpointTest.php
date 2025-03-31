@@ -13,13 +13,15 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint;
 use ONGR\ElasticsearchDSL\Suggest\Suggest;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class SuggestEndpointTest extends \PHPUnit\Framework\TestCase
+class SuggestEndpointTest extends TestCase
 {
     /**
      * Tests constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
         $this->assertInstanceOf(SuggestEndpoint::class, new SuggestEndpoint());
     }
@@ -27,7 +29,7 @@ class SuggestEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if endpoint returns builders.
      */
-    public function testEndpointGetter()
+    public function testEndpointGetter(): void
     {
         $suggestName = 'acme_suggest';
         $text = 'foo';
@@ -43,12 +45,12 @@ class SuggestEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests endpoint normalization.
      */
-    public function testNormalize()
+    public function testNormalize(): void
     {
         $instance = new SuggestEndpoint();
 
         $normalizerInterface = $this->getMockForAbstractClass(
-            \Symfony\Component\Serializer\Normalizer\NormalizerInterface::class
+            NormalizerInterface::class
         );
 
         $suggest = new Suggest('foo', 'bar', 'acme', 'foo');

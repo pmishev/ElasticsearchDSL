@@ -11,13 +11,15 @@
 
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Compound;
 
+use ONGR\ElasticsearchDSL\BuilderInterface;
 use ONGR\ElasticsearchDSL\Query\Compound\FunctionScoreQuery;
 use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for FunctionScoreQuery.
  */
-class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
+class FunctionScoreQueryTest extends TestCase
 {
     /**
      * Data provider for testAddRandomFunction.
@@ -62,7 +64,7 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider addRandomFunctionProvider
      */
-    public function testAddRandomFunction($seed, $expectedArray)
+    public function testAddRandomFunction($seed, $expectedArray): void
     {
         $matchAllQuery = $this->getMockBuilder(MatchAllQuery::class)->getMock();
 
@@ -75,9 +77,9 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests default argument values.
      */
-    public function testAddFieldValueFactorFunction()
+    public function testAddFieldValueFactorFunction(): void
     {
-        $builderInterface = $this->getMockForAbstractClass(\ONGR\ElasticsearchDSL\BuilderInterface::class);
+        $builderInterface = $this->getMockForAbstractClass(BuilderInterface::class);
         $functionScoreQuery = new FunctionScoreQuery($builderInterface);
         $functionScoreQuery->addFieldValueFactorFunction('field1', 2);
         $functionScoreQuery->addFieldValueFactorFunction('field2', 1.5, 'ln');

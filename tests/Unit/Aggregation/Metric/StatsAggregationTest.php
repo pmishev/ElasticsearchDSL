@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\Metric\StatsAggregation;
+use PHPUnit\Framework\TestCase;
 
-class StatsAggregationTest extends \PHPUnit\Framework\TestCase
+class StatsAggregationTest extends TestCase
 {
     /**
      * Test for stats aggregation toArray() method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $aggregation = new StatsAggregation('test_agg');
         $aggregation->setField('test_field');
@@ -33,7 +34,7 @@ class StatsAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if parameter can be passed to constructor.
      */
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $aggregation = new StatsAggregation('foo', 'fieldValue', 'scriptValue');
         $this->assertSame(

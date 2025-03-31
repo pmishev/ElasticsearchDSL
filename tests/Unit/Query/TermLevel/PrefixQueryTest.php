@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\TermLevel;
 
 use ONGR\ElasticsearchDSL\Query\TermLevel\PrefixQuery;
+use PHPUnit\Framework\TestCase;
 
-class PrefixQueryTest extends \PHPUnit\Framework\TestCase
+class PrefixQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new PrefixQuery('user', 'ki');
         $expected = [

@@ -12,16 +12,17 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\Pipeline\CumulativeSumAggregation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for cumulative sum aggregation.
  */
-class CumulativeSumAggregationTest extends \PHPUnit\Framework\TestCase
+class CumulativeSumAggregationTest extends TestCase
 {
     /**
      * Tests toArray method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $aggregation = new CumulativeSumAggregation('acme', 'test');
 

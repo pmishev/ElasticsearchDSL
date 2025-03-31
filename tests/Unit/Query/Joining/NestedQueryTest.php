@@ -13,8 +13,9 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Joining;
 
 use ONGR\ElasticsearchDSL\Query\Joining\NestedQuery;
 use ONGR\ElasticsearchDSL\Query\TermLevel\TermsQuery;
+use PHPUnit\Framework\TestCase;
 
-class NestedQueryTest extends \PHPUnit\Framework\TestCase
+class NestedQueryTest extends TestCase
 {
     /**
      * Data provider to testGetToArray.
@@ -57,7 +58,7 @@ class NestedQueryTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testToArray($path, $parameters, $expected)
+    public function testToArray($path, $parameters, $expected): void
     {
         $query = new TermsQuery('foo', 'bar');
         $query = new NestedQuery($path, $query, $parameters);

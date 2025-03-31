@@ -11,16 +11,18 @@
 
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Compound;
 
+use ONGR\ElasticsearchDSL\BuilderInterface;
 use ONGR\ElasticsearchDSL\Query\Compound\BoostingQuery;
+use PHPUnit\Framework\TestCase;
 
-class BoostingQueryTest extends \PHPUnit\Framework\TestCase
+class BoostingQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
-        $mock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)->getMock();
+        $mock = $this->getMockBuilder(BuilderInterface::class)->getMock();
         $mock
             ->expects($this->any())
             ->method('toArray')

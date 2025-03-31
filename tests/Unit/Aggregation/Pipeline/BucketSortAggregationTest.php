@@ -13,16 +13,17 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\Pipeline\BucketSortAggregation;
 use ONGR\ElasticsearchDSL\Sort\FieldSort;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for the bucket sort aggregation.
  */
-class BucketSortAggregationTest extends \PHPUnit\Framework\TestCase
+class BucketSortAggregationTest extends TestCase
 {
     /**
      * Tests toArray method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $aggregation = new BucketSortAggregation('acme', 'test');
 

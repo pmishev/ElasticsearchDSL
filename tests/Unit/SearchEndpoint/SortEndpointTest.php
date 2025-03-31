@@ -13,16 +13,18 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\SearchEndpoint\SortEndpoint;
 use ONGR\ElasticsearchDSL\Sort\FieldSort;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Class SortEndpointTest.
  */
-class SortEndpointTest extends \PHPUnit\Framework\TestCase
+class SortEndpointTest extends TestCase
 {
     /**
      * Tests constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
         $this->assertInstanceOf(SortEndpoint::class, new SortEndpoint());
     }
@@ -30,12 +32,12 @@ class SortEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests endpoint normalization.
      */
-    public function testNormalize()
+    public function testNormalize(): void
     {
         $instance = new SortEndpoint();
 
         $normalizerInterface = $this->getMockForAbstractClass(
-            \Symfony\Component\Serializer\Normalizer\NormalizerInterface::class
+            NormalizerInterface::class
         );
 
         $sort = new FieldSort('acme', ['order' => FieldSort::ASC]);
@@ -50,7 +52,7 @@ class SortEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if endpoint returns builders.
      */
-    public function testEndpointGetter()
+    public function testEndpointGetter(): void
     {
         $sortName = 'acme_sort';
         $sort = new FieldSort('acme');

@@ -19,7 +19,7 @@ class MatchPhrasePrefixQueryTest extends TestCase
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new MatchPhrasePrefixQuery('message', 'this is a test');
         $expected = [

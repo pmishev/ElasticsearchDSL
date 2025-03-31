@@ -12,13 +12,14 @@
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\FullText;
 
 use ONGR\ElasticsearchDSL\Query\FullText\MultiMatchQuery;
+use PHPUnit\Framework\TestCase;
 
-class MultiMatchQueryTest extends \PHPUnit\Framework\TestCase
+class MultiMatchQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new MultiMatchQuery(['message', 'title'], 'this is a test');
         $expected = [
@@ -34,7 +35,7 @@ class MultiMatchQueryTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests multi-match query with no fields.
      */
-    public function testToArrayWithNoFields()
+    public function testToArrayWithNoFields(): void
     {
         $query = new MultiMatchQuery([], 'this is a test');
         $expected = [
