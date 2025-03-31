@@ -23,10 +23,7 @@ class NestedSort implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @var BuilderInterface
-     */
-    private $nestedFilter;
+    private ?BuilderInterface $nestedFilter = null;
 
     /**
      * @param string $path

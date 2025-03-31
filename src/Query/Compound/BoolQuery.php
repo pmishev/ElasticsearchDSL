@@ -28,10 +28,7 @@ class BoolQuery implements BuilderInterface
     public const SHOULD = 'should';
     public const FILTER = 'filter';
 
-    /**
-     * @var array
-     */
-    private $container = [];
+    private array $container = [];
 
     /**
      * Constructor to prepare container.

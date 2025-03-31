@@ -26,7 +26,7 @@ class DisMaxQuery implements BuilderInterface
     /**
      * @var BuilderInterface[]
      */
-    private $queries = [];
+    private array $queries = [];
 
     /**
      * Initializes Dis Max query.

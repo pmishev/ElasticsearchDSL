@@ -38,10 +38,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      */
     private $unit;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
     /**
      * Inner aggregations container init.

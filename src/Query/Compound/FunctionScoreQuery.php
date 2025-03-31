@@ -26,7 +26,7 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * @var array[]
      */
-    private $functions;
+    private ?array $functions = null;
 
     public function __construct(private BuilderInterface $query, array $parameters = [])
     {

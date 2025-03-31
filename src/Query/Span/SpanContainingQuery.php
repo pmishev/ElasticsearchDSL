@@ -22,15 +22,9 @@ class SpanContainingQuery implements SpanQueryInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param SpanQueryInterface
-     */
-    private $little;
+    private SpanQueryInterface $little;
 
-    /**
-     * @param SpanQueryInterface
-     */
-    private $big;
+    private SpanQueryInterface $big;
 
     public function __construct(SpanQueryInterface $little, SpanQueryInterface $big)
     {

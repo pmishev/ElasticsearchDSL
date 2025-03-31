@@ -37,10 +37,8 @@ class Search
     /**
      * If you don’t need to track the total number of hits at all you can improve
      * query times by setting this option to false. Defaults to true.
-     *
-     * @var bool
      */
-    private $trackTotalHits;
+    private ?bool $trackTotalHits = null;
 
     /**
      * To retrieve hits from a certain offset. Defaults to 0.
@@ -160,15 +158,12 @@ class Search
      */
     private $scroll;
 
-    /**
-     * @var OrderedSerializer
-     */
-    private static $serializer;
+    private static ?OrderedSerializer $serializer = null;
 
     /**
      * @var SearchEndpointInterface[]
      */
-    private $endpoints = [];
+    private array $endpoints = [];
 
     /**
      * Constructor to initialize static properties

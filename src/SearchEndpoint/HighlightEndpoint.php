@@ -24,10 +24,7 @@ class HighlightEndpoint extends AbstractSearchEndpoint
      */
     public const NAME = 'highlight';
 
-    /**
-     * @var BuilderInterface
-     */
-    private $highlight;
+    private ?BuilderInterface $highlight = null;
 
     /**
      * @var string Key for highlight storing.

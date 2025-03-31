@@ -31,10 +31,7 @@ class NestedInnerHit implements NamedBuilderInterface
      */
     private $path;
 
-    /**
-     * @var Search
-     */
-    private $search;
+    private ?Search $search = null;
 
     /**
      * Inner hits container init.

@@ -27,7 +27,7 @@ class FiltersAggregation extends AbstractAggregation
     /**
      * @var BuilderInterface[]
      */
-    private $filters = [];
+    private array $filters = [];
 
     /**
      * @var bool

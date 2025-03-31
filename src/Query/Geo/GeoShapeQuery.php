@@ -28,10 +28,7 @@ class GeoShapeQuery implements BuilderInterface
     public const WITHIN = 'within';
     public const CONTAINS = 'contains';
 
-    /**
-     * @var array
-     */
-    private $fields = [];
+    private array $fields = [];
 
     public function __construct(array $parameters = [])
     {

@@ -24,12 +24,9 @@ class Highlight implements BuilderInterface
     /**
      * @var array Holds fields for highlight.
      */
-    private $fields = [];
+    private array $fields = [];
 
-    /**
-     * @var array
-     */
-    private $tags;
+    private ?array $tags = null;
 
     /**
      * @param string $name Field name to highlight.

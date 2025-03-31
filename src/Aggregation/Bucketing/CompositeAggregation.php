@@ -27,17 +27,14 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * @var BuilderInterface[]
      */
-    private $sources = [];
+    private array $sources = [];
 
     /**
      * @var int
      */
     private $size;
 
-    /**
-     * @var array
-     */
-    private $after;
+    private ?array $after = null;
 
     /**
      * Inner aggregations container init.

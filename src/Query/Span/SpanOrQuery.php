@@ -25,7 +25,7 @@ class SpanOrQuery implements SpanQueryInterface
     /**
      * @var SpanQueryInterface[]
      */
-    private $queries = [];
+    private array $queries = [];
 
     public function __construct(array $parameters = [])
     {

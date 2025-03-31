@@ -19,7 +19,7 @@ class SearchEndpointFactory
     /**
      * @var array Holds namespaces for endpoints.
      */
-    private static $endpoints = [
+    private static array $endpoints = [
         'query'        => QueryEndpoint::class,
         'post_filter'  => PostFilterEndpoint::class,
         'sort'         => SortEndpoint::class,

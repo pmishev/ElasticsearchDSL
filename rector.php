@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\PHPUnit100\Rector\Class_\StaticDataProviderClassMethodRector;
 use Rector\Set\ValueObject\LevelSetList;
+use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromAssignsRector;
 use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
@@ -25,6 +26,9 @@ return RectorConfig::configure()
     ->withRules([
         // Make data provider methods static
         StaticDataProviderClassMethodRector::class,
+        // Typehint properties from assigns
+        TypedPropertyFromAssignsRector::class,
+
     ])
     ->withImportNames(importShortClasses: false, removeUnusedImports: true)
 ;

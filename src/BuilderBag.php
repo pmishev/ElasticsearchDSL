@@ -19,7 +19,7 @@ class BuilderBag
     /**
      * @var BuilderInterface[]
      */
-    private $bag = [];
+    private array $bag = [];
 
     /**
      * @param BuilderInterface[] $builders

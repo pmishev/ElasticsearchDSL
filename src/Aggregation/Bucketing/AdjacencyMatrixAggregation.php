@@ -28,7 +28,7 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     /**
      * @var BuilderInterface[]
      */
-    private $filters = [
+    private array $filters = [
         self::FILTERS => [],
     ];
 

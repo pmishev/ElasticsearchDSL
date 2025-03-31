@@ -28,10 +28,7 @@ class DateRangeAggregation extends AbstractAggregation
      */
     private $format;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
     /**
      * @var bool

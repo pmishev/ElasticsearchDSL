@@ -24,10 +24,7 @@ class FieldSort implements BuilderInterface
     public const ASC = 'asc';
     public const DESC = 'desc';
 
-    /**
-     * @var BuilderInterface
-     */
-    private $nestedFilter;
+    private ?BuilderInterface $nestedFilter = null;
 
     /**
      * @param string $field  Field name.
