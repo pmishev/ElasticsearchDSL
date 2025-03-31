@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\SearchEndpoint\SortEndpoint;
@@ -19,7 +20,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 /**
  * Class SortEndpointTest.
  */
-class SortEndpointTest extends TestCase
+final class SortEndpointTest extends TestCase
 {
     /**
      * Tests constructor.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ONGR\ElasticsearchDSL\Tests\Unit\InnerHit;
 
 use ONGR\ElasticsearchDSL\InnerHit\NestedInnerHit;
@@ -8,7 +10,7 @@ use ONGR\ElasticsearchDSL\Query\Joining\NestedQuery;
 use ONGR\ElasticsearchDSL\Search;
 use PHPUnit\Framework\TestCase;
 
-class NestedInnerHitTest extends TestCase
+final class NestedInnerHitTest extends TestCase
 {
     /**
      * Data provider for testToArray().

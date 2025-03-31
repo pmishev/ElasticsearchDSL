@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,13 +10,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\Metric\StatsAggregation;
 use PHPUnit\Framework\TestCase;
 
-class StatsAggregationTest extends TestCase
+final class StatsAggregationTest extends TestCase
 {
     /**
      * Test for stats aggregation toArray() method.
