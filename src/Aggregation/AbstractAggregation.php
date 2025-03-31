@@ -29,10 +29,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
      */
     private $field;
 
-    /**
-     * @var BuilderBag
-     */
-    private $aggregations;
+    private ?BuilderBag $aggregations = null;
 
     /**
      * Abstract supportsNesting method.

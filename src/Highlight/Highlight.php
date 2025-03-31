@@ -63,8 +63,9 @@ class Highlight implements BuilderInterface
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = [];
 

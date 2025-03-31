@@ -48,7 +48,7 @@ class OrderedSerializer extends Serializer
      *
      * @return array
      */
-    private function order(array $data)
+    private function order(array $data): array
     {
         $filteredData = $this->filterOrderable($data);
 
