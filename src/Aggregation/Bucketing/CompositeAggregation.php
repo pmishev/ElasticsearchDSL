@@ -72,7 +72,7 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $array = [
             'sources' => $this->sources,

@@ -158,7 +158,7 @@ class TopHitsAggregation extends AbstractAggregation
                 'size' => $this->getSize(),
                 'from' => $this->getFrom(),
             ],
-            fn ($val) => $val || is_array($val) || ($val || is_numeric($val))
+            fn ($val): bool => $val || is_array($val) || ($val || is_numeric($val))
         );
 
         return empty($output) ? new \stdClass() : $output;

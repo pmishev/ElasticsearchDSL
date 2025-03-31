@@ -104,8 +104,9 @@ class PercentileRanksAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
@@ -114,7 +115,7 @@ class PercentileRanksAggregation extends AbstractAggregation
                 'values'      => $this->getValues(),
                 'compression' => $this->getCompression(),
             ],
-            fn ($val) => $val || is_numeric($val)
+            fn ($val): bool => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);
@@ -125,11 +126,10 @@ class PercentileRanksAggregation extends AbstractAggregation
     /**
      * @param array $a
      *
-     * @return bool
      *
      * @throws \LogicException
      */
-    private function isRequiredParametersSet($a)
+    private function isRequiredParametersSet($a): bool
     {
         if (array_key_exists('field', $a) && array_key_exists('values', $a)
             || (array_key_exists('script', $a) && array_key_exists('values', $a))

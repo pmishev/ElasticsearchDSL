@@ -106,8 +106,9 @@ class FieldSort implements BuilderInterface
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function toArray()
+    public function toArray(): array
     {
         if ($this->order) {
             $this->addParameter('order', $this->order);

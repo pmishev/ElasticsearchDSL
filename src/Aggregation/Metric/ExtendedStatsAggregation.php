@@ -77,8 +77,9 @@ class ExtendedStatsAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
@@ -86,7 +87,7 @@ class ExtendedStatsAggregation extends AbstractAggregation
                 'script' => $this->getScript(),
                 'sigma'  => $this->getSigma(),
             ],
-            fn ($val) => $val || is_numeric($val)
+            fn ($val): bool => $val || is_numeric($val)
         );
 
         return $out;

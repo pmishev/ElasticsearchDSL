@@ -92,7 +92,10 @@ class MaxAggregation extends AbstractAggregation
         return 'matrix_stats';
     }
 
-    protected function getArray()
+    /**
+     * @return mixed[]
+     */
+    protected function getArray(): array
     {
         $out = [];
         if ($this->getField()) {

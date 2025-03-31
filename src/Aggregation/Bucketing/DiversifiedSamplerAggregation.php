@@ -75,8 +75,9 @@ class DiversifiedSamplerAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    protected function getArray()
+    protected function getArray(): array
     {
         $out = array_filter(
             [

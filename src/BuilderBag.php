@@ -103,11 +103,14 @@ class BuilderBag
         return array_filter(
             $this->bag,
             /** @var BuilderInterface $builder */
-            fn (BuilderInterface $builder) => null === $type || $builder->getType() == $type
+            fn (BuilderInterface $builder): bool => null === $type || $builder->getType() == $type
         );
     }
 
-    public function toArray()
+    /**
+     * @return mixed[]
+     */
+    public function toArray(): array
     {
         $output = [];
         foreach ($this->all() as $builder) {

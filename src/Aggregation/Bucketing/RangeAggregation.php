@@ -82,7 +82,7 @@ class RangeAggregation extends AbstractAggregation
                 'from' => $from,
                 'to'   => $to,
             ],
-            fn ($v) => !is_null($v)
+            fn ($v): bool => !is_null($v)
         );
 
         if (!empty($key)) {
@@ -100,9 +100,8 @@ class RangeAggregation extends AbstractAggregation
      * @param int|float|null $from
      * @param int|float|null $to
      *
-     * @return bool
      */
-    public function removeRange($from, $to)
+    public function removeRange($from, $to): bool
     {
         foreach ($this->ranges as $key => $range) {
             if ([] === array_diff_assoc(array_filter(['from' => $from, 'to' => $to]), $range)) {
@@ -120,9 +119,8 @@ class RangeAggregation extends AbstractAggregation
      *
      * @param string $key Range key.
      *
-     * @return bool
      */
-    public function removeRangeByKey($key)
+    public function removeRangeByKey($key): bool
     {
         if ($this->keyed) {
             foreach ($this->ranges as $rangeKey => $range) {
@@ -140,7 +138,7 @@ class RangeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = [
             'keyed'  => $this->keyed,

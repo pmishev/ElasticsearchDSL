@@ -32,9 +32,8 @@ class GeoHashGridAggregationTest extends TestCase
     /**
      * Data provider for testGeoHashGridAggregationGetArray().
      *
-     * @return array
      */
-    public static function getArrayDataProvider()
+    public static function getArrayDataProvider(): array
     {
         $out = [];
 

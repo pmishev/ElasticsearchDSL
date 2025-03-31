@@ -142,8 +142,9 @@ class Suggest implements NamedBuilderInterface
 
     /**
      * {@inheritdoc}
+     * @return non-empty-array<non-empty-array>
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = [
             $this->getName() => [

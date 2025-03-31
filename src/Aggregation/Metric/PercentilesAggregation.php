@@ -104,8 +104,9 @@ class PercentilesAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
@@ -114,7 +115,7 @@ class PercentilesAggregation extends AbstractAggregation
                 'field'       => $this->getField(),
                 'script'      => $this->getScript(),
             ],
-            fn ($val) => $val || is_numeric($val)
+            fn ($val): bool => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);

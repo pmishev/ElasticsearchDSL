@@ -66,7 +66,7 @@ class GeoBoundsAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = [];
         if ($this->getField()) {

@@ -65,7 +65,7 @@ class BucketScriptAggregation extends AbstractPipelineAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         if (!$this->getScript()) {
             throw new \LogicException(sprintf('`%s` aggregation must have script set.', $this->getName()));

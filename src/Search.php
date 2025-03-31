@@ -752,7 +752,10 @@ class Search
         return $this->uriParams;
     }
 
-    public function toArray()
+    /**
+     * @return mixed[]
+     */
+    public function toArray(): array
     {
         $output = array_filter(static::$serializer->normalize($this->endpoints));
 

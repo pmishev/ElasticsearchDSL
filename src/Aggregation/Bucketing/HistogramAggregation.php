@@ -220,8 +220,9 @@ class HistogramAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
@@ -232,7 +233,7 @@ class HistogramAggregation extends AbstractAggregation
                 'keyed'           => $this->isKeyed(),
                 'order'           => $this->getOrder(),
             ],
-            fn ($val) => $val || is_numeric($val)
+            fn ($val): bool => $val || is_numeric($val)
         );
         $this->checkRequiredParameters($out, ['field', 'interval']);
 

@@ -72,8 +72,9 @@ class BucketSortAggregation extends AbstractPipelineAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [

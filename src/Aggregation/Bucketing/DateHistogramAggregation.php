@@ -92,7 +92,7 @@ class DateHistogramAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         if (!$this->getField() || !$this->getInterval()) {
             throw new \LogicException('Date histogram aggregation must have field and interval set.');

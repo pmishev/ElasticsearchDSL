@@ -48,8 +48,9 @@ class AutoDateHistogramAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = array_filter(
             [

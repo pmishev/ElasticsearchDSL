@@ -19,9 +19,8 @@ class GlobalAggregationTest extends TestCase
     /**
      * Data provider for testToArray().
      *
-     * @return array
      */
-    public static function getToArrayData()
+    public static function getToArrayData(): array
     {
         $out = [];
 

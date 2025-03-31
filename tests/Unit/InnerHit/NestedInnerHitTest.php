@@ -13,9 +13,8 @@ class NestedInnerHitTest extends TestCase
     /**
      * Data provider for testToArray().
      *
-     * @return array
      */
-    public static function getTestToArrayData()
+    public static function getTestToArrayData(): array
     {
         $out = [];
 

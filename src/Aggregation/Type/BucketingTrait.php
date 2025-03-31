@@ -19,9 +19,8 @@ trait BucketingTrait
     /**
      * Bucketing aggregations supports nesting.
      *
-     * @return bool
      */
-    protected function supportsNesting()
+    protected function supportsNesting(): bool
     {
         return true;
     }

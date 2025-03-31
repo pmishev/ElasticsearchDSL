@@ -37,8 +37,9 @@ class CardinalityAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
@@ -47,7 +48,7 @@ class CardinalityAggregation extends AbstractAggregation
                 'precision_threshold' => $this->getPrecisionThreshold(),
                 'rehash'              => $this->isRehash(),
             ],
-            fn ($val) => $val || is_bool($val)
+            fn ($val): bool => $val || is_bool($val)
         );
 
         $this->checkRequiredFields($out);

@@ -142,7 +142,7 @@ class GeoDistanceAggregation extends AbstractAggregation
                 'from' => $from,
                 'to'   => $to,
             ],
-            fn ($v) => !is_null($v)
+            fn ($v): bool => !is_null($v)
         );
 
         if (empty($range)) {
@@ -157,7 +157,7 @@ class GeoDistanceAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = [];
 

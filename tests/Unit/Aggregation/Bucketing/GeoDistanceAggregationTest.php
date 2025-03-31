@@ -54,9 +54,8 @@ class GeoDistanceAggregationTest extends TestCase
     /**
      * Data provider for testGeoDistanceAggregationGetArray().
      *
-     * @return array
      */
-    public static function getGeoDistanceAggregationGetArrayDataProvider()
+    public static function getGeoDistanceAggregationGetArrayDataProvider(): array
     {
         $out = [];
         $filterData = [

@@ -63,7 +63,7 @@ class Ipv4RangeAggregation extends AbstractAggregation
                 'from' => $from,
                 'to'   => $to,
             ],
-            fn ($v) => !is_null($v)
+            fn ($v): bool => !is_null($v)
         );
 
         $this->ranges[] = $range;
