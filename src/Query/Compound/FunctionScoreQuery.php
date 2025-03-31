@@ -38,7 +38,7 @@ class FunctionScoreQuery implements BuilderInterface
      *
      * @return BuilderInterface object
      */
-    public function getQuery()
+    public function getQuery(): BuilderInterface
     {
         return $this->query;
     }
@@ -79,7 +79,7 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * Modifier to apply filter to the function score function.
      */
-    private function applyFilter(array &$function, ?BuilderInterface $query = null)
+    private function applyFilter(array &$function, ?BuilderInterface $query = null): void
     {
         if ($query) {
             $function['filter'] = $query->toArray();
@@ -209,7 +209,7 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'query'     => $this->query->toArray(),
@@ -224,7 +224,7 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'function_score';
     }

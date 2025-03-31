@@ -77,9 +77,8 @@ class FieldSort implements BuilderInterface
     }
 
     /**
-     * @return BuilderInterface
      */
-    public function getNestedFilter()
+    public function getNestedFilter(): ?BuilderInterface
     {
         return $this->nestedFilter;
     }
@@ -97,9 +96,8 @@ class FieldSort implements BuilderInterface
     /**
      * Returns element type.
      *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return 'sort';
     }

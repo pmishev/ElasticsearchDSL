@@ -56,7 +56,7 @@ class Highlight implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'highlight';
     }

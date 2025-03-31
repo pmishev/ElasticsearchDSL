@@ -19,9 +19,8 @@ class GeoDistanceQueryTest extends TestCase
     /**
      * Data provider for testToArray().
      *
-     * @return array
      */
-    public static function getArrayDataProvider()
+    public static function getArrayDataProvider(): array
     {
         return [
             // Case #1.
@@ -54,7 +53,7 @@ class GeoDistanceQueryTest extends TestCase
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testToArray($field, $distance, $location, $parameters, $expected): void
+    public function testToArray(string $field, string $distance, array $location, array $parameters, array $expected): void
     {
         $query = new GeoDistanceQuery($field, $distance, $location, $parameters);
         $result = $query->toArray();

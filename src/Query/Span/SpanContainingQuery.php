@@ -33,9 +33,8 @@ class SpanContainingQuery implements SpanQueryInterface
     }
 
     /**
-     * @return SpanQueryInterface
      */
-    public function getLittle()
+    public function getLittle(): SpanQueryInterface
     {
         return $this->little;
     }
@@ -51,9 +50,8 @@ class SpanContainingQuery implements SpanQueryInterface
     }
 
     /**
-     * @return SpanQueryInterface
      */
-    public function getBig()
+    public function getBig(): SpanQueryInterface
     {
         return $this->big;
     }
@@ -71,7 +69,7 @@ class SpanContainingQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'span_containing';
     }
@@ -79,7 +77,7 @@ class SpanContainingQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = [
             'little' => $this->getLittle()->toArray(),

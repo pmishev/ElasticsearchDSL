@@ -64,7 +64,7 @@ class ChildrenAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'children';
     }
@@ -72,7 +72,7 @@ class ChildrenAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         if (0 == count($this->getAggregations())) {
             throw new \LogicException("Children aggregation `{$this->getName()}` has no aggregations added");

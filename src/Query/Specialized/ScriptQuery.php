@@ -35,7 +35,7 @@ class ScriptQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'script';
     }
@@ -43,7 +43,7 @@ class ScriptQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = ['inline' => $this->script];
         $output = $this->processArray($query);

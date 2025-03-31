@@ -69,9 +69,8 @@ class OrderedSerializer extends Serializer
      *
      * @param array $array Data to filter out.
      *
-     * @return array
      */
-    private function filterOrderable($array)
+    private function filterOrderable(array $array): array
     {
         return array_filter(
             $array,

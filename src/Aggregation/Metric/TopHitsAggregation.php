@@ -102,7 +102,7 @@ class TopHitsAggregation extends AbstractAggregation
      *
      * @param BuilderInterface $sort
      */
-    public function addSort($sort)
+    public function addSort($sort): void
     {
         $this->sorts[] = $sort;
     }
@@ -132,7 +132,7 @@ class TopHitsAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'top_hits';
     }

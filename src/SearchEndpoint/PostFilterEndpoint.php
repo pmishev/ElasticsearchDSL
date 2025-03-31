@@ -38,7 +38,7 @@ class PostFilterEndpoint extends QueryEndpoint
     /**
      * {@inheritdoc}
      */
-    public function getOrder()
+    public function getOrder(): int
     {
         return 1;
     }

@@ -19,9 +19,8 @@ class ScriptQueryTest extends TestCase
     /**
      * Data provider for testToArray().
      *
-     * @return array
      */
-    public static function getArrayDataProvider()
+    public static function getArrayDataProvider(): array
     {
         return [
             'simple_script' => [
@@ -46,7 +45,7 @@ class ScriptQueryTest extends TestCase
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testToArray($script, $parameters, $expected): void
+    public function testToArray(string $script, array $parameters, array $expected): void
     {
         $filter = new ScriptQuery($script, $parameters);
         $result = $filter->toArray();

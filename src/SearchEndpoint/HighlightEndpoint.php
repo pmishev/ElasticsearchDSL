@@ -46,7 +46,7 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function add(BuilderInterface $builder, $key = null)
+    public function add(BuilderInterface $builder, $key = null): void
     {
         if ($this->highlight) {
             throw new \OverflowException('Only one highlight can be set');
@@ -59,15 +59,14 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function getAll($boolType = null)
+    public function getAll($boolType = null): array
     {
         return [$this->key => $this->highlight];
     }
 
     /**
-     * @return BuilderInterface
      */
-    public function getHighlight()
+    public function getHighlight(): ?BuilderInterface
     {
         return $this->highlight;
     }

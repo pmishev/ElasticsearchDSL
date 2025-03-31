@@ -97,7 +97,7 @@ class PercentilesAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'percentiles';
     }
@@ -124,11 +124,10 @@ class PercentilesAggregation extends AbstractAggregation
     }
 
     /**
-     * @param array $a
      *
      * @throws \LogicException
      */
-    private function isRequiredParametersSet($a)
+    private function isRequiredParametersSet(array $a): void
     {
         if (!array_key_exists('field', $a) && !array_key_exists('script', $a)) {
             throw new \LogicException('Percentiles aggregation must have field or script set.');

@@ -23,15 +23,14 @@ class PercentilesBucketAggregation extends AbstractPipelineAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'percentiles_bucket';
     }
 
     /**
-     * @return array
      */
-    public function getPercents()
+    public function getPercents(): ?array
     {
         return $this->percents;
     }

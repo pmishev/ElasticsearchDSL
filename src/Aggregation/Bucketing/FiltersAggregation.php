@@ -90,7 +90,7 @@ class FiltersAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         return $this->filters;
     }
@@ -98,7 +98,7 @@ class FiltersAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'filters';
     }

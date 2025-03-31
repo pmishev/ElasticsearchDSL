@@ -97,7 +97,7 @@ class PercentileRanksAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'percentile_ranks';
     }
@@ -124,12 +124,11 @@ class PercentileRanksAggregation extends AbstractAggregation
     }
 
     /**
-     * @param array $a
      *
      *
      * @throws \LogicException
      */
-    private function isRequiredParametersSet($a): bool
+    private function isRequiredParametersSet(array $a): bool
     {
         if (array_key_exists('field', $a) && array_key_exists('values', $a)
             || (array_key_exists('script', $a) && array_key_exists('values', $a))

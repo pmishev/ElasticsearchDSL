@@ -29,9 +29,8 @@ class GeoBoundingBoxQueryTest extends TestCase
     /**
      * Data provider for testToArray().
      *
-     * @return array
      */
-    public static function getArrayDataProvider()
+    public static function getArrayDataProvider(): array
     {
         return [
             // Case #1 (2 values).
@@ -115,7 +114,7 @@ class GeoBoundingBoxQueryTest extends TestCase
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testToArray($field, $values, $parameters, $expected): void
+    public function testToArray(string $field, array $values, array $parameters, array $expected): void
     {
         $query = new GeoBoundingBoxQuery($field, $values, $parameters);
         $result = $query->toArray();

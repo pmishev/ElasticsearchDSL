@@ -20,9 +20,8 @@ class NestedQueryTest extends TestCase
     /**
      * Data provider to testGetToArray.
      *
-     * @return array
      */
-    public static function getArrayDataProvider()
+    public static function getArrayDataProvider(): array
     {
         $query = [
             'terms' => [
@@ -52,13 +51,10 @@ class NestedQueryTest extends TestCase
     /**
      * Test for query toArray() method.
      *
-     * @param string $path
-     * @param array  $parameters
-     * @param array  $expected
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testToArray($path, $parameters, $expected): void
+    public function testToArray(string $path, array $parameters, array $expected): void
     {
         $query = new TermsQuery('foo', 'bar');
         $query = new NestedQuery($path, $query, $parameters);

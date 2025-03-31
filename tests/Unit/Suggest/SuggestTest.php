@@ -28,7 +28,7 @@ class SuggestTest extends TestCase
     /**
      * Data provider for testToArray()
      */
-    public static function getTestToArrayData()
+    public static function getTestToArrayData(): array
     {
         return [
             [

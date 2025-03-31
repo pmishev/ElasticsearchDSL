@@ -80,11 +80,10 @@ class BuilderBagTest extends TestCase
     /**
      * Returns builder.
      *
-     * @param string $name
      *
      * @return MockBuilder|BuilderInterface
      */
-    private function getBuilder($name): MockObject
+    private function getBuilder(string $name): MockObject
     {
         $friendlyBuilderMock = $this->getMockBuilder(BuilderInterface::class)
             ->onlyMethods(['toArray', 'getType'])

@@ -70,9 +70,8 @@ class DateRangeAggregationTest extends TestCase
     /**
      * Data provider for testDateRangeAggregationConstructor.
      *
-     * @return array
      */
-    public static function getDateRangeAggregationConstructorProvider()
+    public static function getDateRangeAggregationConstructorProvider(): array
     {
         return [
             // Case #0. Minimum arguments.
@@ -107,12 +106,10 @@ class DateRangeAggregationTest extends TestCase
     /**
      * Tests constructor method.
      *
-     * @param string $field
-     * @param string $format
      *
      * @dataProvider getDateRangeAggregationConstructorProvider
      */
-    public function testDateRangeAggregationConstructor($field = null, $format = null, ?array $ranges = null): void
+    public function testDateRangeAggregationConstructor(string $field = null, string $format = null, ?array $ranges = null): void
     {
         $aggregation = $this->getMockBuilder(DateRangeAggregation::class)
             ->onlyMethods(['setField', 'setFormat', 'addRange'])

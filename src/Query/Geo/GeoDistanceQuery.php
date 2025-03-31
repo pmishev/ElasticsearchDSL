@@ -36,7 +36,7 @@ class GeoDistanceQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'geo_distance';
     }
@@ -44,7 +44,7 @@ class GeoDistanceQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'distance'   => $this->distance,

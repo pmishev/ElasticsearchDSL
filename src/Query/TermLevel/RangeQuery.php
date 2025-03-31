@@ -50,7 +50,7 @@ class RangeQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'range';
     }
@@ -58,7 +58,7 @@ class RangeQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = [
             $this->field => $this->getParameters(),

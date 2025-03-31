@@ -23,7 +23,7 @@ class ParentIdQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'parent_id';
     }
@@ -31,7 +31,7 @@ class ParentIdQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'id'   => $this->parentId,

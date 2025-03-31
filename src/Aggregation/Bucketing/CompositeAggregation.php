@@ -92,7 +92,7 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'composite';
     }
@@ -138,9 +138,8 @@ class CompositeAggregation extends AbstractAggregation
     /**
      * Returns after
      *
-     * @return array
      */
-    public function getAfter()
+    public function getAfter(): ?array
     {
         return $this->after;
     }

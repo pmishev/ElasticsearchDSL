@@ -24,16 +24,15 @@ class FunctionScoreQueryTest extends TestCase
     /**
      * Data provider for testAddRandomFunction.
      *
-     * @return array
      */
-    public static function addRandomFunctionProvider()
+    public static function addRandomFunctionProvider(): array
     {
         return [
             // Case #0. No seed.
             [
                 'seed'          => null,
                 'expectedArray' => [
-                    'query'     => null,
+                    'query'     => [],
                     'functions' => [
                         [
                             'random_score' => new \stdClass(),
@@ -45,7 +44,7 @@ class FunctionScoreQueryTest extends TestCase
             [
                 'seed'          => 'someSeed',
                 'expectedArray' => [
-                    'query'     => null,
+                    'query'     => [],
                     'functions' => [
                         [
                             'random_score' => ['seed' => 'someSeed'],
@@ -60,11 +59,10 @@ class FunctionScoreQueryTest extends TestCase
      * Tests addRandomFunction method.
      *
      * @param mixed $seed
-     * @param array $expectedArray
      *
      * @dataProvider addRandomFunctionProvider
      */
-    public function testAddRandomFunction($seed, $expectedArray): void
+    public function testAddRandomFunction(?string $seed, array $expectedArray): void
     {
         $matchAllQuery = $this->getMockBuilder(MatchAllQuery::class)->getMock();
 

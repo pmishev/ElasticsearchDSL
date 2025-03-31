@@ -64,7 +64,7 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         return $this->filters;
     }
@@ -72,7 +72,7 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'adjacency_matrix';
     }

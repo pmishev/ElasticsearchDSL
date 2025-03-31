@@ -39,7 +39,7 @@ class NestedSort implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'nested';
     }
@@ -67,9 +67,8 @@ class NestedSort implements BuilderInterface
     /**
      * Returns nested filter object.
      *
-     * @return BuilderInterface
      */
-    public function getFilter()
+    public function getFilter(): ?BuilderInterface
     {
         return $this->filter;
     }
@@ -85,9 +84,8 @@ class NestedSort implements BuilderInterface
     }
 
     /**
-     * @return BuilderInterface
      */
-    public function getNestedFilter()
+    public function getNestedFilter(): ?BuilderInterface
     {
         return $this->nestedFilter;
     }

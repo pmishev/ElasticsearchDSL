@@ -184,7 +184,7 @@ class Search
     /**
      * Initializes the serializer
      */
-    private function initializeSerializer()
+    private function initializeSerializer(): void
     {
         if (null === static::$serializer) {
             static::$serializer = new OrderedSerializer(
@@ -201,7 +201,7 @@ class Search
      *
      * @param string $type Endpoint type.
      */
-    public function destroyEndpoint($type)
+    public function destroyEndpoint($type): void
     {
         unset($this->endpoints[$type]);
     }
@@ -406,9 +406,8 @@ class Search
     /**
      * Returns highlight builder.
      *
-     * @return BuilderInterface
      */
-    public function getHighlights()
+    public function getHighlights(): ?BuilderInterface
     {
         /** @var HighlightEndpoint $highlightEndpoint */
         $highlightEndpoint = $this->getEndpoint(HighlightEndpoint::NAME);
@@ -461,9 +460,8 @@ class Search
     }
 
     /**
-     * @return bool
      */
-    public function isTrackTotalHits()
+    public function isTrackTotalHits(): ?bool
     {
         return $this->trackTotalHits;
     }

@@ -72,15 +72,14 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * {@inheritdoc}
      */
-    public function getOrder()
+    public function getOrder(): int
     {
         return 2;
     }
 
     /**
-     * @return BoolQuery
      */
-    public function getBool()
+    public function getBool(): ?BoolQuery
     {
         return $this->bool;
     }

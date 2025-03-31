@@ -26,9 +26,8 @@ trait ParametersTrait
      *
      * @param string $name
      *
-     * @return bool
      */
-    public function hasParameter($name)
+    public function hasParameter($name): bool
     {
         return isset($this->parameters[$name]);
     }
@@ -97,9 +96,8 @@ trait ParametersTrait
     /**
      * Returns given array merged with parameters.
      *
-     * @return array
      */
-    protected function processArray(array $array = [])
+    protected function processArray(array $array = []): array
     {
         return array_merge($array, $this->parameters);
     }

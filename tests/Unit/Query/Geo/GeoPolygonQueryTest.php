@@ -19,9 +19,8 @@ class GeoPolygonQueryTest extends TestCase
     /**
      * Data provider to testToArray.
      *
-     * @return array
      */
-    public static function getArrayDataProvider()
+    public static function getArrayDataProvider(): array
     {
         return [
             // Case #1.
@@ -80,7 +79,7 @@ class GeoPolygonQueryTest extends TestCase
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testToArray($field, $points, $parameters, $expected): void
+    public function testToArray(string $field, array $points, array $parameters, array $expected): void
     {
         $filter = new GeoPolygonQuery($field, $points, $parameters);
         $result = $filter->toArray();

@@ -162,9 +162,8 @@ abstract class AbstractAggregation implements NamedBuilderInterface
     /**
      * Creates BuilderBag new instance.
      *
-     * @return BuilderBag
      */
-    private function createBuilderBag()
+    private function createBuilderBag(): BuilderBag
     {
         return new BuilderBag();
     }

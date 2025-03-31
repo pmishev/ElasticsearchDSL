@@ -69,9 +69,8 @@ class NestedInnerHit implements NamedBuilderInterface
     }
 
     /**
-     * @return Search
      */
-    public function getSearch()
+    public function getSearch(): ?Search
     {
         return $this->search;
     }
@@ -89,7 +88,7 @@ class NestedInnerHit implements NamedBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'nested';
     }
@@ -113,9 +112,8 @@ class NestedInnerHit implements NamedBuilderInterface
     /**
      * Returns 'path' for nested and 'type' for parent inner hits
      *
-     * @return string|null
      */
-    private function getPathType()
+    private function getPathType(): ?string
     {
         $type = match ($this->getType()) {
             'nested' => 'path',

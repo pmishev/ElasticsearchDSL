@@ -31,7 +31,7 @@ class ConstantScoreQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'constant_score';
     }
@@ -39,7 +39,7 @@ class ConstantScoreQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'filter' => $this->query->toArray(),

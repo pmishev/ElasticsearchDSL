@@ -81,7 +81,7 @@ class DateRangeAggregation extends AbstractAggregation
     /**
      * @param string $format
      */
-    public function setFormat($format)
+    public function setFormat($format): void
     {
         $this->format = $format;
     }
@@ -140,7 +140,7 @@ class DateRangeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'date_range';
     }

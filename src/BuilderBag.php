@@ -54,9 +54,8 @@ class BuilderBag
      *
      * @param string $name Builder name.
      *
-     * @return bool
      */
-    public function has($name)
+    public function has($name): bool
     {
         return isset($this->bag[$name]);
     }
@@ -66,7 +65,7 @@ class BuilderBag
      *
      * @param string $name Builder name.
      */
-    public function remove($name)
+    public function remove($name): void
     {
         unset($this->bag[$name]);
     }
@@ -74,7 +73,7 @@ class BuilderBag
     /**
      * Clears contained builders.
      */
-    public function clear()
+    public function clear(): void
     {
         $this->bag = [];
     }
@@ -98,7 +97,7 @@ class BuilderBag
      *
      * @return BuilderInterface[]
      */
-    public function all($type = null)
+    public function all($type = null): array
     {
         return array_filter(
             $this->bag,

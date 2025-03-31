@@ -99,7 +99,7 @@ class CardinalityAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'cardinality';
     }
@@ -107,11 +107,10 @@ class CardinalityAggregation extends AbstractAggregation
     /**
      * Checks if required fields are set.
      *
-     * @param array $fields
      *
      * @throws \LogicException
      */
-    private function checkRequiredFields($fields)
+    private function checkRequiredFields(array $fields): void
     {
         if (!array_key_exists('field', $fields) && !array_key_exists('script', $fields)) {
             throw new \LogicException('Cardinality aggregation must have field or script set.');

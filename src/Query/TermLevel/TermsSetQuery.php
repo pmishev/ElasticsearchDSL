@@ -42,7 +42,7 @@ class TermsSetQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'terms_set';
     }
@@ -50,7 +50,7 @@ class TermsSetQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'terms' => $this->terms,
@@ -61,7 +61,7 @@ class TermsSetQuery implements BuilderInterface
         ]];
     }
 
-    private function validateParameters(array $parameters)
+    private function validateParameters(array $parameters): void
     {
         if (!isset($parameters[self::MINIMUM_SHOULD_MATCH_TYPE_FIELD])
             && !isset($parameters[self::MINIMUM_SHOULD_MATCH_TYPE_SCRIPT])

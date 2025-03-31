@@ -84,7 +84,7 @@ class DateHistogramAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'date_histogram';
     }

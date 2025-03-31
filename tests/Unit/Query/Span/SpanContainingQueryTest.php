@@ -45,11 +45,10 @@ class SpanContainingQueryTest extends TestCase
     }
 
     /**
-     * @param string $value
      *
      * @returns MockBuilder
      */
-    private function getSpanQueryMock($value): MockObject
+    private function getSpanQueryMock(string $value): MockObject
     {
         $mock = $this->getMockBuilder(SpanQueryInterface::class)->getMock();
         $mock
