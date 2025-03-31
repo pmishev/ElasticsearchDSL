@@ -14,7 +14,7 @@ class NestedInnerHitTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-    public function getTestToArrayData()
+    public static function getTestToArrayData()
     {
         $out = [];
 

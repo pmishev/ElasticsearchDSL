@@ -55,7 +55,7 @@ class GeoDistanceAggregationTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-    public function getGeoDistanceAggregationGetArrayDataProvider()
+    public static function getGeoDistanceAggregationGetArrayDataProvider()
     {
         $out = [];
         $filterData = [

@@ -25,7 +25,7 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-    public function getToArrayData()
+    public static function getToArrayData()
     {
         $out = [];
 
@@ -101,7 +101,7 @@ class FilterAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test for setField().
      */
-    public function testSetField()
+    public function testSetField(): never
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('doesn\'t support `field` parameter');

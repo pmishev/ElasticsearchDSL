@@ -71,7 +71,7 @@ class DateRangeAggregationTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-    public function getDateRangeAggregationConstructorProvider()
+    public static function getDateRangeAggregationConstructorProvider()
     {
         return [
             // Case #0. Minimum arguments.

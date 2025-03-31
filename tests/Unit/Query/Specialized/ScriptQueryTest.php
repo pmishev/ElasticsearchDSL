@@ -20,7 +20,7 @@ class ScriptQueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-    public function getArrayDataProvider()
+    public static function getArrayDataProvider()
     {
         return [
             'simple_script' => [

@@ -20,7 +20,7 @@ class GlobalAggregationTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-    public function getToArrayData()
+    public static function getToArrayData()
     {
         $out = [];
 
@@ -75,7 +75,7 @@ class GlobalAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test for setField method on global aggregation.
      */
-    public function testSetField()
+    public function testSetField(): never
     {
         $this->expectException(\LogicException::class);
         $aggregation = new GlobalAggregation('test_agg');

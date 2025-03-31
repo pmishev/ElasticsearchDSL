@@ -24,7 +24,7 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-    public function addRandomFunctionProvider()
+    public static function addRandomFunctionProvider()
     {
         return [
             // Case #0. No seed.
