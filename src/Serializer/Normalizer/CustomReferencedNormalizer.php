@@ -13,31 +13,44 @@ declare(strict_types=1);
 namespace ONGR\ElasticsearchDSL\Serializer\Normalizer;
 
 use Symfony\Component\Serializer\Normalizer\CustomNormalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerAwareInterface;
+use Symfony\Component\Serializer\SerializerAwareTrait;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Normalizer used with referenced normalized objects.
  */
-class CustomReferencedNormalizer extends CustomNormalizer
+class CustomReferencedNormalizer implements NormalizerInterface, SerializerAwareInterface
 {
+    use SerializerAwareTrait;
+
     private array $references = [];
 
-    /**
-     * {@inheritdoc}
-     */
-    public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-    {
-        $object->setReferences($this->references);
-        $data = parent::normalize($object, $format, $context);
-        $this->references = array_merge($this->references, $object->getReferences());
+    private CustomNormalizer $inner;
 
-        return $data;
+    public function __construct()
+    {
+        $this->inner = new CustomNormalizer();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function setSerializer(SerializerInterface $serializer): void
+    {
+        $this->serializer = $serializer;
+        $this->inner->setSerializer($this->serializer);
+    }
+
     public function supportsNormalization(mixed $data, ?string $format = null /* , array $context = [] */): bool
     {
         return $data instanceof AbstractNormalizable;
+    }
+
+    public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $object->setReferences($this->references);
+        $data = $this->inner->normalize($object, $format, $context);
+        $this->references = array_merge($this->references, $object->getReferences());
+
+        return $data;
     }
 }
