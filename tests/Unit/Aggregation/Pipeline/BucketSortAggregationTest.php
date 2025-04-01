@@ -59,5 +59,20 @@ final class BucketSortAggregationTest extends TestCase
         ];
 
         $this->assertEquals($expected, $aggregation->toArray());
+
+        $sort = new FieldSort('test_field_2', FieldSort::DESC);
+        $aggregation->setSort($sort);
+
+        $expected = [
+            'bucket_sort' => [
+                'sort' => [
+                    [
+                        'test_field_2' => ['order' => 'desc'],
+                    ],
+                ],
+            ],
+        ];
+
+        $this->assertEquals($expected, $aggregation->toArray());
     }
 }
