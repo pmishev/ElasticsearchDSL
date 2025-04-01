@@ -11,7 +11,7 @@ env:
 
 jobs:
   static_code_analysis:
-    runs-on: 'ubuntu-20.04'
+    runs-on: 'ubuntu-24.04'
     name: 'Static code analysis'
     steps:
       - name: Setup PHP
@@ -36,7 +36,7 @@ jobs:
 
   phpunit:
     needs: [ static_code_analysis ]
-    runs-on: 'ubuntu-20.04'
+    runs-on: 'ubuntu-24.04'
     name: 'PHPUnit (PHP ${{ matrix.php }})'
     timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental }}
@@ -73,7 +73,12 @@ jobs:
         run: |
           vendor/bin/phpunit --coverage-clover=tests/clover.xml 2>/dev/null
 
-#      - name: Upload coverage results to Coveralls
+      - name: Upload coverage results to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: tests/clover.xml
+
 #        env:
 #          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
 #        run: |
