@@ -40,8 +40,6 @@ class Suggest implements NamedBuilderInterface
     private $field;
 
     /**
-     * TermSuggest constructor.
-     *
      * @param string $name
      * @param string $type
      * @param string $text

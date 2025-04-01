@@ -61,8 +61,6 @@ class TemplateQuery implements BuilderInterface
 
     /**
      * @param string $file
-     *
-     * @return $this;
      */
     public function setFile($file): static
     {
