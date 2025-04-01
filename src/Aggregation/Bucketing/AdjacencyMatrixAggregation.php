@@ -26,9 +26,6 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     use BucketingTrait;
     public const FILTERS = 'filters';
 
-    /**
-     * @var BuilderInterface[]
-     */
     private array $filters = [
         self::FILTERS => [],
     ];

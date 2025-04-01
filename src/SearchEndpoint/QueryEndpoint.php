@@ -53,7 +53,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * {@inheritdoc}
      */
-    public function add(BuilderInterface $builder, $key = null)
+    public function add(BuilderInterface $builder, $key = null): string
     {
         return $this->addToBool($builder, BoolQuery::MUST, $key);
     }
@@ -61,7 +61,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * {@inheritdoc}
      */
-    public function addToBool(BuilderInterface $builder, $boolType = null, $key = null)
+    public function addToBool(BuilderInterface $builder, $boolType = null, $key = null): string
     {
         if (!$this->bool instanceof BoolQuery) {
             $this->bool = new BoolQuery();
@@ -88,7 +88,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * {@inheritdoc}
      */
-    public function getAll($boolType = null)
+    public function getAll($boolType = null): array
     {
         return $this->bool->getQueries($boolType);
     }

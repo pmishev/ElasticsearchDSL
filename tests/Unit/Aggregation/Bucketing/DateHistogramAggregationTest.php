@@ -12,7 +12,6 @@ declare(strict_types=1);
  */
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
-use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\DateHistogramAggregation;
 use PHPUnit\Framework\TestCase;
 
@@ -61,11 +60,11 @@ final class DateHistogramAggregationTest extends TestCase
 
         static::assertSame([
             'date_histogram' => [
-                'field' => 'test',
+                'field'             => 'test',
                 'calendar_interval' => '1m',
-                'fixed_interval' => '1m',
-                'time_zone' => 'Europe/Berlin',
-                'format' => 'YYYY-mm-dd',
+                'fixed_interval'    => '1m',
+                'time_zone'         => 'Europe/Berlin',
+                'format'            => 'YYYY-mm-dd',
             ],
         ], $aggregation->toArray());
     }

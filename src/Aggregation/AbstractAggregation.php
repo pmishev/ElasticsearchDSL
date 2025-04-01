@@ -110,13 +110,13 @@ abstract class AbstractAggregation implements NamedBuilderInterface
      * Returns sub aggregation.
      *
      * @param string $name Aggregation name to return.
-     *
-     * @return AbstractAggregation|NamedBuilderInterface|null
      */
-    public function getAggregation($name)
+    public function getAggregation(string $name): ?NamedBuilderInterface
     {
         if ($this->aggregations instanceof BuilderBag && $this->aggregations->has($name)) {
-            return $this->aggregations->get($name);
+            /** @var NamedBuilderInterface $result */
+            $result = $this->aggregations->get($name);
+            return $result;
         } else {
             return null;
         }

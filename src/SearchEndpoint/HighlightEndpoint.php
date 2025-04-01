@@ -25,20 +25,14 @@ class HighlightEndpoint extends AbstractSearchEndpoint
      */
     public const NAME = 'highlight';
 
-    private ?BuilderInterface $highlight = null;
-
-    /**
-     * @var string Key for highlight storing.
-     */
-    private $key;
-
     /**
      * {@inheritdoc}
      */
     public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        if ($this->highlight instanceof BuilderInterface) {
-            return $this->highlight->toArray();
+        $highlight = current($this->container);
+        if ($highlight instanceof BuilderInterface) {
+            return $highlight->toArray();
         }
 
         return null;
@@ -47,28 +41,19 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function add(BuilderInterface $builder, $key = null): void
+    public function add(BuilderInterface $builder, $key = null): string
     {
-        if ($this->highlight instanceof BuilderInterface) {
+        if ($this->container !== []) {
             throw new \OverflowException('Only one highlight can be set');
         }
 
-        $this->key = $key;
-        $this->highlight = $builder;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAll($boolType = null): array
-    {
-        return [$this->key => $this->highlight];
+        return parent::add($builder, $key);
     }
 
     /**
      */
     public function getHighlight(): ?BuilderInterface
     {
-        return $this->highlight;
+        return current($this->container);
     }
 }
