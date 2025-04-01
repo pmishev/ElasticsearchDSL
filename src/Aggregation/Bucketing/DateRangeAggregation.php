@@ -88,15 +88,9 @@ class DateRangeAggregation extends AbstractAggregation
     /**
      * Add range to aggregation.
      *
-     * @param string|null $from
-     * @param string|null $to
-     * @param string|null $key
-     *
-     * @return $this
-     *
      * @throws \LogicException
      */
-    public function addRange($from = null, $to = null, $key = null): static
+    public function addRange(string|int $from = null, string|int $to = null, string $key = null): static
     {
         $range = array_filter(
             [

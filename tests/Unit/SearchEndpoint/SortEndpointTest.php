@@ -41,11 +41,16 @@ final class SortEndpointTest extends TestCase
             NormalizerInterface::class
         );
 
-        $sort = new FieldSort('acme', ['order' => FieldSort::ASC]);
+        $sort = new FieldSort('acme', FieldSort::ASC);
         $instance->add($sort);
+        $sort2 = new FieldSort('foo');
+        $instance->add($sort2);
 
         $this->assertEquals(
-            [$sort->toArray()],
+            [
+                $sort->toArray(),
+                $sort2->toArray()
+            ],
             $instance->normalize($normalizerInterface)
         );
     }

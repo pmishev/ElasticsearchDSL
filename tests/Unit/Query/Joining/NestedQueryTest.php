@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Joining;
 
 use ONGR\ElasticsearchDSL\Query\Joining\NestedQuery;
-use ONGR\ElasticsearchDSL\Query\TermLevel\TermsQuery;
+use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
 use PHPUnit\Framework\TestCase;
 
 final class NestedQueryTest extends TestCase
@@ -25,7 +25,7 @@ final class NestedQueryTest extends TestCase
     public static function getArrayDataProvider(): array
     {
         $query = [
-            'terms' => [
+            'term' => [
                 'foo' => 'bar',
             ],
         ];
@@ -57,7 +57,7 @@ final class NestedQueryTest extends TestCase
      */
     public function testToArray(string $path, array $parameters, array $expected): void
     {
-        $query = new TermsQuery('foo', 'bar');
+        $query = new TermQuery('foo', 'bar');
         $query = new NestedQuery($path, $query, $parameters);
         $result = $query->toArray();
         $this->assertEquals(['nested' => $expected], $result);

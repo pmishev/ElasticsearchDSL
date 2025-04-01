@@ -188,20 +188,14 @@ class HistogramAggregation extends AbstractAggregation
         return $this->extendedBounds;
     }
 
-    /**
-     * @param int $min
-     * @param int $max
-     *
-     * @return $this
-     */
-    public function setExtendedBounds($min = null, $max = null): static
+    public function setExtendedBounds(int $min = null, int $max = null): static
     {
         $bounds = array_filter(
             [
                 'min' => $min,
                 'max' => $max,
             ],
-            'strlen'
+            fn($val): bool => $val !== null
         );
         $this->extendedBounds = $bounds;
 

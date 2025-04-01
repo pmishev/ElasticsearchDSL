@@ -44,6 +44,11 @@
         "run-tests": [
             "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text"
         ],
+        "check-code": [
+            "vendor/bin/phpstan",
+            "vendor/bin/rector --dry-run",
+            "vendor/bin/php-cs-fixer check"
+        ],
         "fix-code": [
             "vendor/bin/phpstan",
             "vendor/bin/rector",
