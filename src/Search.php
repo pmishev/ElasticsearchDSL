@@ -209,13 +209,8 @@ class Search
 
     /**
      * Adds query to the search.
-     *
-     * @param string $boolType
-     * @param string $key
-     *
-     * @return $this
      */
-    public function addQuery(BuilderInterface $query, $boolType = BoolQuery::MUST, $key = null): static
+    public function addQuery(BuilderInterface $query, string $boolType = BoolQuery::MUST, ?string $key = null): static
     {
         $endpoint = $this->getEndpoint(QueryEndpoint::NAME);
         $endpoint->addToBool($query, $boolType, $key);
@@ -241,10 +236,8 @@ class Search
 
     /**
      * Returns queries inside BoolQuery instance.
-     *
-     * @return BoolQuery
      */
-    public function getQueries()
+    public function getQueries(): ?BoolQuery
     {
         $endpoint = $this->getEndpoint(QueryEndpoint::NAME);
 
@@ -287,9 +280,8 @@ class Search
      *                                   - must
      *                                   - must_not
      *                                   - should.
-     * @param string           $key
      */
-    public function addPostFilter(BuilderInterface $filter, $boolType = BoolQuery::MUST, $key = null): static
+    public function addPostFilter(BuilderInterface $filter, string $boolType = BoolQuery::MUST, ?string $key = null): static
     {
         $this
             ->getEndpoint(PostFilterEndpoint::NAME)
@@ -300,10 +292,8 @@ class Search
 
     /**
      * Returns queries inside BoolFilter instance.
-     *
-     * @return BoolQuery
      */
-    public function getPostFilters()
+    public function getPostFilters(): ?BoolQuery
     {
         $endpoint = $this->getEndpoint(PostFilterEndpoint::NAME);
 
@@ -339,7 +329,7 @@ class Search
      *
      * @return BuilderInterface[]
      */
-    public function getAggregations()
+    public function getAggregations(): array
     {
         return $this->getEndpoint(AggregationsEndpoint::NAME)->getAll();
     }
@@ -361,7 +351,7 @@ class Search
      *
      * @return BuilderInterface[]
      */
-    public function getInnerHits()
+    public function getInnerHits(): array
     {
         return $this->getEndpoint(InnerHitsEndpoint::NAME)->getAll();
     }
@@ -383,7 +373,7 @@ class Search
      *
      * @return BuilderInterface[]
      */
-    public function getSorts()
+    public function getSorts(): array
     {
         return $this->getEndpoint(SortEndpoint::NAME)->getAll();
     }
@@ -427,7 +417,7 @@ class Search
      *
      * @return BuilderInterface[]
      */
-    public function getSuggests()
+    public function getSuggests(): array
     {
         return $this->getEndpoint(SuggestEndpoint::NAME)->getAll();
     }

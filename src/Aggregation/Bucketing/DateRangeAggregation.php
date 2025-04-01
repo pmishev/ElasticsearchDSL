@@ -113,7 +113,7 @@ class DateRangeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         if ($this->getField() && $this->ranges !== []) {
             $data = [
