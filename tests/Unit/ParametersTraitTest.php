@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace ONGR\ElasticsearchDSL\Tests\Unit;
 
 use ONGR\ElasticsearchDSL\ParametersTrait;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,17 +20,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class ParametersTraitTest extends TestCase
 {
-    /**
-     * @var ParametersTrait
-     */
-    private MockObject $parametersTraitMock;
+    private ParametersTraitMock $parametersTraitMock;
 
     /**
      * {@inheritdoc}
      */
     public function setUp(): void
     {
-        $this->parametersTraitMock = $this->getMockForTrait(ParametersTrait::class);
+        $this->parametersTraitMock = new ParametersTraitMock();
     }
 
     /**
@@ -45,4 +41,9 @@ final class ParametersTraitTest extends TestCase
         $this->assertEquals(321, $this->parametersTraitMock->getParameter('bar'));
         $this->assertTrue(is_object($this->parametersTraitMock->removeParameter('acme')));
     }
+}
+
+class ParametersTraitMock
+{
+    use ParametersTrait;
 }

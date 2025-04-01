@@ -187,8 +187,8 @@ class Search
      */
     private function initializeSerializer(): void
     {
-        if (!static::$serializer instanceof OrderedSerializer) {
-            static::$serializer = new OrderedSerializer(
+        if (!self::$serializer instanceof OrderedSerializer) {
+            self::$serializer = new OrderedSerializer(
                 [
                     new CustomReferencedNormalizer(),
                     new CustomNormalizer(),
@@ -288,8 +288,6 @@ class Search
      *                                   - must_not
      *                                   - should.
      * @param string           $key
-     *
-     * @return $this.
      */
     public function addPostFilter(BuilderInterface $filter, $boolType = BoolQuery::MUST, $key = null): static
     {
@@ -394,8 +392,6 @@ class Search
      * Allows to highlight search results on one or more fields.
      *
      * @param Highlight $highlight
-     *
-     * @return $this.
      */
     public function addHighlight(BuilderInterface $highlight): static
     {
@@ -418,10 +414,6 @@ class Search
 
     /**
      * Adds suggest into search.
-     *
-     * @param BuilderInterface $suggest
-     *
-     * @return $this
      */
     public function addSuggest(NamedBuilderInterface $suggest): static
     {
@@ -751,12 +743,9 @@ class Search
         return $this->uriParams;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function toArray(): array
     {
-        $output = array_filter(static::$serializer->normalize($this->endpoints));
+        $output = array_filter(self::$serializer->normalize($this->endpoints));
 
         $params = [
             'from'           => 'from',

@@ -59,8 +59,6 @@ final class FunctionScoreQueryTest extends TestCase
     /**
      * Tests addRandomFunction method.
      *
-     * @param mixed $seed
-     *
      * @dataProvider addRandomFunctionProvider
      */
     public function testAddRandomFunction(?string $seed, array $expectedArray): void
