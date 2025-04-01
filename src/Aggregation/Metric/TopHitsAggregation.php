@@ -141,7 +141,7 @@ class TopHitsAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array|\stdClass
     {
         $sortsOutput = [];
         $addedSorts = array_filter($this->getSorts());
@@ -159,7 +159,7 @@ class TopHitsAggregation extends AbstractAggregation
                 'size' => $this->getSize(),
                 'from' => $this->getFrom(),
             ],
-            fn ($val): bool => $val || is_array($val) || ($val || is_numeric($val))
+            fn (array|int|null $val): bool => $val !== null
         );
 
         return $output === [] ? new \stdClass() : $output;

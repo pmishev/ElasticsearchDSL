@@ -46,7 +46,6 @@ final class SpanOrQueryTest extends TestCase
         $this->assertEquals($result, $query->toArray());
 
         $result = $query->getQueries();
-        $this->assertIsArray($result);
         $this->assertEquals(1, count($result));
     }
 }
