@@ -31,7 +31,7 @@ class TermsQuery implements BuilderInterface
      * @param array  $terms      An array of terms
      * @param array  $parameters Optional parameters
      */
-    public function __construct(private $field, private $terms, array $parameters = [])
+    public function __construct(private readonly string $field, private readonly array $terms, array $parameters = [])
     {
         $this->setParameters($parameters);
     }

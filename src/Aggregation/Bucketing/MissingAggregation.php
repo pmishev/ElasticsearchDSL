@@ -40,7 +40,7 @@ class MissingAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         if ($this->getField()) {
             return ['field' => $this->getField()];

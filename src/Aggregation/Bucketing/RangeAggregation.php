@@ -69,12 +69,8 @@ class RangeAggregation extends AbstractAggregation
 
     /**
      * Add range to aggregation.
-     *
-     * @param int|float|null $from
-     * @param int|float|null $to
-     * @param string         $key
      */
-    public function addRange($from = null, $to = null, $key = ''): static
+    public function addRange(int|float|string $from = null, int|float|string $to = null, string $key = ''): static
     {
         $range = array_filter(
             [
@@ -84,7 +80,7 @@ class RangeAggregation extends AbstractAggregation
             fn ($v): bool => !is_null($v)
         );
 
-        if (!empty($key)) {
+        if ($key !== '') {
             $range['key'] = $key;
         }
 

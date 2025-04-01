@@ -14,7 +14,6 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit;
 
 use ONGR\ElasticsearchDSL\BuilderBag;
 use ONGR\ElasticsearchDSL\BuilderInterface;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class BuilderBagTest extends TestCase
@@ -77,10 +76,7 @@ final class BuilderBagTest extends TestCase
         $this->assertNotEmpty($bag->get($builderName));
     }
 
-    /**
-     * Returns builder.
-     */
-    private function getBuilder(string $name): MockObject
+    private function getBuilder(string $name): BuilderInterface
     {
         $friendlyBuilderMock = $this->getMockBuilder(BuilderInterface::class)
             ->onlyMethods(['toArray', 'getType'])

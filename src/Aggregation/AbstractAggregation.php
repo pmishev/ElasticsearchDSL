@@ -39,10 +39,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
      */
     abstract protected function supportsNesting();
 
-    /**
-     * @return array|\stdClass
-     */
-    abstract protected function getArray();
+    abstract protected function getArray(): array|\stdClass;
 
     /**
      * Inner aggregations container init.

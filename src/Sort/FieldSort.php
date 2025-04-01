@@ -28,29 +28,24 @@ class FieldSort implements BuilderInterface
     private ?BuilderInterface $nestedFilter = null;
 
     /**
-     * @param string $field  Field name.
-     * @param string $order  Order direction.
-     * @param array  $params Params that can be set to field sort.
+     * @param string      $field  Field name.
+     * @param string|null $order  Order direction.
+     * @param array       $params Params that can be set to field sort.
      */
-    public function __construct(private $field, private $order = null, array $params = [])
+    public function __construct(private string $field, private ?string $order = null, array $params = [])
     {
         $this->setParameters($params);
     }
 
-    /**
-     * @return string
-     */
-    public function getField()
+    public function getField(): string
     {
         return $this->field;
     }
 
     /**
-     * @param string $field
-     *
      * @return $this
      */
-    public function setField($field): static
+    public function setField(string $field): static
     {
         $this->field = $field;
 
@@ -58,19 +53,17 @@ class FieldSort implements BuilderInterface
     }
 
     /**
-     * @return string
      */
-    public function getOrder()
+    public function getOrder(): ?string
     {
         return $this->order;
     }
 
     /**
-     * @param string $order
      *
      * @return $this
      */
-    public function setOrder($order): static
+    public function setOrder(?string $order): static
     {
         $this->order = $order;
 

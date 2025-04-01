@@ -31,8 +31,8 @@ jobs:
           dependency-versions: 'highest'
           composer-options: '--prefer-dist'
 
-      - name: Check PHP coding standards
-        run: php vendor/bin/php-cs-fixer fix --verbose --dry-run
+      - name: Check code quality and coding standards
+        run: composer check-code
 
   phpunit:
     needs: [ static_code_analysis ]

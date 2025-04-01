@@ -14,8 +14,6 @@ namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Span;
 
 use ONGR\ElasticsearchDSL\Query\Span\SpanContainingQuery;
 use ONGR\ElasticsearchDSL\Query\Span\SpanQueryInterface;
-use PHPUnit\Framework\MockObject\MockBuilder;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -45,11 +43,7 @@ final class SpanContainingQueryTest extends TestCase
         $this->assertEquals($result, $query->toArray());
     }
 
-    /**
-     *
-     * @returns MockBuilder
-     */
-    private function getSpanQueryMock(string $value): MockObject
+    private function getSpanQueryMock(string $value): SpanQueryInterface
     {
         $mock = $this->getMockBuilder(SpanQueryInterface::class)->getMock();
         $mock
