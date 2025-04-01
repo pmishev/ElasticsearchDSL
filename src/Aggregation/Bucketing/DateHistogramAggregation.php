@@ -24,90 +24,110 @@ class DateHistogramAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    /**
-     * @var string
-     */
-    protected $interval;
+    protected ?string $calendarInterval = null;
 
-    /**
-     * @var string
-     */
-    protected $format;
+    protected ?string $fixedInterval = null;
 
-    /**
-     * Inner aggregations container init.
-     *
-     * @param string $name
-     * @param string $field
-     * @param string $interval
-     */
-    public function __construct($name, $field = null, $interval = null, $format = null)
-    {
+    protected ?string $timeZone = null;
+
+    protected ?string $format = null;
+
+    public function __construct(
+        string $name,
+        string $field,
+        ?string $calendarInterval = null,
+        ?string $fixedInterval = null,
+        ?string $format = null,
+        ?string $timeZone = null,
+    ) {
         parent::__construct($name);
 
         $this->setField($field);
-        $this->setInterval($interval);
+        $this->setCalendarInterval($calendarInterval);
+        $this->setFixedInterval($fixedInterval);
         $this->setFormat($format);
+        $this->setTimeZone($timeZone);
     }
 
-    /**
-     * @return int
-     */
-    public function getInterval()
+    public function getCalendarInterval(): ?string
     {
-        return $this->interval;
+        return $this->calendarInterval;
     }
 
-    /**
-     * @param string $interval
-     *
-     * @return $this
-     */
-    public function setInterval($interval): static
+    public function setCalendarInterval(?string $calendarInterval): self
     {
-        $this->interval = $interval;
+        $this->calendarInterval = $calendarInterval;
 
         return $this;
     }
 
-    /**
-     * @param string $format
-     *
-     * @return $this
-     */
-    public function setFormat($format): static
+    public function getFixedInterval(): ?string
+    {
+        return $this->fixedInterval;
+    }
+
+    public function setFixedInterval(?string $fixedInterval): self
+    {
+        $this->fixedInterval = $fixedInterval;
+
+        return $this;
+    }
+
+    public function getTimeZone(): ?string
+    {
+        return $this->timeZone;
+    }
+
+    public function setTimeZone(?string $timeZone): self
+    {
+        $this->timeZone = $timeZone;
+
+        return $this;
+    }
+
+    public function getFormat(): ?string
+    {
+        return $this->format;
+    }
+
+    public function setFormat(?string $format): self
     {
         $this->format = $format;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getType(): string
+    public function getArray()
     {
-        return 'date_histogram';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getArray(): array
-    {
-        if (!$this->getField() || !$this->getInterval()) {
-            throw new \LogicException('Date histogram aggregation must have field and interval set.');
+        if ($this->getCalendarInterval() === null && $this->getFixedInterval() === null) {
+            throw new \LogicException('Date histogram aggregation must have field and calendar_interval or fixed_interval set.');
         }
 
         $out = [
-            'field'    => $this->getField(),
-            'interval' => $this->getInterval(),
+            'field' => $this->getField(),
         ];
 
-        if (!empty($this->format)) {
-            $out['format'] = $this->format;
+        if ($this->getCalendarInterval()) {
+            $out['calendar_interval'] = $this->getCalendarInterval();
+        }
+
+        if ($this->getFixedInterval()) {
+            $out['fixed_interval'] = $this->getFixedInterval();
+        }
+
+        if ($this->getTimeZone()) {
+            $out['time_zone'] = $this->getTimeZone();
+        }
+
+        if ($this->getFormat()) {
+            $out['format'] = $this->getFormat();
         }
 
         return $out;
+    }
+
+    public function getType(): string
+    {
+        return 'date_histogram';
     }
 }
