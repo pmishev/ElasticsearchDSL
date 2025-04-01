@@ -21,10 +21,7 @@ use ONGR\ElasticsearchDSL\Sort\FieldSort;
  */
 class BucketSortAggregation extends AbstractPipelineAggregation
 {
-    /**
-     * @var array
-     */
-    private $sort = [];
+    private array $sort = [];
 
     /**
      * @param string $name
@@ -35,10 +32,7 @@ class BucketSortAggregation extends AbstractPipelineAggregation
         parent::__construct($name, $bucketsPath);
     }
 
-    /**
-     * @return array
-     */
-    public function getSort()
+    public function getSort(): array
     {
         return $this->sort;
     }
@@ -48,14 +42,9 @@ class BucketSortAggregation extends AbstractPipelineAggregation
         $this->sort[] = $sort->toArray();
     }
 
-    /**
-     * @param string $sort
-     *
-     * @return $this
-     */
-    public function setSort($sort): static
+    public function setSort(FieldSort $sort): static
     {
-        $this->sort = $sort;
+        $this->sort = [$sort->toArray()];
 
         return $this;
     }
@@ -70,7 +59,6 @@ class BucketSortAggregation extends AbstractPipelineAggregation
 
     /**
      * {@inheritdoc}
-     * @return mixed[]
      */
     public function getArray(): array
     {
