@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Compound;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "dis_max" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-dis-max-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-dis-max-query.html
  */
 class DisMaxQuery implements BuilderInterface
 {
@@ -26,12 +27,10 @@ class DisMaxQuery implements BuilderInterface
     /**
      * @var BuilderInterface[]
      */
-    private $queries = [];
+    private array $queries = [];
 
     /**
      * Initializes Dis Max query.
-     *
-     * @param array $parameters
      */
     public function __construct(array $parameters = [])
     {
@@ -40,12 +39,8 @@ class DisMaxQuery implements BuilderInterface
 
     /**
      * Add query.
-     *
-     * @param BuilderInterface $query
-     *
-     * @return DisMaxQuery
      */
-    public function addQuery(BuilderInterface $query)
+    public function addQuery(BuilderInterface $query): static
     {
         $this->queries[] = $query;
 
@@ -55,7 +50,7 @@ class DisMaxQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'dis_max';
     }
@@ -63,7 +58,7 @@ class DisMaxQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [];
         foreach ($this->queries as $type) {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,12 +10,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Suggest;
 
 use ONGR\ElasticsearchDSL\NamedBuilderInterface;
 use ONGR\ElasticsearchDSL\ParametersTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 
 class Suggest implements NamedBuilderInterface
 {
@@ -40,14 +40,12 @@ class Suggest implements NamedBuilderInterface
     private $field;
 
     /**
-     * TermSuggest constructor.
      * @param string $name
      * @param string $type
      * @param string $text
      * @param string $field
-     * @param array $parameters
      */
-    public function __construct($name, $type, $text, $field, $parameters = [])
+    public function __construct($name, $type, $text, $field, array $parameters = [])
     {
         $this->setName($name);
         $this->setType($type);
@@ -61,7 +59,7 @@ class Suggest implements NamedBuilderInterface
      *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -93,7 +91,7 @@ class Suggest implements NamedBuilderInterface
      *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): static
     {
         $this->type = $type;
 
@@ -113,7 +111,7 @@ class Suggest implements NamedBuilderInterface
      *
      * @return $this
      */
-    public function setText($text)
+    public function setText($text): static
     {
         $this->text = $text;
 
@@ -133,7 +131,7 @@ class Suggest implements NamedBuilderInterface
      *
      * @return $this
      */
-    public function setField($field)
+    public function setField($field): static
     {
         $this->field = $field;
 
@@ -142,16 +140,15 @@ class Suggest implements NamedBuilderInterface
 
     /**
      * {@inheritdoc}
+     * @return non-empty-array<non-empty-array>
      */
-    public function toArray()
+    public function toArray(): array
     {
-        $output = [
+        return [
             $this->getName() => [
-                'text' => $this->getText(),
+                'text'           => $this->getText(),
                 $this->getType() => $this->processArray(['field' => $this->getField()]),
-            ]
+            ],
         ];
-
-        return $output;
     }
 }

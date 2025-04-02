@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,19 +10,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Geo;
 
 use ONGR\ElasticsearchDSL\Query\Geo\GeoPolygonQuery;
+use PHPUnit\Framework\TestCase;
 
-class GeoPolygonQueryTest extends \PHPUnit\Framework\TestCase
+final class GeoPolygonQueryTest extends TestCase
 {
     /**
      * Data provider to testToArray.
      *
-     * @return array
      */
-    public function getArrayDataProvider()
+    public static function getArrayDataProvider(): array
     {
         return [
             // Case #1.
@@ -48,7 +49,7 @@ class GeoPolygonQueryTest extends \PHPUnit\Framework\TestCase
                 [],
                 ['parameter' => 'value'],
                 [
-                    'location' => ['points' => []],
+                    'location'  => ['points' => []],
                     'parameter' => 'value',
                 ],
             ],
@@ -79,7 +80,7 @@ class GeoPolygonQueryTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider getArrayDataProvider
      */
-    public function testToArray($field, $points, $parameters, $expected)
+    public function testToArray(string $field, array $points, array $parameters, array $expected): void
     {
         $filter = new GeoPolygonQuery($field, $points, $parameters);
         $result = $filter->toArray();

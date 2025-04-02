@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
 /**
@@ -19,14 +20,14 @@ class SearchEndpointFactory
     /**
      * @var array Holds namespaces for endpoints.
      */
-    private static $endpoints = [
-        'query' => 'ONGR\ElasticsearchDSL\SearchEndpoint\QueryEndpoint',
-        'post_filter' => 'ONGR\ElasticsearchDSL\SearchEndpoint\PostFilterEndpoint',
-        'sort' => 'ONGR\ElasticsearchDSL\SearchEndpoint\SortEndpoint',
-        'highlight' => 'ONGR\ElasticsearchDSL\SearchEndpoint\HighlightEndpoint',
-        'aggregations' => 'ONGR\ElasticsearchDSL\SearchEndpoint\AggregationsEndpoint',
-        'suggest' => 'ONGR\ElasticsearchDSL\SearchEndpoint\SuggestEndpoint',
-        'inner_hits' => 'ONGR\ElasticsearchDSL\SearchEndpoint\InnerHitsEndpoint',
+    private static array $endpoints = [
+        'query'        => QueryEndpoint::class,
+        'post_filter'  => PostFilterEndpoint::class,
+        'sort'         => SortEndpoint::class,
+        'highlight'    => HighlightEndpoint::class,
+        'aggregations' => AggregationsEndpoint::class,
+        'suggest'      => SuggestEndpoint::class,
+        'inner_hits'   => InnerHitsEndpoint::class,
     ];
 
     /**

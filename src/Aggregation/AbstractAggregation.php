@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation;
 
 use ONGR\ElasticsearchDSL\BuilderBag;
@@ -29,10 +30,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
      */
     private $field;
 
-    /**
-     * @var BuilderBag
-     */
-    private $aggregations;
+    private ?BuilderBag $aggregations = null;
 
     /**
      * Abstract supportsNesting method.
@@ -41,10 +39,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
      */
     abstract protected function supportsNesting();
 
-    /**
-     * @return array|\stdClass
-     */
-    abstract protected function getArray();
+    abstract protected function getArray(): array|\stdClass;
 
     /**
      * Inner aggregations container init.
@@ -79,30 +74,30 @@ abstract class AbstractAggregation implements NamedBuilderInterface
     /**
      * Adds a sub-aggregation.
      *
-     * @param AbstractAggregation $abstractAggregation
-     *
      * @return $this
      */
     public function addAggregation(AbstractAggregation $abstractAggregation)
     {
-        if (!$this->aggregations) {
+        if (!$this->aggregations instanceof BuilderBag) {
             $this->aggregations = $this->createBuilderBag();
         }
 
         $this->aggregations->add($abstractAggregation);
-        
+
         return $this;
     }
 
     /**
      * Returns all sub aggregations.
      *
-     * @return BuilderBag[]|NamedBuilderInterface[]
+     * @return NamedBuilderInterface[]
      */
     public function getAggregations()
     {
-        if ($this->aggregations) {
-            return $this->aggregations->all();
+        if ($this->aggregations instanceof BuilderBag) {
+            /** @var NamedBuilderInterface[] $result */
+            $result = $this->aggregations->all();
+            return $result;
         } else {
             return [];
         }
@@ -110,14 +105,15 @@ abstract class AbstractAggregation implements NamedBuilderInterface
 
     /**
      * Returns sub aggregation.
-     * @param string $name Aggregation name to return.
      *
-     * @return AbstractAggregation|NamedBuilderInterface|null
+     * @param string $name Aggregation name to return.
      */
-    public function getAggregation($name)
+    public function getAggregation(string $name): ?NamedBuilderInterface
     {
-        if ($this->aggregations && $this->aggregations->has($name)) {
-            return $this->aggregations->get($name);
+        if ($this->aggregations instanceof BuilderBag && $this->aggregations->has($name)) {
+            /** @var NamedBuilderInterface $result */
+            $result = $this->aggregations->get($name);
+            return $result;
         } else {
             return null;
         }
@@ -163,9 +159,8 @@ abstract class AbstractAggregation implements NamedBuilderInterface
     /**
      * Creates BuilderBag new instance.
      *
-     * @return BuilderBag
      */
-    private function createBuilderBag()
+    private function createBuilderBag(): BuilderBag
     {
         return new BuilderBag();
     }

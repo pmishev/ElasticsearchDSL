@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -16,7 +18,6 @@ abstract class AbstractPipelineAggregation extends AbstractAggregation
 
     /**
      * @param string $name
-     * @param $bucketsPath
      */
     public function __construct($name, $bucketsPath = null)
     {
@@ -47,7 +48,7 @@ abstract class AbstractPipelineAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         return ['buckets_path' => $this->getBucketsPath()];
     }

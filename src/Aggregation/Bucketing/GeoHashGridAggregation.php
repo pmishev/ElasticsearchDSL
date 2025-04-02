@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing geohash grid aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html
  */
 class GeoHashGridAggregation extends AbstractAggregation
 {
@@ -70,7 +71,7 @@ class GeoHashGridAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setPrecision($precision)
+    public function setPrecision($precision): static
     {
         $this->precision = $precision;
 
@@ -90,7 +91,7 @@ class GeoHashGridAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -110,7 +111,7 @@ class GeoHashGridAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setShardSize($shardSize)
+    public function setShardSize($shardSize): static
     {
         $this->shardSize = $shardSize;
 
@@ -120,7 +121,7 @@ class GeoHashGridAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = [];
 
@@ -148,7 +149,7 @@ class GeoHashGridAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'geohash_grid';
     }

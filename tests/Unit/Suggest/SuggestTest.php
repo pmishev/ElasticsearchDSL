@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,17 +10,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Suggest;
 
 use ONGR\ElasticsearchDSL\Suggest\Suggest;
+use PHPUnit\Framework\TestCase;
 
-class SuggestTest extends \PHPUnit\Framework\TestCase
+final class SuggestTest extends TestCase
 {
     /**
      * Tests getType method.
      */
-    public function testSuggestGetType()
+    public function testSuggestGetType(): void
     {
         $suggest = new Suggest('foo', 'term', 'acme', 'bar');
         $this->assertEquals('term', $suggest->getType());
@@ -27,7 +29,7 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
     /**
      * Data provider for testToArray()
      */
-    public function getTestToArrayData()
+    public static function getTestToArrayData(): array
     {
         return [
             [
@@ -43,10 +45,10 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
                         'text' => 'bar',
                         'term' => [
                             'field' => 'acme',
-                            'size' => 5
-                        ]
-                    ]
-                ]
+                            'size'  => 5,
+                        ],
+                    ],
+                ],
             ],
             [
                 'suggest' => new Suggest(
@@ -58,13 +60,13 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
                 ),
                 'expected' => [
                     'foo' => [
-                        'text' => 'bar',
+                        'text'   => 'bar',
                         'phrase' => [
-                            'field' => 'acme',
+                            'field'      => 'acme',
                             'max_errors' => 0.5,
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ],
             [
                 'suggest' => new Suggest(
@@ -76,13 +78,13 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
                 ),
                 'expected' => [
                     'foo' => [
-                        'text' => 'bar',
+                        'text'       => 'bar',
                         'completion' => [
-                            'field' => 'acme',
-                            'fuzziness' => 2
-                        ]
-                    ]
-                ]
+                            'field'     => 'acme',
+                            'fuzziness' => 2,
+                        ],
+                    ],
+                ],
             ],
             [
                 'suggest' => new Suggest(
@@ -94,27 +96,24 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
                 ),
                 'expected' => [
                     'foo' => [
-                        'text' => 'bar',
+                        'text'       => 'bar',
                         'completion' => [
-                            'field' => 'acme',
-                            'size' => 3,
+                            'field'   => 'acme',
+                            'size'    => 3,
                             'context' => [
-                                'color' => 'red'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'color' => 'red',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 
     /**
-     * @param Suggest $suggest
-     * @param array $expected
-     *
      * @dataProvider getTestToArrayData()
      */
-    public function testToArray(Suggest $suggest, array $expected)
+    public function testToArray(Suggest $suggest, array $expected): void
     {
         $this->assertEquals($expected, $suggest->toArray());
     }

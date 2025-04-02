@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\InnerHit\NestedInnerHit;
@@ -22,19 +23,17 @@ class InnerHitsEndpoint extends AbstractSearchEndpoint
     /**
      * Endpoint name
      */
-    const NAME = 'inner_hits';
+    public const NAME = 'inner_hits';
 
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, string $format = null, array $context = [])
+    public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $output = [];
-        if (count($this->getAll()) > 0) {
-            /** @var NestedInnerHit $innerHit */
-            foreach ($this->getAll() as $innerHit) {
-                $output[$innerHit->getName()] = $innerHit->toArray();
-            }
+        /** @var NestedInnerHit $innerHit */
+        foreach ($this->getAll() as $innerHit) {
+            $output[$innerHit->getName()] = $innerHit->toArray();
         }
 
         return $output;

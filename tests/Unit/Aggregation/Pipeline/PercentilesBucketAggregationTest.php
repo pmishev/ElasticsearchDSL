@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,20 +10,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Pipeline;
 
 use ONGR\ElasticsearchDSL\Aggregation\Pipeline\PercentilesBucketAggregation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for percentiles bucket aggregation.
  */
-class PercentilesBucketAggregationTest extends \PHPUnit\Framework\TestCase
+final class PercentilesBucketAggregationTest extends TestCase
 {
     /**
      * Tests toArray method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $aggregation = new PercentilesBucketAggregation('acme', 'test');
         $aggregation->setPercents([25.0, 50.0, 75.0]);
@@ -29,7 +31,7 @@ class PercentilesBucketAggregationTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'percentiles_bucket' => [
                 'buckets_path' => 'test',
-                'percents' => [25.0, 50.0, 75.0],
+                'percents'     => [25.0, 50.0, 75.0],
             ],
         ];
 

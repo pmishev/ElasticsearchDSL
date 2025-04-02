@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,43 +10,36 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
 
 /**
  * Class representing Percentiles Bucket Pipeline Aggregation.
  *
- * @link https://goo.gl/bqi7m5
+ * @see https://goo.gl/bqi7m5
  */
 class PercentilesBucketAggregation extends AbstractPipelineAggregation
 {
-    /**
-     * @var array
-     */
-    private $percents;
+    private ?array $percents = null;
 
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'percentiles_bucket';
     }
 
     /**
-     * @return array
      */
-    public function getPercents()
+    public function getPercents(): ?array
     {
         return $this->percents;
     }
 
     /**
-     * @param array $percents
-     *
      * @return $this
      */
-    public function setPercents(array $percents)
+    public function setPercents(array $percents): static
     {
         $this->percents = $percents;
 
@@ -54,7 +49,7 @@ class PercentilesBucketAggregation extends AbstractPipelineAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = ['buckets_path' => $this->getBucketsPath()];
 

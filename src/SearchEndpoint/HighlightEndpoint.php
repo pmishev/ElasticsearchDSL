@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -22,25 +23,16 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * Endpoint name
      */
-    const NAME = 'highlight';
-
-    /**
-     * @var BuilderInterface
-     */
-    private $highlight;
-
-    /**
-     * @var string Key for highlight storing.
-     */
-    private $key;
+    public const NAME = 'highlight';
 
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, string $format = null, array $context = [])
+    public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        if ($this->highlight) {
-            return $this->highlight->toArray();
+        $highlight = current($this->container);
+        if ($highlight instanceof BuilderInterface) {
+            return $highlight->toArray();
         }
 
         return null;
@@ -49,29 +41,19 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function add(BuilderInterface $builder, $key = null)
+    public function add(BuilderInterface $builder, $key = null): string
     {
-        if ($this->highlight) {
+        if ($this->container !== []) {
             throw new \OverflowException('Only one highlight can be set');
         }
 
-        $this->key = $key;
-        $this->highlight = $builder;
+        return parent::add($builder, $key);
     }
 
     /**
-     * {@inheritdoc}
      */
-    public function getAll($boolType = null)
+    public function getHighlight(): ?BuilderInterface
     {
-        return [$this->key => $this->highlight];
-    }
-
-    /**
-     * @return BuilderInterface
-     */
-    public function getHighlight()
-    {
-        return $this->highlight;
+        return current($this->container);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing GlobalAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-global-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-global-aggregation.html
  */
 class GlobalAggregation extends AbstractAggregation
 {
@@ -26,7 +27,7 @@ class GlobalAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function setField($field)
+    public function setField($field): never
     {
         throw new \LogicException("Global aggregation, doesn't support `field` parameter");
     }
@@ -34,7 +35,7 @@ class GlobalAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'global';
     }
@@ -42,7 +43,7 @@ class GlobalAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): \stdClass
     {
         return new \stdClass();
     }

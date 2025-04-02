@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Specialized;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "template" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-template-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-template-query.html
  */
 class TemplateQuery implements BuilderInterface
 {
@@ -39,7 +40,7 @@ class TemplateQuery implements BuilderInterface
     private $params;
 
     /**
-     * @param string $file A template of the query
+     * @param string $file   A template of the query
      * @param string $inline A template of the query
      * @param array  $params Parameters to insert into template
      */
@@ -60,10 +61,8 @@ class TemplateQuery implements BuilderInterface
 
     /**
      * @param string $file
-     *
-     * @return $this;
      */
-    public function setFile($file)
+    public function setFile($file): static
     {
         $this->file = $file;
 
@@ -83,7 +82,7 @@ class TemplateQuery implements BuilderInterface
      *
      * @return $this
      */
-    public function setInline($inline)
+    public function setInline($inline): static
     {
         $this->inline = $inline;
 
@@ -103,7 +102,7 @@ class TemplateQuery implements BuilderInterface
      *
      * @return $this
      */
-    public function setParams($params)
+    public function setParams($params): static
     {
         $this->params = $params;
 
@@ -113,7 +112,7 @@ class TemplateQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'template';
     }
@@ -121,20 +120,18 @@ class TemplateQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = array_filter(
             [
-                'file' => $this->getFile(),
+                'file'   => $this->getFile(),
                 'inline' => $this->getInline(),
                 'params' => $this->getParams(),
             ]
         );
 
         if (!isset($output['file']) && !isset($output['inline'])) {
-            throw new \InvalidArgumentException(
-                'Template query requires that either `inline` or `file` parameters are set'
-            );
+            throw new \InvalidArgumentException('Template query requires that either `inline` or `file` parameters are set');
         }
 
         $output = $this->processArray($output);

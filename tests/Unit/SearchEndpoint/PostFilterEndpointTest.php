@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,29 +10,30 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
 use ONGR\ElasticsearchDSL\SearchEndpoint\PostFilterEndpoint;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Class PostFilterEndpointTest.
  */
-class PostFilterEndpointTest extends \PHPUnit\Framework\TestCase
+final class PostFilterEndpointTest extends TestCase
 {
     /**
      * Tests constructor.
      */
-    public function testItCanBeInstantiated()
+    public function testItCanBeInstantiated(): void
     {
-        $this->assertInstanceOf('ONGR\ElasticsearchDSL\SearchEndpoint\PostFilterEndpoint', new PostFilterEndpoint());
+        $this->assertInstanceOf(PostFilterEndpoint::class, new PostFilterEndpoint());
     }
 
     /**
      * Tests if correct order is returned. It's very important that filters must be executed second.
      */
-    public function testGetOrder()
+    public function testGetOrder(): void
     {
         $instance = new PostFilterEndpoint();
         $this->assertEquals(1, $instance->getOrder());
@@ -39,11 +42,11 @@ class PostFilterEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Test normalization.
      */
-    public function testNormalization()
+    public function testNormalization(): void
     {
         $instance = new PostFilterEndpoint();
         $normalizerInterface = $this->getMockForAbstractClass(
-            'Symfony\Component\Serializer\Normalizer\NormalizerInterface'
+            NormalizerInterface::class
         );
         $this->assertNull($instance->normalize($normalizerInterface));
 
@@ -59,7 +62,7 @@ class PostFilterEndpointTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if endpoint returns builders.
      */
-    public function testEndpointGetter()
+    public function testEndpointGetter(): void
     {
         $filterName = 'acme_post_filter';
         $filter = new MatchAllQuery();

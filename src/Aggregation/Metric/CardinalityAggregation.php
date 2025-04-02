@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,7 +19,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Difference values counter.
  *
- * @link http://goo.gl/tG7ciG
+ * @see http://goo.gl/tG7ciG
  */
 class CardinalityAggregation extends AbstractAggregation
 {
@@ -37,19 +38,18 @@ class CardinalityAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
-                'field' => $this->getField(),
-                'script' => $this->getScript(),
+                'field'               => $this->getField(),
+                'script'              => $this->getScript(),
                 'precision_threshold' => $this->getPrecisionThreshold(),
-                'rehash' => $this->isRehash(),
+                'rehash'              => $this->isRehash(),
             ],
-            function ($val) {
-                return ($val || is_bool($val));
-            }
+            fn ($val): bool => $val || is_bool($val)
         );
 
         $this->checkRequiredFields($out);
@@ -62,7 +62,7 @@ class CardinalityAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setPrecisionThreshold($precision)
+    public function setPrecisionThreshold($precision): static
     {
         $this->precisionThreshold = $precision;
 
@@ -90,7 +90,7 @@ class CardinalityAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setRehash($rehash)
+    public function setRehash($rehash): static
     {
         $this->rehash = $rehash;
 
@@ -100,7 +100,7 @@ class CardinalityAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'cardinality';
     }
@@ -108,11 +108,10 @@ class CardinalityAggregation extends AbstractAggregation
     /**
      * Checks if required fields are set.
      *
-     * @param array $fields
      *
      * @throws \LogicException
      */
-    private function checkRequiredFields($fields)
+    private function checkRequiredFields(array $fields): void
     {
         if (!array_key_exists('field', $fields) && !array_key_exists('script', $fields)) {
             throw new \LogicException('Cardinality aggregation must have field or script set.');

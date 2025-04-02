@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,17 +10,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Type\MetricTrait;
-use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 
 /**
  * Class representing StatsAggregation.
  *
- * @link http://goo.gl/JbQsI3
+ * @see http://goo.gl/JbQsI3
  */
 class ScriptedMetricAggregation extends AbstractAggregation
 {
@@ -43,22 +43,23 @@ class ScriptedMetricAggregation extends AbstractAggregation
      * @var mixed
      */
     private $reduceScript;
+
     /**
      * ScriptedMetricAggregation constructor.
+     *
      * @param string $name
-     * @param mixed $initScript
-     * @param mixed $mapScript
-     * @param mixed $combineScript
-     * @param mixed $reduceScript
+     * @param mixed  $initScript
+     * @param mixed  $mapScript
+     * @param mixed  $combineScript
+     * @param mixed  $reduceScript
      */
     public function __construct(
         $name,
         $initScript = null,
         $mapScript = null,
         $combineScript = null,
-        $reduceScript = null
+        $reduceScript = null,
     ) {
-    
         parent::__construct($name);
 
         $this->setInitScript($initScript);
@@ -70,7 +71,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'scripted_metric';
     }
@@ -88,7 +89,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setInitScript($initScript)
+    public function setInitScript($initScript): static
     {
         $this->initScript = $initScript;
 
@@ -108,7 +109,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setMapScript($mapScript)
+    public function setMapScript($mapScript): static
     {
         $this->mapScript = $mapScript;
 
@@ -128,7 +129,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setCombineScript($combineScript)
+    public function setCombineScript($combineScript): static
     {
         $this->combineScript = $combineScript;
 
@@ -148,7 +149,7 @@ class ScriptedMetricAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setReduceScript($reduceScript)
+    public function setReduceScript($reduceScript): static
     {
         $this->reduceScript = $reduceScript;
 
@@ -157,18 +158,17 @@ class ScriptedMetricAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
-        $out = array_filter(
+        return array_filter(
             [
-                'init_script' => $this->getInitScript(),
-                'map_script' => $this->getMapScript(),
+                'init_script'    => $this->getInitScript(),
+                'map_script'     => $this->getMapScript(),
                 'combine_script' => $this->getCombineScript(),
-                'reduce_script' => $this->getReduceScript(),
+                'reduce_script'  => $this->getReduceScript(),
             ]
         );
-
-        return $out;
     }
 }

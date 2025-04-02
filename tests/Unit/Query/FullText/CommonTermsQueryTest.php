@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,23 +10,23 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\FullText;
 
 use ONGR\ElasticsearchDSL\Query\FullText\CommonTermsQuery;
+use PHPUnit\Framework\TestCase;
 
-class CommonTermsQueryTest extends \PHPUnit\Framework\TestCase
+final class CommonTermsQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $query = new CommonTermsQuery('body', 'this is bonsai cool', ['cutoff_frequency' => 0.01]);
         $expected = [
             'common' => [
                 'body' => [
-                    'query' => 'this is bonsai cool',
+                    'query'            => 'this is bonsai cool',
                     'cutoff_frequency' => 0.01,
                 ],
             ],
