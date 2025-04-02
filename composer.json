@@ -1,10 +1,14 @@
 {
-    "name": "ongr/elasticsearch-dsl",
+    "name": "pmishev/elasticsearch-dsl-php",
     "description": "Elasticsearch DSL library",
     "type": "library",
-    "homepage": "http://ongr.io",
+    "homepage": "https://github.com/pmishev/elasticsearch-dsl-php",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Plamen Mishev",
+            "homepage": "https://github.com/pmishev"
+        },
         {
             "name": "ONGR team",
             "homepage": "http://www.ongr.io"
