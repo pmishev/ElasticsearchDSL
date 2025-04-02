@@ -12,8 +12,6 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-    // uncomment to reach your current PHP version
-    // ->withPhpSets()
     ->withPHPStanConfigs([__DIR__.'/phpstan.dist.neon'])
     ->withPreparedSets(deadCode: true, codeQuality: true, typeDeclarations: true, instanceOf: true, rectorPreset: true)
     ->withPhpVersion(PhpVersion::PHP_81)
