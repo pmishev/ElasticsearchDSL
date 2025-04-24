@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\SearchEndpoint;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -24,22 +25,16 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * Endpoint name
      */
-    const NAME = 'query';
+    public const NAME = 'query';
 
-    /**
-     * @var BoolQuery
-     */
-    private $bool;
+    private ?BoolQuery $bool = null;
 
-    /**
-     * @var bool
-     */
-    private $filtersSet = false;
+    private bool $filtersSet = false;
 
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, string $format = null, array $context = [])
+    public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         if (!$this->filtersSet && $this->hasReference('filter_query')) {
             /** @var BuilderInterface $filter */
@@ -48,7 +43,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
             $this->filtersSet = true;
         }
 
-        if (!$this->bool) {
+        if (!$this->bool instanceof BoolQuery) {
             return null;
         }
 
@@ -58,7 +53,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * {@inheritdoc}
      */
-    public function add(BuilderInterface $builder, $key = null)
+    public function add(BuilderInterface $builder, $key = null): string
     {
         return $this->addToBool($builder, BoolQuery::MUST, $key);
     }
@@ -66,9 +61,9 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * {@inheritdoc}
      */
-    public function addToBool(BuilderInterface $builder, $boolType = null, $key = null)
+    public function addToBool(BuilderInterface $builder, $boolType = null, $key = null): string
     {
-        if (!$this->bool) {
+        if (!$this->bool instanceof BoolQuery) {
             $this->bool = new BoolQuery();
         }
 
@@ -78,15 +73,14 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * {@inheritdoc}
      */
-    public function getOrder()
+    public function getOrder(): int
     {
         return 2;
     }
 
     /**
-     * @return BoolQuery
      */
-    public function getBool()
+    public function getBool(): ?BoolQuery
     {
         return $this->bool;
     }
@@ -94,7 +88,7 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * {@inheritdoc}
      */
-    public function getAll($boolType = null)
+    public function getAll($boolType = null): array
     {
         return $this->bool->getQueries($boolType);
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL;
 
 /**
@@ -26,9 +27,8 @@ trait ParametersTrait
      *
      * @param string $name
      *
-     * @return bool
      */
-    public function hasParameter($name)
+    public function hasParameter($name): bool
     {
         return isset($this->parameters[$name]);
     }
@@ -37,6 +37,7 @@ trait ParametersTrait
      * Removes parameter.
      *
      * @param string $name
+     *
      * @return $this
      */
     public function removeParameter($name)
@@ -71,8 +72,9 @@ trait ParametersTrait
     }
 
     /**
-     * @param string                 $name
+     * @param string                                $name
      * @param array|string|int|float|bool|\stdClass $value
+     *
      * @return $this
      */
     public function addParameter($name, $value)
@@ -83,8 +85,6 @@ trait ParametersTrait
     }
 
     /**
-     * @param array $parameters
-     *
      * @return $this
      */
     public function setParameters(array $parameters)
@@ -97,11 +97,8 @@ trait ParametersTrait
     /**
      * Returns given array merged with parameters.
      *
-     * @param array $array
-     *
-     * @return array
      */
-    protected function processArray(array $array = [])
+    protected function processArray(array $array = []): array
     {
         return array_merge($array, $this->parameters);
     }

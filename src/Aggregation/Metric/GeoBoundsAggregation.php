@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\MetricTrait;
 /**
  * Class representing geo bounds aggregation.
  *
- * @link http://goo.gl/aGqw7Y
+ * @see http://goo.gl/aGqw7Y
  */
 class GeoBoundsAggregation extends AbstractAggregation
 {
@@ -56,7 +57,7 @@ class GeoBoundsAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setWrapLongitude($wrapLongitude)
+    public function setWrapLongitude($wrapLongitude): static
     {
         $this->wrapLongitude = $wrapLongitude;
 
@@ -66,7 +67,7 @@ class GeoBoundsAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
         $data = [];
         if ($this->getField()) {
@@ -83,7 +84,7 @@ class GeoBoundsAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'geo_bounds';
     }

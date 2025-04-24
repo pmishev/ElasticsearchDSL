@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,7 +19,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Class representing PercentilesAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-aggregation.html
  */
 class PercentilesAggregation extends AbstractAggregation
 {
@@ -67,7 +68,7 @@ class PercentilesAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setPercents($percents)
+    public function setPercents($percents): static
     {
         $this->percents = $percents;
 
@@ -87,7 +88,7 @@ class PercentilesAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setCompression($compression)
+    public function setCompression($compression): static
     {
         $this->compression = $compression;
 
@@ -97,26 +98,25 @@ class PercentilesAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'percentiles';
     }
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
                 'compression' => $this->getCompression(),
-                'percents' => $this->getPercents(),
-                'field' => $this->getField(),
-                'script' => $this->getScript(),
+                'percents'    => $this->getPercents(),
+                'field'       => $this->getField(),
+                'script'      => $this->getScript(),
             ],
-            function ($val) {
-                return ($val || is_numeric($val));
-            }
+            fn ($val): bool => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);
@@ -125,11 +125,10 @@ class PercentilesAggregation extends AbstractAggregation
     }
 
     /**
-     * @param array $a
      *
      * @throws \LogicException
      */
-    private function isRequiredParametersSet($a)
+    private function isRequiredParametersSet(array $a): void
     {
         if (!array_key_exists('field', $a) && !array_key_exists('script', $a)) {
             throw new \LogicException('Percentiles aggregation must have field or script set.');

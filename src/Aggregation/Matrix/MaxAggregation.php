@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Matrix;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,7 +18,7 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\MetricTrait;
 /**
  * Class representing Max Aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-max-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-max-aggregation.html
  */
 class MaxAggregation extends AbstractAggregation
 {
@@ -29,25 +30,19 @@ class MaxAggregation extends AbstractAggregation
     private $mode;
 
     /**
-     * @var array Defines how documents that are missing a value should be treated.
-     */
-    private $missing;
-
-    /**
      * Inner aggregations container init.
      *
-     * @param string $name
-     * @param string|array $field Fields list to aggregate.
-     * @param array $missing
-     * @param string $mode
+     * @param string       $name
+     * @param string|array $field   Fields list to aggregate.
+     * @param array        $missing Defines how documents that are missing a value should be treated.
+     * @param string       $mode
      */
-    public function __construct($name, $field, $missing = null, $mode = null)
+    public function __construct($name, $field, private $missing = null, $mode = null)
     {
         parent::__construct($name);
 
         $this->setField($field);
         $this->setMode($mode);
-        $this->missing = $missing;
     }
 
     /**
@@ -63,7 +58,7 @@ class MaxAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setMode($mode)
+    public function setMode($mode): static
     {
         $this->mode = $mode;
 
@@ -83,7 +78,7 @@ class MaxAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setMissing($missing)
+    public function setMissing($missing): static
     {
         $this->missing = $missing;
 
@@ -93,12 +88,15 @@ class MaxAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'matrix_stats';
     }
 
-    protected function getArray()
+    /**
+     * @return mixed[]
+     */
+    protected function getArray(): array
     {
         $out = [];
         if ($this->getField()) {
@@ -108,7 +106,6 @@ class MaxAggregation extends AbstractAggregation
         if ($this->getMode()) {
             $out['mode'] = $this->getMode();
         }
-
 
         if ($this->getMissing()) {
             $out['missing'] = $this->getMissing();

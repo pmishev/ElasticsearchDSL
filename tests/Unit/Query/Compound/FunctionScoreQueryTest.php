@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,30 +10,30 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Compound;
 
+use ONGR\ElasticsearchDSL\BuilderInterface;
 use ONGR\ElasticsearchDSL\Query\Compound\FunctionScoreQuery;
 use ONGR\ElasticsearchDSL\Query\MatchAllQuery;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for FunctionScoreQuery.
  */
-class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
+final class FunctionScoreQueryTest extends TestCase
 {
     /**
      * Data provider for testAddRandomFunction.
      *
-     * @return array
      */
-    public function addRandomFunctionProvider()
+    public static function addRandomFunctionProvider(): array
     {
         return [
             // Case #0. No seed.
             [
-                'seed' => null,
+                'seed'          => null,
                 'expectedArray' => [
-                    'query' => null,
+                    'query'     => [],
                     'functions' => [
                         [
                             'random_score' => new \stdClass(),
@@ -41,12 +43,12 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
             ],
             // Case #1. With seed.
             [
-                'seed' => 'someSeed',
+                'seed'          => 'someSeed',
                 'expectedArray' => [
-                    'query' => null,
+                    'query'     => [],
                     'functions' => [
                         [
-                            'random_score' => [ 'seed' => 'someSeed'],
+                            'random_score' => ['seed' => 'someSeed'],
                         ],
                     ],
                 ],
@@ -57,12 +59,9 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests addRandomFunction method.
      *
-     * @param mixed $seed
-     * @param array $expectedArray
-     *
      * @dataProvider addRandomFunctionProvider
      */
-    public function testAddRandomFunction($seed, $expectedArray)
+    public function testAddRandomFunction(?string $seed, array $expectedArray): void
     {
         $matchAllQuery = $this->getMockBuilder(MatchAllQuery::class)->getMock();
 
@@ -75,28 +74,28 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests default argument values.
      */
-    public function testAddFieldValueFactorFunction()
+    public function testAddFieldValueFactorFunction(): void
     {
-        $builderInterface = $this->getMockForAbstractClass('ONGR\ElasticsearchDSL\BuilderInterface');
+        $builderInterface = $this->getMockForAbstractClass(BuilderInterface::class);
         $functionScoreQuery = new FunctionScoreQuery($builderInterface);
         $functionScoreQuery->addFieldValueFactorFunction('field1', 2);
         $functionScoreQuery->addFieldValueFactorFunction('field2', 1.5, 'ln');
 
         $this->assertEquals(
             [
-                'query' => null,
+                'query'     => null,
                 'functions' => [
                     [
                         'field_value_factor' => [
-                            'field' => 'field1',
-                            'factor' => 2,
+                            'field'    => 'field1',
+                            'factor'   => 2,
                             'modifier' => 'none',
                         ],
                     ],
                     [
                         'field_value_factor' => [
-                            'field' => 'field2',
-                            'factor' => 1.5,
+                            'field'    => 'field2',
+                            'factor'   => 1.5,
                             'modifier' => 'ln',
                         ],
                     ],

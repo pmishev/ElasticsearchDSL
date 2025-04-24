@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -17,16 +18,13 @@ use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
 /**
  * Class representing ip range aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-iprange-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-iprange-aggregation.html
  */
 class Ipv4RangeAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
     /**
      * Inner aggregations container init.
@@ -42,8 +40,8 @@ class Ipv4RangeAggregation extends AbstractAggregation
         $this->setField($field);
         foreach ($ranges as $range) {
             if (is_array($range)) {
-                $from = isset($range['from']) ? $range['from'] : null;
-                $to = isset($range['to']) ? $range['to'] : null;
+                $from = $range['from'] ?? null;
+                $to = $range['to'] ?? null;
                 $this->addRange($from, $to);
             } else {
                 $this->addMask($range);
@@ -56,19 +54,15 @@ class Ipv4RangeAggregation extends AbstractAggregation
      *
      * @param string|null $from
      * @param string|null $to
-     *
-     * @return Ipv4RangeAggregation
      */
-    public function addRange($from = null, $to = null)
+    public function addRange($from = null, $to = null): static
     {
         $range = array_filter(
             [
                 'from' => $from,
-                'to' => $to,
+                'to'   => $to,
             ],
-            function ($v) {
-                return !is_null($v);
-            }
+            fn ($v): bool => !is_null($v)
         );
 
         $this->ranges[] = $range;
@@ -80,10 +74,8 @@ class Ipv4RangeAggregation extends AbstractAggregation
      * Add ip mask to aggregation.
      *
      * @param string $mask
-     *
-     * @return Ipv4RangeAggregation
      */
-    public function addMask($mask)
+    public function addMask($mask): static
     {
         $this->ranges[] = ['mask' => $mask];
 
@@ -93,7 +85,7 @@ class Ipv4RangeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'ip_range';
     }
@@ -101,11 +93,11 @@ class Ipv4RangeAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getArray()
+    public function getArray(): array
     {
-        if ($this->getField() && !empty($this->ranges)) {
+        if ($this->getField() && $this->ranges !== []) {
             return [
-                'field' => $this->getField(),
+                'field'  => $this->getField(),
                 'ranges' => array_values($this->ranges),
             ];
         }

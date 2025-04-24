@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,69 +10,60 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Type\MetricTrait;
-use ONGR\ElasticsearchDSL\BuilderInterface;
+use ONGR\ElasticsearchDSL\Sort\FieldSort;
 
 /**
  * Top hits aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-top-hits-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-top-hits-aggregation.html
  */
 class TopHitsAggregation extends AbstractAggregation
 {
     use MetricTrait;
 
     /**
-     * @var int Number of top matching hits to return per bucket.
+     * Number of top matching hits to return per bucket.
      */
-    private $size;
+    private ?int $size;
 
     /**
-     * @var int The offset from the first result you want to fetch.
+     * The offset from the first result you want to fetch.
      */
-    private $from;
+    private ?int $from;
 
     /**
-     * @var BuilderInterface[] How the top matching hits should be sorted.
+     * @var FieldSort[] How the top matching hits should be sorted.
      */
-    private $sorts = [];
+    private array $sorts = [];
 
     /**
      * Constructor for top hits.
      *
      * @param string                $name Aggregation name.
-     * @param null|int              $size Number of top matching hits to return per bucket.
-     * @param null|int              $from The offset from the first result you want to fetch.
-     * @param null|BuilderInterface $sort How the top matching hits should be sorted.
+     * @param int|null              $size Number of top matching hits to return per bucket.
+     * @param int|null              $from The offset from the first result you want to fetch.
+     * @param FieldSort|null $sort How the top matching hits should be sorted.
      */
-    public function __construct($name, $size = null, $from = null, $sort = null)
+    public function __construct($name, int $size = null, int $from = null, FieldSort $sort = null)
     {
         parent::__construct($name);
         $this->setFrom($from);
         $this->setSize($size);
-        $this->addSort($sort);
+        if ($sort instanceof FieldSort) {
+            $this->addSort($sort);
+        }
     }
 
-    /**
-     * Return from.
-     *
-     * @return int
-     */
-    public function getFrom()
+    public function getFrom(): ?int
     {
         return $this->from;
     }
 
-    /**
-     * @param int $from
-     *
-     * @return $this
-     */
-    public function setFrom($from)
+    public function setFrom(?int $from): static
     {
         $this->from = $from;
 
@@ -78,73 +71,52 @@ class TopHitsAggregation extends AbstractAggregation
     }
 
     /**
-     * @return BuilderInterface[]
+     * @return FieldSort[]
      */
-    public function getSorts()
+    public function getSorts(): array
     {
         return $this->sorts;
     }
 
     /**
-     * @param BuilderInterface[] $sorts
+     * @param FieldSort[] $sorts
      *
      * @return $this
      */
-    public function setSorts(array $sorts)
+    public function setSorts(array $sorts): static
     {
         $this->sorts = $sorts;
 
         return $this;
     }
 
-    /**
-     * Add sort.
-     *
-     * @param BuilderInterface $sort
-     */
-    public function addSort($sort)
+    public function addSort(FieldSort $sort): void
     {
         $this->sorts[] = $sort;
     }
 
-    /**
-     * @param int $size
-     *
-     * @return $this
-     */
-    public function setSize($size)
+    public function setSize(?int $size): static
     {
         $this->size = $size;
 
         return $this;
     }
 
-    /**
-     * Return size.
-     *
-     * @return int
-     */
-    public function getSize()
+    public function getSize(): ?int
     {
         return $this->size;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getType()
+    public function getType(): string
     {
         return 'top_hits';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getArray()
+    public function getArray(): array|\stdClass
     {
         $sortsOutput = [];
         $addedSorts = array_filter($this->getSorts());
-        if ($addedSorts) {
+        if ($addedSorts !== []) {
             foreach ($addedSorts as $sort) {
                 $sortsOutput[] = $sort->toArray();
             }
@@ -158,40 +130,9 @@ class TopHitsAggregation extends AbstractAggregation
                 'size' => $this->getSize(),
                 'from' => $this->getFrom(),
             ],
-            function ($val) {
-                return (($val || is_array($val) || ($val || is_numeric($val))));
-            }
+            fn (array|int|null $val): bool => $val !== null
         );
 
-        return empty($output) ? new \stdClass() : $output;
-    }
-
-    /**
-     * @deprecated sorts now is a container, use `getSorts()`instead.
-     * Return sort.
-     *
-     * @return BuilderInterface
-     */
-    public function getSort()
-    {
-        if (isset($this->sorts[0])) {
-            return $this->sorts[0];
-        }
-
-        return null;
-    }
-
-    /**
-     * @deprecated sorts now is a container, use `addSort()`instead.
-     *
-     * @param BuilderInterface $sort
-     *
-     * @return $this
-     */
-    public function setSort(BuilderInterface $sort)
-    {
-        $this->sort = $sort;
-
-        return $this;
+        return $output === [] ? new \stdClass() : $output;
     }
 }

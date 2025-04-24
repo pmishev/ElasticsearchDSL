@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,21 +10,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\SamplerAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\TermsAggregation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for children aggregation.
  */
-class SamplerAggregationTest extends \PHPUnit\Framework\TestCase
+final class SamplerAggregationTest extends TestCase
 {
     /**
      * Tests getType method.
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $aggregation = new SamplerAggregation('foo');
         $result = $aggregation->getType();
@@ -32,7 +34,7 @@ class SamplerAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests toArray method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $termAggregation = new TermsAggregation('acme');
 
@@ -43,7 +45,7 @@ class SamplerAggregationTest extends \PHPUnit\Framework\TestCase
         $result = $aggregation->toArray();
         $expected = [
             'sampler' => [
-                'field' => 'name',
+                'field'      => 'name',
                 'shard_size' => 200,
             ],
             'aggregations' => [
@@ -56,7 +58,7 @@ class SamplerAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests getArray method without provided shard size.
      */
-    public function testGetArrayNoShardSize()
+    public function testGetArrayNoShardSize(): void
     {
         $aggregation = new SamplerAggregation('foo', 'bar');
         $this->assertEquals(['field' => 'bar'], $aggregation->getArray());

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Metric;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
@@ -18,7 +19,7 @@ use ONGR\ElasticsearchDSL\ScriptAwareTrait;
 /**
  * Class representing Percentile Ranks Aggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-rank-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-rank-aggregation.html
  */
 class PercentileRanksAggregation extends AbstractAggregation
 {
@@ -67,7 +68,7 @@ class PercentileRanksAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setValues($values)
+    public function setValues($values): static
     {
         $this->values = $values;
 
@@ -87,7 +88,7 @@ class PercentileRanksAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setCompression($compression)
+    public function setCompression($compression): static
     {
         $this->compression = $compression;
 
@@ -97,26 +98,25 @@ class PercentileRanksAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'percentile_ranks';
     }
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
         $out = array_filter(
             [
-                'field' => $this->getField(),
-                'script' => $this->getScript(),
-                'values' => $this->getValues(),
+                'field'       => $this->getField(),
+                'script'      => $this->getScript(),
+                'values'      => $this->getValues(),
                 'compression' => $this->getCompression(),
             ],
-            function ($val) {
-                return ($val || is_numeric($val));
-            }
+            fn ($val): bool => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);
@@ -125,12 +125,11 @@ class PercentileRanksAggregation extends AbstractAggregation
     }
 
     /**
-     * @param array $a
      *
-     * @return bool
+     *
      * @throws \LogicException
      */
-    private function isRequiredParametersSet($a)
+    private function isRequiredParametersSet(array $a): bool
     {
         if (array_key_exists('field', $a) && array_key_exists('values', $a)
             || (array_key_exists('script', $a) && array_key_exists('values', $a))

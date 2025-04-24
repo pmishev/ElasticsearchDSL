@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,17 +10,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Type\BucketingTrait;
-use ONGR\ElasticsearchDSL\BuilderInterface;
 
 /**
  * Class representing AutoDateHistogramAggregation.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-autodatehistogram-aggregation.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-autodatehistogram-aggregation.html
  */
 class AutoDateHistogramAggregation extends AbstractAggregation
 {
@@ -49,22 +49,21 @@ class AutoDateHistogramAggregation extends AbstractAggregation
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function getArray()
+    public function getArray(): array
     {
-        $data = array_filter(
+        return array_filter(
             [
                 'field' => $this->getField(),
             ]
         );
-
-        return $data;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'auto_date_histogram';
     }

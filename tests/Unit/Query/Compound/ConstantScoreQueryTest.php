@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,19 +10,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Compound;
 
+use ONGR\ElasticsearchDSL\BuilderInterface;
 use ONGR\ElasticsearchDSL\Query\Compound\ConstantScoreQuery;
+use PHPUnit\Framework\TestCase;
 
-class ConstantScoreQueryTest extends \PHPUnit\Framework\TestCase
+final class ConstantScoreQueryTest extends TestCase
 {
     /**
      * Tests toArray().
      */
-    public function testToArray()
+    public function testToArray(): void
     {
-        $mock = $this->getMockBuilder('ONGR\ElasticsearchDSL\BuilderInterface')->getMock();
+        $mock = $this->getMockBuilder(BuilderInterface::class)->getMock();
         $mock
             ->expects($this->any())
             ->method('toArray')
@@ -30,7 +33,7 @@ class ConstantScoreQueryTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'constant_score' => [
                 'filter' => [
-                    'term' => ['foo' => 'bar']
+                    'term' => ['foo' => 'bar'],
                 ],
                 'boost' => 1.2,
             ],

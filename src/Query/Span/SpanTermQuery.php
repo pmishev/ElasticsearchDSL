@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Span;
 
 use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
@@ -16,14 +17,14 @@ use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
 /**
  * Elasticsearch span_term query class.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-term-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-term-query.html
  */
 class SpanTermQuery extends TermQuery implements SpanQueryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'span_term';
     }

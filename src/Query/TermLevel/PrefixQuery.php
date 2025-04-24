@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\TermLevel;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,38 +18,26 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "prefix" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html
  */
 class PrefixQuery implements BuilderInterface
 {
     use ParametersTrait;
 
     /**
-     * @var string
-     */
-    protected $field;
-
-    /**
-     * @var string
-     */
-    protected $value;
-
-    /**
      * @param string $field      Field name.
      * @param string $value      Value.
      * @param array  $parameters Optional parameters.
      */
-    public function __construct($field, $value, array $parameters = [])
+    public function __construct(protected $field, protected $value, array $parameters = [])
     {
-        $this->field = $field;
-        $this->value = $value;
         $this->setParameters($parameters);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'prefix';
     }
@@ -56,7 +45,7 @@ class PrefixQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $query = [
             'value' => $this->value,

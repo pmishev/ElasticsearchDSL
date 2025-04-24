@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Span;
 
 use ONGR\ElasticsearchDSL\ParametersTrait;
@@ -16,7 +17,7 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Elasticsearch span within query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-field-masking-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-span-field-masking-query.html
  */
 class FieldMaskingSpanQuery implements SpanQueryInterface
 {
@@ -33,8 +34,7 @@ class FieldMaskingSpanQuery implements SpanQueryInterface
     private $field;
 
     /**
-     * @param string             $field
-     * @param SpanQueryInterface $query
+     * @param string $field
      */
     public function __construct($field, SpanQueryInterface $query)
     {
@@ -55,7 +55,7 @@ class FieldMaskingSpanQuery implements SpanQueryInterface
      *
      * @return $this
      */
-    public function setQuery($query)
+    public function setQuery($query): static
     {
         $this->query = $query;
 
@@ -75,7 +75,7 @@ class FieldMaskingSpanQuery implements SpanQueryInterface
      *
      * @return $this
      */
-    public function setField($field)
+    public function setField($field): static
     {
         $this->field = $field;
 
@@ -85,7 +85,7 @@ class FieldMaskingSpanQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = [
             'query' => $this->getQuery()->toArray(),
@@ -100,7 +100,7 @@ class FieldMaskingSpanQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'field_masking_span';
     }

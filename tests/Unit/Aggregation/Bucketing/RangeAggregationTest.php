@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,17 +10,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\RangeAggregation;
+use PHPUnit\Framework\TestCase;
 
-class RangeAggregationTest extends \PHPUnit\Framework\TestCase
+final class RangeAggregationTest extends TestCase
 {
     /**
      * Test addRange method.
      */
-    public function testRangeAggregationAddRange()
+    public function testRangeAggregationAddRange(): void
     {
         $aggregation = new RangeAggregation('test_agg');
         $aggregation->setField('test_field');
@@ -26,11 +28,11 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'range' => [
-                'field' => 'test_field',
+                'field'  => 'test_field',
                 'ranges' => [
                     [
                         'from' => '10',
-                        'to' => 20,
+                        'to'   => 20,
                     ],
                 ],
                 'keyed' => false,
@@ -43,7 +45,7 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test addRange method with multiple values.
      */
-    public function testRangeAggregationAddRangeMultiple()
+    public function testRangeAggregationAddRangeMultiple(): void
     {
         $aggregation = new RangeAggregation('test_agg');
         $aggregation->setField('test_field');
@@ -53,14 +55,14 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'range' => [
-                'field' => 'test_field',
+                'field'  => 'test_field',
                 'ranges' => [
                     [
                         'from' => '10',
-                        'key' => 'range_1',
+                        'key'  => 'range_1',
                     ],
                     [
-                        'to' => '20',
+                        'to'  => '20',
                         'key' => 'range_2',
                     ],
                 ],
@@ -74,7 +76,7 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test addRange method with nested values.
      */
-    public function testRangeAggregationAddRangeNested()
+    public function testRangeAggregationAddRangeNested(): void
     {
         $aggregation = new RangeAggregation('test_agg');
         $aggregation->setField('test_field');
@@ -87,11 +89,11 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
 
         $result = [
             'range' => [
-                'field' => 'test_field',
+                'field'  => 'test_field',
                 'ranges' => [
                     [
                         'from' => '10',
-                        'to' => '10',
+                        'to'   => '10',
                     ],
                 ],
                 'keyed' => false,
@@ -102,7 +104,7 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
                         'ranges' => [
                             [
                                 'from' => '20',
-                                'to' => '20',
+                                'to'   => '20',
                             ],
                         ],
                         'keyed' => false,
@@ -117,7 +119,7 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests getType method.
      */
-    public function testRangeAggregationGetType()
+    public function testRangeAggregationGetType(): void
     {
         $agg = new RangeAggregation('foo');
         $result = $agg->getType();
@@ -127,7 +129,7 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests removeRangeByKey method.
      */
-    public function testRangeAggregationRemoveRangeByKey()
+    public function testRangeAggregationRemoveRangeByKey(): void
     {
         $aggregation = new RangeAggregation('foo');
         $aggregation->setField('price');
@@ -135,13 +137,13 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
         $aggregation->addRange(100, 300, 'name');
 
         $expected = [
-            'field' => 'price',
-            'keyed' => true,
+            'field'  => 'price',
+            'keyed'  => true,
             'ranges' => [
                 [
                     'from' => 100,
-                    'to' => 300,
-                    'key' => 'name',
+                    'to'   => 300,
+                    'key'  => 'name',
                 ],
             ],
         ];
@@ -167,7 +169,7 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests removeRange method.
      */
-    public function testRangeAggregationRemoveRange()
+    public function testRangeAggregationRemoveRange(): void
     {
         $aggregation = new RangeAggregation('foo');
         $aggregation->setField('price');
@@ -176,13 +178,13 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
         $aggregation->addRange(500, 700, 'range_2');
 
         $expected = [
-            'field' => 'price',
-            'keyed' => true,
+            'field'  => 'price',
+            'keyed'  => true,
             'ranges' => [
                 [
                     'from' => 100,
-                    'to' => 300,
-                    'key' => 'key',
+                    'to'   => 300,
+                    'key'  => 'key',
                 ],
             ],
         ];
@@ -197,17 +199,17 @@ class RangeAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if parameter can be passed to constructor.
      */
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $aggregation = new RangeAggregation('foo', 'fieldValue', [['from' => 'now', 'key' => 'nowkey']], true);
         $this->assertSame(
             [
                 'range' => [
-                    'keyed' => true,
+                    'keyed'  => true,
                     'ranges' => [
                         [
                             'from' => 'now',
-                            'key' => 'nowkey',
+                            'key'  => 'nowkey',
                         ],
                     ],
                     'field' => 'fieldValue',

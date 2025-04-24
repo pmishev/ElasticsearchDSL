@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Query\Geo;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -17,38 +18,25 @@ use ONGR\ElasticsearchDSL\ParametersTrait;
 /**
  * Represents Elasticsearch "geo_bounding_box" query.
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-bounding-box-query.html
+ * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-bounding-box-query.html
  */
 class GeoBoundingBoxQuery implements BuilderInterface
 {
     use ParametersTrait;
 
     /**
-     * @var array
-     */
-    private $values;
-
-    /**
-     * @var string
-     */
-    private $field;
-
-    /**
      * @param string $field
      * @param array  $values
-     * @param array  $parameters
      */
-    public function __construct($field, $values, array $parameters = [])
+    public function __construct(private $field, private $values, array $parameters = [])
     {
-        $this->field = $field;
-        $this->values = $values;
         $this->setParameters($parameters);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'geo_bounding_box';
     }
@@ -56,10 +44,10 @@ class GeoBoundingBoxQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
-            $this->getType() => $this->processArray([$this->field => $this->points()])
+            $this->getType() => $this->processArray([$this->field => $this->points()]),
         ];
     }
 
@@ -70,17 +58,17 @@ class GeoBoundingBoxQuery implements BuilderInterface
      */
     private function points()
     {
-        if (count($this->values) === 2) {
+        if (2 === count($this->values)) {
             return [
-                'top_left' => $this->values[0] ?? $this->values['top_left'],
+                'top_left'     => $this->values[0] ?? $this->values['top_left'],
                 'bottom_right' => $this->values[1] ?? $this->values['bottom_right'],
             ];
-        } elseif (count($this->values) === 4) {
+        } elseif (4 === count($this->values)) {
             return [
-                'top' => $this->values[0] ?? $this->values['top'],
-                'left' => $this->values[1] ?? $this->values['left'],
+                'top'    => $this->values[0] ?? $this->values['top'],
+                'left'   => $this->values[1] ?? $this->values['left'],
                 'bottom' => $this->values[2] ?? $this->values['bottom'],
-                'right' => $this->values[3] ?? $this->values['right'],
+                'right'  => $this->values[3] ?? $this->values['right'],
             ];
         }
 

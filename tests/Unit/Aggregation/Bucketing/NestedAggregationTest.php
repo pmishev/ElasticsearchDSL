@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,18 +10,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Aggregation\Bucketing;
 
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\NestedAggregation;
 use ONGR\ElasticsearchDSL\Aggregation\Bucketing\TermsAggregation;
+use PHPUnit\Framework\TestCase;
 
-class NestedAggregationTest extends \PHPUnit\Framework\TestCase
+final class NestedAggregationTest extends TestCase
 {
     /**
      * Test for nested aggregation toArray() method exception.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $termAggregation = new TermsAggregation('acme');
 
@@ -28,7 +30,7 @@ class NestedAggregationTest extends \PHPUnit\Framework\TestCase
         $aggregation->addAggregation($termAggregation);
 
         $expectedResult = [
-            'nested' => ['path' => 'test_path'],
+            'nested'       => ['path' => 'test_path'],
             'aggregations' => [
                 $termAggregation->getName() => $termAggregation->toArray(),
             ],

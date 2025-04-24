@@ -1,48 +1,85 @@
-name: PHPUnit
+name: tests
 
-on:
-  push:
-  pull_request:
+concurrency:
+  group: phpunit-tests-${{ github.ref_name }}
+  cancel-in-progress: true
+
+on: ['push', 'pull_request', 'workflow_dispatch']
+
+env:
+  ELASTICSEARCH_PORT: 9201
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    services:
-      elasticsearch:
-        image: elastic/elasticsearch:7.4.0
-        ports:
-          - 9200:9200
-        env:
-          discovery.type: single-node
+  static_code_analysis:
+    runs-on: 'ubuntu-24.04'
+    name: 'Static code analysis'
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 'Validate composer.json and composer.lock'
+        run: composer validate
+
+      - name: 'Install dependencies with Composer'
+        uses: 'ramsey/composer-install@v2'
+        with:
+          dependency-versions: 'highest'
+          composer-options: '--prefer-dist'
+
+      - name: Check code quality and coding standards
+        run: composer check-code
+
+  phpunit:
+    needs: [ static_code_analysis ]
+    runs-on: 'ubuntu-24.04'
+    name: 'PHPUnit (PHP ${{ matrix.php }})'
+    timeout-minutes: 30
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        php: ['7.4', '8.0']
+        experimental:
+          - false
+        dependencies:
+          - 'highest'
+        php:
+          - '8.1'
+          - '8.4'
+      fail-fast: false
     steps:
-    - uses: actions/checkout@v2
-  
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php }}
-        tools: composer:v2
-        coverage: xdebug
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '${{ matrix.php }}'
+          coverage: 'pcov'
+          tools: 'composer:v2'
+          extensions: 'curl, json, openssl'
+          ini-values: 'memory_limit=256M'
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: 'Install dependencies with Composer'
+        uses: 'ramsey/composer-install@v2'
+        with:
+          dependency-versions: '${{ matrix.dependencies }}'
+          composer-options: '--prefer-dist'
 
-    - name: Wait for Elasticsearch
-      run: php ./.github/wait_for_es.php
+      - name: 'Run phpunit tests'
+        run: |
+          vendor/bin/phpunit --coverage-clover=tests/clover.xml 2>/dev/null
 
-    - name: Run PHPUnit
-      run: vendor/bin/phpunit --coverage-clover=coverage.xml
+      - name: Upload coverage results to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: tests/clover.xml
 
-    - name: Run PHPCS
-      run: vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor/ ./
-    
-    - name: Upload Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        file: ./coverage.xml
+#        env:
+#          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+#        run: |
+#          vendor/bin/php-coveralls --coverage_clover=tests/clover.xml --json_path=tests/coveralls.json -v

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,7 +10,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Highlight;
 
 use ONGR\ElasticsearchDSL\BuilderInterface;
@@ -24,20 +25,16 @@ class Highlight implements BuilderInterface
     /**
      * @var array Holds fields for highlight.
      */
-    private $fields = [];
+    private array $fields = [];
+
+    private ?array $tags = null;
 
     /**
-     * @var array
-     */
-    private $tags;
-
-    /**
-     * @param string $name   Field name to highlight.
-     * @param array  $params
+     * @param string $name Field name to highlight.
      *
      * @return $this
      */
-    public function addField($name, array $params = [])
+    public function addField($name, array $params = []): static
     {
         $this->fields[$name] = $params;
 
@@ -47,12 +44,9 @@ class Highlight implements BuilderInterface
     /**
      * Sets html tag and its class used in highlighting.
      *
-     * @param array $preTags
-     * @param array $postTags
-     *
      * @return $this
      */
-    public function setTags(array $preTags, array $postTags)
+    public function setTags(array $preTags, array $postTags): static
     {
         $this->tags['pre_tags'] = $preTags;
         $this->tags['post_tags'] = $postTags;
@@ -63,15 +57,16 @@ class Highlight implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return 'highlight';
     }
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function toArray()
+    public function toArray(): array
     {
         $output = [];
 
@@ -82,7 +77,7 @@ class Highlight implements BuilderInterface
         $output = $this->processArray($output);
 
         foreach ($this->fields as $field => $params) {
-            $output['fields'][$field] = count($params) ? $params : new \stdClass();
+            $output['fields'][$field] = count($params) > 0 ? $params : new \stdClass();
         }
 
         return $output;

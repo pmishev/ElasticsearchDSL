@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the ONGR package.
  *
@@ -8,17 +10,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace ONGR\ElasticsearchDSL\Tests\Unit\Query\Geo;
 
 use ONGR\ElasticsearchDSL\Query\Geo\GeoShapeQuery;
+use PHPUnit\Framework\TestCase;
 
-class GeoShapeQueryTest extends \PHPUnit\Framework\TestCase
+final class GeoShapeQueryTest extends TestCase
 {
     /**
      * Tests toArray() method.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $filter = new GeoShapeQuery(['param1' => 'value1']);
         $filter->addShape('location', 'envelope', [[13, 53], [14, 52]], GeoShapeQuery::INTERSECTS);
@@ -27,10 +29,10 @@ class GeoShapeQueryTest extends \PHPUnit\Framework\TestCase
             'geo_shape' => [
                 'location' => [
                     'shape' => [
-                        'type' => 'envelope',
+                        'type'        => 'envelope',
                         'coordinates' => [[13, 53], [14, 52]],
                     ],
-                    'relation' => 'intersects'
+                    'relation' => 'intersects',
                 ],
                 'param1' => 'value1',
             ],
@@ -42,7 +44,7 @@ class GeoShapeQueryTest extends \PHPUnit\Framework\TestCase
     /**
      * Test for toArray() in case of pre-indexed shape.
      */
-    public function testToArrayIndexed()
+    public function testToArrayIndexed(): void
     {
         $filter = new GeoShapeQuery(['param1' => 'value1']);
         $filter->addPreIndexedShape('location', 'DEU', 'countries', 'shapes', 'location', GeoShapeQuery::WITHIN);
@@ -51,12 +53,12 @@ class GeoShapeQueryTest extends \PHPUnit\Framework\TestCase
             'geo_shape' => [
                 'location' => [
                     'indexed_shape' => [
-                        'id' => 'DEU',
-                        'type' => 'countries',
+                        'id'    => 'DEU',
+                        'type'  => 'countries',
                         'index' => 'shapes',
-                        'path' => 'location',
+                        'path'  => 'location',
                     ],
-                    'relation' => 'within'
+                    'relation' => 'within',
                 ],
                 'param1' => 'value1',
             ],
