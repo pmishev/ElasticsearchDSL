@@ -40,7 +40,7 @@ class CustomReferencedNormalizer implements NormalizerInterface, SerializerAware
         $this->inner->setSerializer($this->serializer);
     }
 
-    public function supportsNormalization(mixed $data, ?string $format = null /* , array $context = [] */): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, ?array $context = []): bool
     {
         return $data instanceof AbstractNormalizable;
     }
