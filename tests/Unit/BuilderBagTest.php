@@ -73,7 +73,7 @@ final class BuilderBagTest extends TestCase
         $bazBuilder = $this->getBuilder('baz');
         $builderName = $bag->add($bazBuilder);
 
-        $this->assertNotEmpty($bag->get($builderName));
+        $this->assertSame($bazBuilder, $bag->get($builderName));
     }
 
     private function getBuilder(string $name): BuilderInterface

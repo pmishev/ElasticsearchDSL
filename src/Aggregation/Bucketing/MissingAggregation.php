@@ -26,11 +26,8 @@ class MissingAggregation extends AbstractAggregation
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
-     * @param string $field
      */
-    public function __construct($name, $field = null)
+    public function __construct(string $name, ?string $field = null)
     {
         parent::__construct($name);
 

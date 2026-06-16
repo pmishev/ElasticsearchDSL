@@ -190,7 +190,7 @@ final class BoolQueryTest extends TestCase
     {
         $bool = new BoolQuery();
 
-        $this->assertIsArray($bool->getQueries());
+        $this->assertSame([], $bool->getQueries());
     }
 
     /**
@@ -215,7 +215,7 @@ final class BoolQueryTest extends TestCase
     {
         $bool = new BoolQuery();
 
-        $this->assertIsArray($bool->getQueries(BoolQuery::MUST));
+        $this->assertSame([], $bool->getQueries(BoolQuery::MUST));
     }
 
     /**

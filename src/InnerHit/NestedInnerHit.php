@@ -27,20 +27,14 @@ class NestedInnerHit implements NamedBuilderInterface
     use ParametersTrait;
     use NameAwareTrait;
 
-    /**
-     * @var string
-     */
-    private $path;
+    private string $path;
 
     private ?Search $search = null;
 
     /**
      * Inner hits container init.
-     *
-     * @param string $name
-     * @param string $path
      */
-    public function __construct($name, $path, ?Search $search = null)
+    public function __construct(string $name, string $path, ?Search $search = null)
     {
         $this->setName($name);
         $this->setPath($path);
@@ -49,36 +43,23 @@ class NestedInnerHit implements NamedBuilderInterface
         }
     }
 
-    /**
-     * @return string
-     */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
 
-    /**
-     * @param string $path
-     *
-     * @return $this
-     */
-    public function setPath($path): static
+    public function setPath(string $path): static
     {
         $this->path = $path;
 
         return $this;
     }
 
-    /**
-     */
     public function getSearch(): ?Search
     {
         return $this->search;
     }
 
-    /**
-     * @return $this
-     */
     public function setSearch(Search $search): static
     {
         $this->search = $search;

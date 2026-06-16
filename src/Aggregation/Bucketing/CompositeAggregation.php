@@ -30,20 +30,16 @@ class CompositeAggregation extends AbstractAggregation
      */
     private array $sources = [];
 
-    /**
-     * @var int
-     */
-    private $size;
+    private ?int $size = null;
 
     private ?array $after = null;
 
     /**
      * Inner aggregations container init.
      *
-     * @param string                $name
      * @param AbstractAggregation[] $sources
      */
-    public function __construct($name, $sources = [])
+    public function __construct(string $name, array $sources = [])
     {
         parent::__construct($name);
 
@@ -98,12 +94,8 @@ class CompositeAggregation extends AbstractAggregation
 
     /**
      * Sets size
-     *
-     * @param int $size Size
-     *
-     * @return $this
      */
-    public function setSize($size): static
+    public function setSize(?int $size): static
     {
         $this->size = $size;
 
@@ -112,10 +104,8 @@ class CompositeAggregation extends AbstractAggregation
 
     /**
      * Returns size
-     *
-     * @return int
      */
-    public function getSize()
+    public function getSize(): ?int
     {
         return $this->size;
     }

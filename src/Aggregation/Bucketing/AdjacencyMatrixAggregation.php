@@ -33,10 +33,9 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     /**
      * Inner aggregations container init.
      *
-     * @param string             $name
      * @param BuilderInterface[] $filters
      */
-    public function __construct($name, $filters = [])
+    public function __construct(string $name, array $filters = [])
     {
         parent::__construct($name);
 
@@ -46,12 +45,9 @@ class AdjacencyMatrixAggregation extends AbstractAggregation
     }
 
     /**
-     * @param string $name
-     *
-     *
      * @throws \LogicException
      */
-    public function addFilter($name, BuilderInterface $filter): static
+    public function addFilter(string $name, BuilderInterface $filter): static
     {
         $this->filters[self::FILTERS][$name] = $filter->toArray();
 

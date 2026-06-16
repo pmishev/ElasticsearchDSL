@@ -24,11 +24,7 @@ class FuzzyQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param string $field
-     * @param string $value
-     */
-    public function __construct(private $field, private $value, array $parameters = [])
+    public function __construct(private string $field, private string $value, array $parameters = [])
     {
         $this->setParameters($parameters);
     }

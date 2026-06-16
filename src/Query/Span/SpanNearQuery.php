@@ -19,25 +19,14 @@ namespace ONGR\ElasticsearchDSL\Query\Span;
  */
 class SpanNearQuery extends SpanOrQuery implements SpanQueryInterface
 {
-    /**
-     * @var int
-     */
-    private $slop;
+    private ?int $slop = null;
 
-    /**
-     * @return int
-     */
-    public function getSlop()
+    public function getSlop(): ?int
     {
         return $this->slop;
     }
 
-    /**
-     * @param int $slop
-     *
-     * @return $this
-     */
-    public function setSlop($slop): static
+    public function setSlop(?int $slop): static
     {
         $this->slop = $slop;
 
@@ -47,6 +36,7 @@ class SpanNearQuery extends SpanOrQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'span_near';
@@ -55,6 +45,7 @@ class SpanNearQuery extends SpanOrQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function toArray(): array
     {
         $query = [];

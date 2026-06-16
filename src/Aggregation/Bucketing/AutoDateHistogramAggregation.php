@@ -26,13 +26,8 @@ class AutoDateHistogramAggregation extends AbstractAggregation
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
-     * @param string $field
-     * @param int    $buckets
-     * @param string $format
      */
-    public function __construct($name, $field, $buckets = null, $format = null)
+    public function __construct(string $name, ?string $field, ?int $buckets = null, ?string $format = null)
     {
         parent::__construct($name);
 

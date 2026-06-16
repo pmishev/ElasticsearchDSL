@@ -24,11 +24,7 @@ class ScriptQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param string $script     Script
-     * @param array  $parameters Optional parameters
-     */
-    public function __construct(private $script, array $parameters = [])
+    public function __construct(private string $script, array $parameters = [])
     {
         $this->setParameters($parameters);
     }
@@ -46,7 +42,7 @@ class ScriptQuery implements BuilderInterface
      */
     public function toArray(): array
     {
-        $query = ['inline' => $this->script];
+        $query = ['source' => $this->script];
         $output = $this->processArray($query);
 
         return [$this->getType() => ['script' => $output]];

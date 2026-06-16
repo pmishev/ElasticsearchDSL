@@ -26,19 +26,10 @@ class DiversifiedSamplerAggregation extends AbstractAggregation
 
     /**
      * Defines how many results will be received from each shard
-     *
-     * @param int $shardSize
      */
-    private $shardSize;
+    private ?int $shardSize = null;
 
-    /**
-     * DiversifiedSamplerAggregation constructor.
-     *
-     * @param string $name      Aggregation name
-     * @param string $field     Elasticsearch field name
-     * @param int    $shardSize Shard size, by default it's 100
-     */
-    public function __construct($name, $field = null, $shardSize = null)
+    public function __construct(string $name, ?string $field = null, ?int $shardSize = null)
     {
         parent::__construct($name);
 
@@ -46,20 +37,12 @@ class DiversifiedSamplerAggregation extends AbstractAggregation
         $this->setShardSize($shardSize);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getShardSize()
+    public function getShardSize(): ?int
     {
         return $this->shardSize;
     }
 
-    /**
-     * @param mixed $shardSize
-     *
-     * @return $this
-     */
-    public function setShardSize($shardSize): static
+    public function setShardSize(?int $shardSize): static
     {
         $this->shardSize = $shardSize;
 

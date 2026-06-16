@@ -20,6 +20,7 @@ use Symfony\Component\Serializer\Serializer;
  */
 class OrderedSerializer extends Serializer
 {
+    #[\Override]
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         return parent::normalize(
@@ -32,6 +33,7 @@ class OrderedSerializer extends Serializer
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         return parent::denormalize(

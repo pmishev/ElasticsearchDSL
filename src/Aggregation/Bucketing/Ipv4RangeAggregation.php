@@ -28,12 +28,8 @@ class Ipv4RangeAggregation extends AbstractAggregation
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
-     * @param string $field
-     * @param array  $ranges
      */
-    public function __construct($name, $field = null, $ranges = [])
+    public function __construct(string $name, ?string $field = null, array $ranges = [])
     {
         parent::__construct($name);
 
@@ -51,18 +47,15 @@ class Ipv4RangeAggregation extends AbstractAggregation
 
     /**
      * Add range to aggregation.
-     *
-     * @param string|null $from
-     * @param string|null $to
      */
-    public function addRange($from = null, $to = null): static
+    public function addRange(?string $from = null, ?string $to = null): static
     {
         $range = array_filter(
             [
                 'from' => $from,
                 'to'   => $to,
             ],
-            fn ($v): bool => !is_null($v)
+            fn (?string $v): bool => !is_null($v)
         );
 
         $this->ranges[] = $range;
@@ -72,10 +65,8 @@ class Ipv4RangeAggregation extends AbstractAggregation
 
     /**
      * Add ip mask to aggregation.
-     *
-     * @param string $mask
      */
-    public function addMask($mask): static
+    public function addMask(string $mask): static
     {
         $this->ranges[] = ['mask' => $mask];
 

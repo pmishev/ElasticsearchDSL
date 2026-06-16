@@ -9,6 +9,7 @@ class ParentInnerHit extends NestedInnerHit
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'parent';

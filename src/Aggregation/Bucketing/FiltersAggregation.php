@@ -30,19 +30,14 @@ class FiltersAggregation extends AbstractAggregation
      */
     private array $filters = [];
 
-    /**
-     * @var bool
-     */
-    private $anonymous = false;
+    private bool $anonymous = false;
 
     /**
      * Inner aggregations container init.
      *
-     * @param string             $name
      * @param BuilderInterface[] $filters
-     * @param bool               $anonymous
      */
-    public function __construct($name, $filters = [], $anonymous = false)
+    public function __construct(string $name, array $filters = [], bool $anonymous = false)
     {
         parent::__construct($name);
 
@@ -56,12 +51,7 @@ class FiltersAggregation extends AbstractAggregation
         }
     }
 
-    /**
-     * @param bool $anonymous
-     *
-     * @return $this
-     */
-    public function setAnonymous($anonymous): static
+    public function setAnonymous(bool $anonymous): static
     {
         $this->anonymous = $anonymous;
 
@@ -69,16 +59,13 @@ class FiltersAggregation extends AbstractAggregation
     }
 
     /**
-     * @param string $name
-     *
-     *
      * @throws \LogicException
      */
-    public function addFilter(BuilderInterface $filter, $name = ''): static
+    public function addFilter(BuilderInterface $filter, string $name = ''): static
     {
-        if (false === $this->anonymous && empty($name)) {
+        if (false === $this->anonymous && ($name === '' || $name === '0')) {
             throw new \LogicException('In not anonymous filters filter name must be set.');
-        } elseif (false === $this->anonymous && !empty($name)) {
+        } elseif (false === $this->anonymous && ($name !== '' && $name !== '0')) {
             $this->filters['filters'][$name] = $filter->toArray();
         } else {
             $this->filters['filters'][] = $filter->toArray();

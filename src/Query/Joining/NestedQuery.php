@@ -24,10 +24,7 @@ class NestedQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param string $path
-     */
-    public function __construct(private $path, private BuilderInterface $query, array $parameters = [])
+    public function __construct(private string $path, private BuilderInterface $query, array $parameters = [])
     {
         $this->parameters = $parameters;
     }
@@ -66,10 +63,8 @@ class NestedQuery implements BuilderInterface
 
     /**
      * Returns path this query is set for.
-     *
-     * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }

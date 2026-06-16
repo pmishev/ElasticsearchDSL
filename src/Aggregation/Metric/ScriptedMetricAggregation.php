@@ -24,41 +24,20 @@ class ScriptedMetricAggregation extends AbstractAggregation
 {
     use MetricTrait;
 
-    /**
-     * @var mixed
-     */
-    private $initScript;
+    private mixed $initScript = null;
 
-    /**
-     * @var mixed
-     */
-    private $mapScript;
+    private mixed $mapScript = null;
 
-    /**
-     * @var mixed
-     */
-    private $combineScript;
+    private mixed $combineScript = null;
 
-    /**
-     * @var mixed
-     */
-    private $reduceScript;
+    private mixed $reduceScript = null;
 
-    /**
-     * ScriptedMetricAggregation constructor.
-     *
-     * @param string $name
-     * @param mixed  $initScript
-     * @param mixed  $mapScript
-     * @param mixed  $combineScript
-     * @param mixed  $reduceScript
-     */
     public function __construct(
-        $name,
-        $initScript = null,
-        $mapScript = null,
-        $combineScript = null,
-        $reduceScript = null,
+        string $name,
+        mixed $initScript = null,
+        mixed $mapScript = null,
+        mixed $combineScript = null,
+        mixed $reduceScript = null,
     ) {
         parent::__construct($name);
 
@@ -76,80 +55,48 @@ class ScriptedMetricAggregation extends AbstractAggregation
         return 'scripted_metric';
     }
 
-    /**
-     * @return mixed
-     */
-    public function getInitScript()
+    public function getInitScript(): mixed
     {
         return $this->initScript;
     }
 
-    /**
-     * @param mixed $initScript
-     *
-     * @return $this
-     */
-    public function setInitScript($initScript): static
+    public function setInitScript(mixed $initScript): static
     {
         $this->initScript = $initScript;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMapScript()
+    public function getMapScript(): mixed
     {
         return $this->mapScript;
     }
 
-    /**
-     * @param mixed $mapScript
-     *
-     * @return $this
-     */
-    public function setMapScript($mapScript): static
+    public function setMapScript(mixed $mapScript): static
     {
         $this->mapScript = $mapScript;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCombineScript()
+    public function getCombineScript(): mixed
     {
         return $this->combineScript;
     }
 
-    /**
-     * @param mixed $combineScript
-     *
-     * @return $this
-     */
-    public function setCombineScript($combineScript): static
+    public function setCombineScript(mixed $combineScript): static
     {
         $this->combineScript = $combineScript;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getReduceScript()
+    public function getReduceScript(): mixed
     {
         return $this->reduceScript;
     }
 
-    /**
-     * @param mixed $reduceScript
-     *
-     * @return $this
-     */
-    public function setReduceScript($reduceScript): static
+    public function setReduceScript(mixed $reduceScript): static
     {
         $this->reduceScript = $reduceScript;
 

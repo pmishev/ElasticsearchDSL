@@ -26,27 +26,20 @@ class PercentileRanksAggregation extends AbstractAggregation
     use MetricTrait;
     use ScriptAwareTrait;
 
-    /**
-     * @var array
-     */
-    private $values;
+    private ?array $values = null;
 
-    /**
-     * @var int
-     */
-    private $compression;
+    private ?int $compression = null;
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
-     * @param string $field
-     * @param array  $values
-     * @param string $script
-     * @param int    $compression
      */
-    public function __construct($name, $field = null, $values = null, $script = null, $compression = null)
-    {
+    public function __construct(
+        string $name,
+        ?string $field = null,
+        ?array $values = null,
+        ?string $script = null,
+        ?int $compression = null,
+    ) {
         parent::__construct($name);
 
         $this->setField($field);
@@ -55,40 +48,24 @@ class PercentileRanksAggregation extends AbstractAggregation
         $this->setCompression($compression);
     }
 
-    /**
-     * @return array
-     */
-    public function getValues()
+    public function getValues(): ?array
     {
         return $this->values;
     }
 
-    /**
-     * @param array $values
-     *
-     * @return $this
-     */
-    public function setValues($values): static
+    public function setValues(?array $values): static
     {
         $this->values = $values;
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getCompression()
+    public function getCompression(): ?int
     {
         return $this->compression;
     }
 
-    /**
-     * @param int $compression
-     *
-     * @return $this
-     */
-    public function setCompression($compression): static
+    public function setCompression(?int $compression): static
     {
         $this->compression = $compression;
 
@@ -116,7 +93,7 @@ class PercentileRanksAggregation extends AbstractAggregation
                 'values'      => $this->getValues(),
                 'compression' => $this->getCompression(),
             ],
-            fn ($val): bool => $val || is_numeric($val)
+            fn (string|int|array|null $val): bool => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);

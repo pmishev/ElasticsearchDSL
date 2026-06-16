@@ -24,6 +24,7 @@ class MatchPhraseQuery extends MatchQuery
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'match_phrase';

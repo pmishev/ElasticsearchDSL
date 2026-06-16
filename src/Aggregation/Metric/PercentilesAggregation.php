@@ -26,27 +26,20 @@ class PercentilesAggregation extends AbstractAggregation
     use MetricTrait;
     use ScriptAwareTrait;
 
-    /**
-     * @var array
-     */
-    private $percents;
+    private ?array $percents = null;
 
-    /**
-     * @var int
-     */
-    private $compression;
+    private ?int $compression = null;
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
-     * @param string $field
-     * @param array  $percents
-     * @param string $script
-     * @param int    $compression
      */
-    public function __construct($name, $field = null, $percents = null, $script = null, $compression = null)
-    {
+    public function __construct(
+        string $name,
+        ?string $field = null,
+        ?array $percents = null,
+        ?string $script = null,
+        ?int $compression = null,
+    ) {
         parent::__construct($name);
 
         $this->setField($field);
@@ -55,40 +48,24 @@ class PercentilesAggregation extends AbstractAggregation
         $this->setCompression($compression);
     }
 
-    /**
-     * @return array
-     */
-    public function getPercents()
+    public function getPercents(): ?array
     {
         return $this->percents;
     }
 
-    /**
-     * @param array $percents
-     *
-     * @return $this
-     */
-    public function setPercents($percents): static
+    public function setPercents(?array $percents): static
     {
         $this->percents = $percents;
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getCompression()
+    public function getCompression(): ?int
     {
         return $this->compression;
     }
 
-    /**
-     * @param int $compression
-     *
-     * @return $this
-     */
-    public function setCompression($compression): static
+    public function setCompression(?int $compression): static
     {
         $this->compression = $compression;
 
@@ -116,7 +93,7 @@ class PercentilesAggregation extends AbstractAggregation
                 'field'       => $this->getField(),
                 'script'      => $this->getScript(),
             ],
-            fn ($val): bool => $val || is_numeric($val)
+            fn (int|string|array|null $val): bool => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);

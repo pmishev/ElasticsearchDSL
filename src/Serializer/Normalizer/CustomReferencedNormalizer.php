@@ -40,7 +40,7 @@ class CustomReferencedNormalizer implements NormalizerInterface, SerializerAware
         $this->inner->setSerializer($this->serializer);
     }
 
-    public function supportsNormalization(mixed $data, ?string $format = null /* , array $context = [] */): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof AbstractNormalizable;
     }
@@ -52,5 +52,10 @@ class CustomReferencedNormalizer implements NormalizerInterface, SerializerAware
         $this->references = array_merge($this->references, $object->getReferences());
 
         return $data;
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [AbstractNormalizable::class => true];
     }
 }

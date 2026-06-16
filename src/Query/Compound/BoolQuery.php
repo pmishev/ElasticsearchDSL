@@ -39,7 +39,7 @@ class BoolQuery implements BuilderInterface
         foreach ($container as $type => $queries) {
             $queries = is_array($queries) ? $queries : [$queries];
 
-            array_walk($queries, function ($query) use ($type): void {
+            array_walk($queries, function (BuilderInterface $query) use ($type): void {
                 $this->add($query, $type);
             });
         }
@@ -47,12 +47,8 @@ class BoolQuery implements BuilderInterface
 
     /**
      * Returns the query instances (by bool type).
-     *
-     * @param string|null $boolType
-     *
-     * @return array
      */
-    public function getQueries($boolType = null)
+    public function getQueries(?string $boolType = null): array
     {
         if (null === $boolType) {
             $queries = [];
@@ -70,15 +66,11 @@ class BoolQuery implements BuilderInterface
     /**
      * Add BuilderInterface object to bool operator.
      *
-     * @param BuilderInterface $query Query add to the bool.
-     * @param string           $type  Bool type. Example: must, must_not, should.
-     * @param string           $key   Key that indicates a builder id.
-     *
      * @return string Key of added builder.
      *
      * @throws \UnexpectedValueException
      */
-    public function add(BuilderInterface $query, $type = self::MUST, $key = null)
+    public function add(BuilderInterface $query, string $type = self::MUST, ?string $key = null): string
     {
         if (!in_array($type, [self::MUST, self::MUST_NOT, self::SHOULD, self::FILTER])) {
             throw new \UnexpectedValueException(sprintf('The bool operator %s is not supported', $type));
@@ -96,7 +88,7 @@ class BoolQuery implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         if (1 === count($this->container) && isset($this->container[self::MUST])
                 && 1 === count($this->container[self::MUST])) {

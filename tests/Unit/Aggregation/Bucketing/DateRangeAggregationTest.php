@@ -36,7 +36,7 @@ final class DateRangeAggregationTest extends TestCase
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Either from or to must be set. Both cannot be null.');
         $agg = new DateRangeAggregation('test_agg');
-        $agg->addRange(null, null);
+        $agg->addRange();
     }
 
     /**
@@ -110,7 +110,7 @@ final class DateRangeAggregationTest extends TestCase
      *
      * @dataProvider getDateRangeAggregationConstructorProvider
      */
-    public function testDateRangeAggregationConstructor(string $field = null, string $format = null, ?array $ranges = null): void
+    public function testDateRangeAggregationConstructor(?string $field = null, ?string $format = null, ?array $ranges = null): void
     {
         $aggregation = $this->getMockBuilder(DateRangeAggregation::class)
             ->onlyMethods(['setField', 'setFormat', 'addRange'])

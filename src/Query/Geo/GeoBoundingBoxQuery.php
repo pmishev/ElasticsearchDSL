@@ -24,11 +24,7 @@ class GeoBoundingBoxQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param string $field
-     * @param array  $values
-     */
-    public function __construct(private $field, private $values, array $parameters = [])
+    public function __construct(private string $field, private array $values, array $parameters = [])
     {
         $this->setParameters($parameters);
     }
@@ -52,11 +48,9 @@ class GeoBoundingBoxQuery implements BuilderInterface
     }
 
     /**
-     * @return array
-     *
      * @throws \LogicException
      */
-    private function points()
+    private function points(): array
     {
         if (2 === count($this->values)) {
             return [

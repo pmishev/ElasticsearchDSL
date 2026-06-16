@@ -21,10 +21,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
  */
 class BoostingQuery implements BuilderInterface
 {
-    /**
-     * @param int|float $negativeBoost
-     */
-    public function __construct(private readonly BuilderInterface $positive, private readonly BuilderInterface $negative, private $negativeBoost)
+    public function __construct(private readonly BuilderInterface $positive, private readonly BuilderInterface $negative, private readonly int|float $negativeBoost)
     {
     }
 

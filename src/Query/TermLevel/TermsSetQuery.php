@@ -27,14 +27,7 @@ class TermsSetQuery implements BuilderInterface
     public const MINIMUM_SHOULD_MATCH_TYPE_FIELD = 'minimum_should_match_field';
     public const MINIMUM_SHOULD_MATCH_TYPE_SCRIPT = 'minimum_should_match_script';
 
-    /**
-     * Constructor.
-     *
-     * @param string $field      Field name
-     * @param array  $terms      An array of terms
-     * @param array  $parameters Parameters
-     */
-    public function __construct(private $field, private $terms, array $parameters)
+    public function __construct(private string $field, private array $terms, array $parameters)
     {
         $this->validateParameters($parameters);
         $this->setParameters($parameters);

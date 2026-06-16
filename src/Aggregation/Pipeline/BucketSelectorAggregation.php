@@ -22,6 +22,7 @@ class BucketSelectorAggregation extends BucketScriptAggregation
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'bucket_selector';

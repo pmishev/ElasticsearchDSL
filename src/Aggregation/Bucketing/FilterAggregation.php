@@ -29,10 +29,8 @@ class FilterAggregation extends AbstractAggregation
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
      */
-    public function __construct($name, ?BuilderInterface $filter = null)
+    public function __construct(string $name, ?BuilderInterface $filter = null)
     {
         parent::__construct($name);
 
@@ -41,9 +39,6 @@ class FilterAggregation extends AbstractAggregation
         }
     }
 
-    /**
-     * @return $this
-     */
     public function setFilter(BuilderInterface $filter): static
     {
         $this->filter = $filter;
@@ -62,7 +57,8 @@ class FilterAggregation extends AbstractAggregation
     /**
      * {@inheritdoc}
      */
-    public function setField($field): never
+    #[\Override]
+    public function setField(?string $field): never
     {
         throw new \LogicException("Filter aggregation, doesn't support `field` parameter");
     }

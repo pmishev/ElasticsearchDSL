@@ -21,12 +21,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
  */
 class ExistsQuery implements BuilderInterface
 {
-    /**
-     * Constructor.
-     *
-     * @param string $field Field value
-     */
-    public function __construct(private $field)
+    public function __construct(private readonly string $field)
     {
     }
 

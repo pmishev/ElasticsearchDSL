@@ -24,6 +24,7 @@ class SpanTermQuery extends TermQuery implements SpanQueryInterface
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'span_term';

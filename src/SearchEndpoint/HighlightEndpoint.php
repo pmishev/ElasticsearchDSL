@@ -41,7 +41,8 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function add(BuilderInterface $builder, $key = null): string
+    #[\Override]
+    public function add(BuilderInterface $builder, ?string $key = null): string
     {
         if ($this->container !== []) {
             throw new \OverflowException('Only one highlight can be set');

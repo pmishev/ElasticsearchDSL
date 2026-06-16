@@ -28,12 +28,12 @@ class TopHitsAggregation extends AbstractAggregation
     /**
      * Number of top matching hits to return per bucket.
      */
-    private ?int $size;
+    private ?int $size = null;
 
     /**
      * The offset from the first result you want to fetch.
      */
-    private ?int $from;
+    private ?int $from = null;
 
     /**
      * @var FieldSort[] How the top matching hits should be sorted.
@@ -42,13 +42,8 @@ class TopHitsAggregation extends AbstractAggregation
 
     /**
      * Constructor for top hits.
-     *
-     * @param string                $name Aggregation name.
-     * @param int|null              $size Number of top matching hits to return per bucket.
-     * @param int|null              $from The offset from the first result you want to fetch.
-     * @param FieldSort|null $sort How the top matching hits should be sorted.
      */
-    public function __construct($name, int $size = null, int $from = null, FieldSort $sort = null)
+    public function __construct(string $name, ?int $size = null, ?int $from = null, ?FieldSort $sort = null)
     {
         parent::__construct($name);
         $this->setFrom($from);
@@ -80,8 +75,6 @@ class TopHitsAggregation extends AbstractAggregation
 
     /**
      * @param FieldSort[] $sorts
-     *
-     * @return $this
      */
     public function setSorts(array $sorts): static
     {

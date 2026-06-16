@@ -111,8 +111,8 @@ final class FiltersAggregationTest extends TestCase
             [
                 'filters' => [
                     'filters' => [
-                        'filter1' => null,
-                        'filter2' => null,
+                        'filter1' => [],
+                        'filter2' => [],
                     ],
                 ],
             ],
@@ -132,8 +132,8 @@ final class FiltersAggregationTest extends TestCase
             [
                 'filters' => [
                     'filters' => [
-                        null,
-                        null,
+                        [],
+                        [],
                     ],
                 ],
             ],
