@@ -25,58 +25,41 @@ abstract class AbstractAggregation implements NamedBuilderInterface
     use ParametersTrait;
     use NameAwareTrait;
 
-    /**
-     * @var string
-     */
-    private $field;
+    private ?string $field = null;
 
     private ?BuilderBag $aggregations = null;
 
     /**
      * Abstract supportsNesting method.
-     *
-     * @return bool
      */
-    abstract protected function supportsNesting();
+    abstract protected function supportsNesting(): bool;
 
     abstract protected function getArray(): array|\stdClass;
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
      */
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->setName($name);
     }
 
-    /**
-     * @param string $field
-     *
-     * @return $this
-     */
-    public function setField($field)
+    public function setField(?string $field): static
     {
         $this->field = $field;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getField()
+    public function getField(): ?string
     {
         return $this->field;
     }
 
     /**
      * Adds a sub-aggregation.
-     *
-     * @return $this
      */
-    public function addAggregation(AbstractAggregation $abstractAggregation)
+    public function addAggregation(AbstractAggregation $abstractAggregation): static
     {
         if (!$this->aggregations instanceof BuilderBag) {
             $this->aggregations = $this->createBuilderBag();
@@ -92,7 +75,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
      *
      * @return NamedBuilderInterface[]
      */
-    public function getAggregations()
+    public function getAggregations(): array
     {
         if ($this->aggregations instanceof BuilderBag) {
             /** @var NamedBuilderInterface[] $result */
@@ -122,7 +105,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray()
+    public function toArray(): array
     {
         $array = $this->getArray();
         $result = [
@@ -132,7 +115,7 @@ abstract class AbstractAggregation implements NamedBuilderInterface
         if ($this->supportsNesting()) {
             $nestedResult = $this->collectNestedAggregations();
 
-            if (!empty($nestedResult)) {
+            if ($nestedResult !== []) {
                 $result['aggregations'] = $nestedResult;
             }
         }
@@ -142,10 +125,8 @@ abstract class AbstractAggregation implements NamedBuilderInterface
 
     /**
      * Process all nested aggregations.
-     *
-     * @return array
      */
-    protected function collectNestedAggregations()
+    protected function collectNestedAggregations(): array
     {
         $result = [];
         /** @var AbstractAggregation $aggregation */

@@ -34,7 +34,7 @@ class Highlight implements BuilderInterface
      *
      * @return $this
      */
-    public function addField($name, array $params = []): static
+    public function addField(string $name, array $params = []): static
     {
         $this->fields[$name] = $params;
 

@@ -29,16 +29,11 @@ class PercentilesBucketAggregation extends AbstractPipelineAggregation
         return 'percentiles_bucket';
     }
 
-    /**
-     */
     public function getPercents(): ?array
     {
         return $this->percents;
     }
 
-    /**
-     * @return $this
-     */
     public function setPercents(array $percents): static
     {
         $this->percents = $percents;
@@ -49,6 +44,7 @@ class PercentilesBucketAggregation extends AbstractPipelineAggregation
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getArray(): array
     {
         $data = ['buckets_path' => $this->getBucketsPath()];

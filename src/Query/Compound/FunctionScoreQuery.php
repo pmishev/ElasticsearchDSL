@@ -47,19 +47,14 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * Creates field_value_factor function.
      *
-     * @param string $field
-     * @param float  $factor
-     * @param string $modifier
-     * @param mixed  $missing
-     *
      * @return $this
      */
     public function addFieldValueFactorFunction(
-        $field,
-        $factor,
-        $modifier = 'none',
+        string $field,
+        int|float $factor,
+        string $modifier = 'none',
         ?BuilderInterface $query = null,
-        $missing = null,
+        mixed $missing = null,
     ): static {
         $function = [
             'field_value_factor' => array_filter([
@@ -90,19 +85,15 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * Add decay function to function score. Weight and query are optional.
      *
-     * @param string $type
-     * @param string $field
-     * @param int    $weight
-     *
      * @return $this
      */
     public function addDecayFunction(
-        $type,
-        $field,
+        string $type,
+        string $field,
         array $function,
         array $options = [],
         ?BuilderInterface $query = null,
-        $weight = null,
+        int|float|null $weight = null,
     ): static {
         $function = array_filter(
             [
@@ -124,11 +115,9 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * Adds function to function score without decay function. Influence search score only for specific query.
      *
-     * @param float $weight
-     *
      * @return $this
      */
-    public function addWeightFunction($weight, ?BuilderInterface $query = null): static
+    public function addWeightFunction(int|float $weight, ?BuilderInterface $query = null): static
     {
         $function = [
             'weight' => $weight,
@@ -144,11 +133,10 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * Adds random score function. Seed is optional.
      *
-     * @param mixed $seed
      *
      * @return $this
      */
-    public function addRandomFunction($seed = null, ?BuilderInterface $query = null): static
+    public function addRandomFunction(mixed $seed = null, ?BuilderInterface $query = null): static
     {
         $function = [
             'random_score' => $seed ? ['seed' => $seed] : new \stdClass(),
@@ -164,12 +152,11 @@ class FunctionScoreQuery implements BuilderInterface
     /**
      * Adds script score function.
      *
-     * @param string $source
      *
      * @return $this
      */
     public function addScriptScoreFunction(
-        $source,
+        string $source,
         array $params = [],
         array $options = [],
         ?BuilderInterface $query = null,

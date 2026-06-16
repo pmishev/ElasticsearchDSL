@@ -26,11 +26,8 @@ class NestedSort implements BuilderInterface
 
     private ?BuilderInterface $nestedFilter = null;
 
-    /**
-     * @param string $path
-     */
     public function __construct(
-        private $path,
+        private string $path,
         private ?BuilderInterface $filter = null,
         array $parameters = [],
     ) {
@@ -76,10 +73,8 @@ class NestedSort implements BuilderInterface
 
     /**
      * Returns path this filter is set for.
-     *
-     * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }

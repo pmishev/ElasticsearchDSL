@@ -24,38 +24,24 @@ class ChildrenAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    /**
-     * @var string
-     */
-    private $children;
+    private ?string $children = null;
 
     /**
      * Return children.
-     *
-     * @return string
      */
-    public function getChildren()
+    public function getChildren(): ?string
     {
         return $this->children;
     }
 
-    /**
-     * @param string $name
-     * @param string $children
-     */
-    public function __construct($name, $children = null)
+    public function __construct(string $name, ?string $children = null)
     {
         parent::__construct($name);
 
         $this->setChildren($children);
     }
 
-    /**
-     * @param string $children
-     *
-     * @return $this
-     */
-    public function setChildren($children): static
+    public function setChildren(?string $children): static
     {
         $this->children = $children;
 
@@ -75,7 +61,7 @@ class ChildrenAggregation extends AbstractAggregation
      */
     public function getArray(): array
     {
-        if (0 == count($this->getAggregations())) {
+        if (0 === count($this->getAggregations())) {
             throw new \LogicException("Children aggregation `{$this->getName()}` has no aggregations added");
         }
 

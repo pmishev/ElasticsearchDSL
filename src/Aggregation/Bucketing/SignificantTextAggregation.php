@@ -22,6 +22,7 @@ class SignificantTextAggregation extends TermsAggregation
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'significant_text';

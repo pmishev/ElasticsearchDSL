@@ -30,10 +30,7 @@ class MultiMatchQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param string $query
-     */
-    public function __construct(private array $fields, private $query, array $parameters = [])
+    public function __construct(private array $fields, private string $query, array $parameters = [])
     {
         $this->setParameters($parameters);
     }

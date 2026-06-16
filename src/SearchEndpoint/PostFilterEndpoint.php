@@ -28,6 +28,7 @@ class PostFilterEndpoint extends QueryEndpoint
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function normalize(NormalizerInterface $normalizer, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         if (!$this->getBool() instanceof BoolQuery) {
@@ -40,6 +41,7 @@ class PostFilterEndpoint extends QueryEndpoint
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getOrder(): int
     {
         return 1;

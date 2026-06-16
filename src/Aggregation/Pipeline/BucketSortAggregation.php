@@ -23,15 +23,6 @@ class BucketSortAggregation extends AbstractPipelineAggregation
 {
     private array $sort = [];
 
-    /**
-     * @param string $name
-     * @param string $bucketsPath
-     */
-    public function __construct($name, $bucketsPath = null)
-    {
-        parent::__construct($name, $bucketsPath);
-    }
-
     public function getSort(): array
     {
         return $this->sort;
@@ -60,6 +51,7 @@ class BucketSortAggregation extends AbstractPipelineAggregation
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getArray(): array
     {
         return array_filter(

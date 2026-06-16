@@ -24,32 +24,22 @@ class GeoHashGridAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    /**
-     * @var int
-     */
-    private $precision;
+    private ?int $precision = null;
 
-    /**
-     * @var int
-     */
-    private $size;
+    private ?int $size = null;
 
-    /**
-     * @var int
-     */
-    private $shardSize;
+    private ?int $shardSize = null;
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
-     * @param string $field
-     * @param int    $precision
-     * @param int    $size
-     * @param int    $shardSize
      */
-    public function __construct($name, $field = null, $precision = null, $size = null, $shardSize = null)
-    {
+    public function __construct(
+        string $name,
+        ?string $field = null,
+        ?int $precision = null,
+        ?int $size = null,
+        ?int $shardSize = null,
+    ) {
         parent::__construct($name);
 
         $this->setField($field);
@@ -58,60 +48,36 @@ class GeoHashGridAggregation extends AbstractAggregation
         $this->setShardSize($shardSize);
     }
 
-    /**
-     * @return int
-     */
-    public function getPrecision()
+    public function getPrecision(): ?int
     {
         return $this->precision;
     }
 
-    /**
-     * @param int $precision
-     *
-     * @return $this
-     */
-    public function setPrecision($precision): static
+    public function setPrecision(?int $precision): static
     {
         $this->precision = $precision;
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getSize()
+    public function getSize(): ?int
     {
         return $this->size;
     }
 
-    /**
-     * @param int $size
-     *
-     * @return $this
-     */
-    public function setSize($size): static
+    public function setSize(?int $size): static
     {
         $this->size = $size;
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getShardSize()
+    public function getShardSize(): ?int
     {
         return $this->shardSize;
     }
 
-    /**
-     * @param int $shardSize
-     *
-     * @return $this
-     */
-    public function setShardSize($shardSize): static
+    public function setShardSize(?int $shardSize): static
     {
         $this->shardSize = $shardSize;
 

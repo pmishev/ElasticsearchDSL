@@ -33,16 +33,11 @@ class SpanContainingQuery implements SpanQueryInterface
         $this->setBig($big);
     }
 
-    /**
-     */
     public function getLittle(): SpanQueryInterface
     {
         return $this->little;
     }
 
-    /**
-     * @return $this
-     */
     public function setLittle(SpanQueryInterface $little): static
     {
         $this->little = $little;
@@ -50,16 +45,11 @@ class SpanContainingQuery implements SpanQueryInterface
         return $this;
     }
 
-    /**
-     */
     public function getBig(): SpanQueryInterface
     {
         return $this->big;
     }
 
-    /**
-     * @return $this
-     */
     public function setBig(SpanQueryInterface $big): static
     {
         $this->big = $big;

@@ -24,25 +24,13 @@ class DateRangeAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    /**
-     * @var string
-     */
-    private $format;
+    private ?string $format = null;
 
     private array $ranges = [];
 
-    /**
-     * @var bool
-     */
-    private $keyed = false;
+    private bool $keyed = false;
 
-    /**
-     * @param string $name
-     * @param string $field
-     * @param string $format
-     * @param bool   $keyed
-     */
-    public function __construct($name, $field = null, $format = null, array $ranges = [], $keyed = false)
+    public function __construct(string $name, ?string $field = null, ?string $format = null, array $ranges = [], bool $keyed = false)
     {
         parent::__construct($name);
 
@@ -59,28 +47,20 @@ class DateRangeAggregation extends AbstractAggregation
 
     /**
      * Sets if result buckets should be keyed.
-     *
-     * @param bool $keyed
      */
-    public function setKeyed($keyed): static
+    public function setKeyed(bool $keyed): static
     {
         $this->keyed = $keyed;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getFormat()
+    public function getFormat(): ?string
     {
         return $this->format;
     }
 
-    /**
-     * @param string $format
-     */
-    public function setFormat($format): void
+    public function setFormat(?string $format): void
     {
         $this->format = $format;
     }
@@ -90,7 +70,7 @@ class DateRangeAggregation extends AbstractAggregation
      *
      * @throws \LogicException
      */
-    public function addRange(string|int $from = null, string|int $to = null, string $key = null): static
+    public function addRange(string|int|null $from = null, string|int|null $to = null, ?string $key = null): static
     {
         $range = array_filter(
             [
@@ -98,7 +78,7 @@ class DateRangeAggregation extends AbstractAggregation
                 'to'   => $to,
                 'key'  => $key,
             ],
-            fn ($v): bool => !is_null($v)
+            fn (int|string|null $v): bool => !is_null($v)
         );
 
         if ($range === []) {

@@ -28,12 +28,8 @@ class TermsAggregation extends AbstractAggregation
 
     /**
      * Inner aggregations container init.
-     *
-     * @param string $name
-     * @param string $field
-     * @param string $script
      */
-    public function __construct($name, $field = null, $script = null)
+    public function __construct(string $name, ?string $field = null, ?string $script = null)
     {
         parent::__construct($name);
 

@@ -24,10 +24,7 @@ class GeoPolygonQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param string $field
-     */
-    public function __construct(private $field, private array $points = [], array $parameters = [])
+    public function __construct(private string $field, private array $points = [], array $parameters = [])
     {
         $this->setParameters($parameters);
     }

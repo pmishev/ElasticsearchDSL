@@ -26,9 +26,9 @@ final class DateHistogramAggregationTest extends TestCase
     public function testDateHistogramAggregationGetType(): void
     {
         $aggregation = new DateHistogramAggregation('foo', 'test');
-        static::assertSame('foo', $aggregation->getName());
+        self::assertSame('foo', $aggregation->getName());
         $result = $aggregation->getType();
-        static::assertEquals('date_histogram', $result);
+        self::assertEquals('date_histogram', $result);
     }
 
     /**
@@ -41,7 +41,7 @@ final class DateHistogramAggregationTest extends TestCase
         $aggregation->setCalendarInterval('month');
         $result = $aggregation->getArray();
         $expected = ['field' => 'date', 'calendar_interval' => 'month'];
-        static::assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     public function testWithoutInterval(): void
@@ -58,7 +58,7 @@ final class DateHistogramAggregationTest extends TestCase
         $aggregation->setFixedInterval('1m');
         $aggregation->setFormat('YYYY-mm-dd');
 
-        static::assertSame([
+        self::assertSame([
             'date_histogram' => [
                 'field'             => 'test',
                 'calendar_interval' => '1m',
@@ -73,9 +73,9 @@ final class DateHistogramAggregationTest extends TestCase
     {
         $aggregation = new DateHistogramAggregation('foo', 'test', '1m', '1m', 'test', 'Europe/Berlin');
 
-        static::assertSame('1m', $aggregation->getCalendarInterval());
-        static::assertSame('1m', $aggregation->getFixedInterval());
-        static::assertSame('test', $aggregation->getFormat());
-        static::assertSame('Europe/Berlin', $aggregation->getTimeZone());
+        self::assertSame('1m', $aggregation->getCalendarInterval());
+        self::assertSame('1m', $aggregation->getFixedInterval());
+        self::assertSame('test', $aggregation->getFormat());
+        self::assertSame('Europe/Berlin', $aggregation->getTimeZone());
     }
 }

@@ -34,9 +34,9 @@ abstract class AbstractSearchEndpoint extends AbstractNormalizable implements Se
     /**
      * {@inheritdoc}
      */
-    public function add(BuilderInterface $builder, $key = null): string
+    public function add(BuilderInterface $builder, ?string $key = null): string
     {
-        if (array_key_exists($key, $this->container)) {
+        if (null !== $key && array_key_exists($key, $this->container)) {
             throw new \OverflowException(sprintf('Builder with %s name for endpoint has already been added!', $key));
         }
 
@@ -52,7 +52,7 @@ abstract class AbstractSearchEndpoint extends AbstractNormalizable implements Se
     /**
      * {@inheritdoc}
      */
-    public function addToBool(BuilderInterface $builder, $boolType = null, $key = null): string
+    public function addToBool(BuilderInterface $builder, ?string $boolType = null, ?string $key = null): string
     {
         throw new \BadFunctionCallException(sprintf("Endpoint %s doesn't support bool statements", static::NAME));
     }
@@ -60,7 +60,7 @@ abstract class AbstractSearchEndpoint extends AbstractNormalizable implements Se
     /**
      * {@inheritdoc}
      */
-    public function remove($key): static
+    public function remove(string $key): static
     {
         if ($this->has($key)) {
             unset($this->container[$key]);
@@ -82,7 +82,7 @@ abstract class AbstractSearchEndpoint extends AbstractNormalizable implements Se
     /**
      * {@inheritdoc}
      */
-    public function get($key): ?BuilderInterface
+    public function get(string $key): ?BuilderInterface
     {
         if ($this->has($key)) {
             return $this->container[$key];
@@ -94,7 +94,7 @@ abstract class AbstractSearchEndpoint extends AbstractNormalizable implements Se
     /**
      * {@inheritdoc}
      */
-    public function getAll($boolType = null): array
+    public function getAll(?string $boolType = null): array
     {
         return $this->container;
     }

@@ -24,11 +24,9 @@ class SpanFirstQuery implements SpanQueryInterface
     use ParametersTrait;
 
     /**
-     * @param int $end
-     *
      * @throws \LogicException
      */
-    public function __construct(private SpanQueryInterface $query, private $end, array $parameters = [])
+    public function __construct(private SpanQueryInterface $query, private int $end, array $parameters = [])
     {
         $this->setParameters($parameters);
     }

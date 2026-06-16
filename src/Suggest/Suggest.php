@@ -19,33 +19,15 @@ class Suggest implements NamedBuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
-    /**
-     * @var string
-     */
-    private $text;
+    private string $text;
 
-    /**
-     * @var string
-     */
-    private $field;
+    private string $field;
 
-    /**
-     * @param string $name
-     * @param string $type
-     * @param string $text
-     * @param string $field
-     */
-    public function __construct($name, $type, $text, $field, array $parameters = [])
+    public function __construct(string $name, string $type, string $text, string $field, array $parameters = [])
     {
         $this->setName($name);
         $this->setType($type);
@@ -54,12 +36,7 @@ class Suggest implements NamedBuilderInterface
         $this->setParameters($parameters);
     }
 
-    /**
-     * @param string $name
-     *
-     * @return $this
-     */
-    public function setName($name): static
+    public function setName(string $name): static
     {
         $this->name = $name;
 
@@ -68,70 +45,45 @@ class Suggest implements NamedBuilderInterface
 
     /**
      * Returns suggest name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
      * Returns element type.
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     *
-     * @return $this
-     */
-    public function setType($type): static
+    public function setType(string $type): static
     {
         $this->type = $type;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getText()
+    public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     *
-     * @return $this
-     */
-    public function setText($text): static
+    public function setText(string $text): static
     {
         $this->text = $text;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getField()
+    public function getField(): string
     {
         return $this->field;
     }
 
-    /**
-     * @param string $field
-     *
-     * @return $this
-     */
-    public function setField($field): static
+    public function setField(string $field): static
     {
         $this->field = $field;
 

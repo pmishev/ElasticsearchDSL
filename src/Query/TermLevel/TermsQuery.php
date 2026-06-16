@@ -24,13 +24,6 @@ class TermsQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * Constructor.
-     *
-     * @param string $field      Field name
-     * @param array  $terms      An array of terms
-     * @param array  $parameters Optional parameters
-     */
     public function __construct(private readonly string $field, private readonly array $terms, array $parameters = [])
     {
         $this->setParameters($parameters);

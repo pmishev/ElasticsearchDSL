@@ -35,8 +35,6 @@ class SpanOrQuery implements SpanQueryInterface
 
     /**
      * Add span query.
-     *
-     * @return $this
      */
     public function addQuery(SpanQueryInterface $query): static
     {

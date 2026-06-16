@@ -22,6 +22,7 @@ class SpanWithinQuery extends SpanContainingQuery
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'span_within';

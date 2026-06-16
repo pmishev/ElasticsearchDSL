@@ -24,11 +24,7 @@ class MatchQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @param string $field
-     * @param string $query
-     */
-    public function __construct(private $field, private $query, array $parameters = [])
+    public function __construct(private string $field, private string $query, array $parameters = [])
     {
         $this->setParameters($parameters);
     }

@@ -22,6 +22,7 @@ class ValueCountAggregation extends StatsAggregation
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'value_count';

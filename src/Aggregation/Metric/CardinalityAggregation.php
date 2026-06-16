@@ -26,15 +26,9 @@ class CardinalityAggregation extends AbstractAggregation
     use MetricTrait;
     use ScriptAwareTrait;
 
-    /**
-     * @var int
-     */
-    private $precisionThreshold;
+    private ?int $precisionThreshold = null;
 
-    /**
-     * @var bool
-     */
-    private $rehash;
+    private ?bool $rehash = null;
 
     /**
      * {@inheritdoc}
@@ -49,7 +43,7 @@ class CardinalityAggregation extends AbstractAggregation
                 'precision_threshold' => $this->getPrecisionThreshold(),
                 'rehash'              => $this->isRehash(),
             ],
-            fn ($val): bool => $val || is_bool($val)
+            fn (string|int|bool|null $val): bool => $val || is_bool($val)
         );
 
         $this->checkRequiredFields($out);
@@ -57,40 +51,24 @@ class CardinalityAggregation extends AbstractAggregation
         return $out;
     }
 
-    /**
-     * @param int $precision
-     *
-     * @return $this
-     */
-    public function setPrecisionThreshold($precision): static
+    public function setPrecisionThreshold(?int $precision): static
     {
         $this->precisionThreshold = $precision;
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getPrecisionThreshold()
+    public function getPrecisionThreshold(): ?int
     {
         return $this->precisionThreshold;
     }
 
-    /**
-     * @return bool
-     */
-    public function isRehash()
+    public function isRehash(): ?bool
     {
         return $this->rehash;
     }
 
-    /**
-     * @param bool $rehash
-     *
-     * @return $this
-     */
-    public function setRehash($rehash): static
+    public function setRehash(?bool $rehash): static
     {
         $this->rehash = $rehash;
 

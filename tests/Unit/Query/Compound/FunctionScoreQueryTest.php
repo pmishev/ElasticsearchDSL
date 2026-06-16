@@ -83,7 +83,7 @@ final class FunctionScoreQueryTest extends TestCase
 
         $this->assertEquals(
             [
-                'query'     => null,
+                'query'     => [],
                 'functions' => [
                     [
                         'field_value_factor' => [

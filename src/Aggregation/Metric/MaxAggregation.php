@@ -22,6 +22,7 @@ class MaxAggregation extends StatsAggregation
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getType(): string
     {
         return 'max';

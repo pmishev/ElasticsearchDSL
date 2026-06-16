@@ -26,7 +26,7 @@ interface SearchEndpointInterface extends NormalizableInterface
      *
      * @return string Key of added builder.
      */
-    public function add(BuilderInterface $builder, string $key = null): string;
+    public function add(BuilderInterface $builder, ?string $key = null): string;
 
     /**
      * Adds builder to search endpoint's specific bool type container.
@@ -37,7 +37,7 @@ interface SearchEndpointInterface extends NormalizableInterface
      *
      * @return string Key of added builder.
      */
-    public function addToBool(BuilderInterface $builder, string $boolType = null, string $key = null): string;
+    public function addToBool(BuilderInterface $builder, ?string $boolType = null, ?string $key = null): string;
 
     /**
      * Removes contained builder.
@@ -54,7 +54,7 @@ interface SearchEndpointInterface extends NormalizableInterface
      *
      * @param string|null $boolType If bool type is left null it will return all builders from container.
      */
-    public function getAll(string $boolType = null): array;
+    public function getAll(?string $boolType = null): array;
 
     /**
      * Returns Bool filter or query instance with all builder objects inside.

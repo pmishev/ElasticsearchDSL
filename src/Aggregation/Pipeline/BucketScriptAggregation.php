@@ -19,36 +19,20 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
  */
 class BucketScriptAggregation extends AbstractPipelineAggregation
 {
-    /**
-     * @var string
-     */
-    private $script;
+    private ?string $script = null;
 
-    /**
-     * @param string $name
-     * @param array  $bucketsPath
-     * @param string $script
-     */
-    public function __construct($name, $bucketsPath, $script = null)
+    public function __construct(string $name, string|array $bucketsPath, ?string $script = null)
     {
         parent::__construct($name, $bucketsPath);
         $this->setScript($script);
     }
 
-    /**
-     * @return string
-     */
-    public function getScript()
+    public function getScript(): ?string
     {
         return $this->script;
     }
 
-    /**
-     * @param string $script
-     *
-     * @return $this
-     */
-    public function setScript($script): static
+    public function setScript(?string $script): static
     {
         $this->script = $script;
 
@@ -66,6 +50,7 @@ class BucketScriptAggregation extends AbstractPipelineAggregation
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getArray(): array
     {
         if (!$this->getScript()) {
